@@ -53,7 +53,7 @@ const Navbar = () => {
                 <use xlinkHref="#e" x={2470} />
               </g>
             </svg>
-            English (US)
+            English(US)
           </button>
           {/* Dropdown */}
           <div
