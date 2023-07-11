@@ -11,7 +11,7 @@ const Hero = () => {
             alt=""
             width={450}
           />
-          <div className="bg-white relative h-64 bottom-[20rem] left-[22rem] w-[100px]"></div>
+          <div className="bg-white    relative h-64 bottom-[20rem] left-[22rem] w-[100px]"></div>
           <div className=" z-[-5] relative h-[14rem] bottom-[20rem] left-[22rem] w-[100px]">
             right-2
           </div>
