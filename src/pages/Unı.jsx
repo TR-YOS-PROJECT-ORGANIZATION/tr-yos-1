@@ -1,5 +1,8 @@
-import React from "react";
-const Uni = ({ uni }) => {
+import React, { useContext } from "react";
+import { YosContext } from "../context/YosContext";
+
+const Uni = () => {
+  const { uni } = useContext(YosContext);
   return (
     <div>
       <div className="opacity-70 relative overflow-hidden h-[15rem] bg-center bg-no-repeat p-12 text-center bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')]">
