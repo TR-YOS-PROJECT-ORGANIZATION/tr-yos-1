@@ -55,12 +55,6 @@ const [filterDep, setFilterDep] = useState([]);
 
   console.log(location);
 
-  
-        const options = location?.map((item) => ({
-          value: item.id,
-          label: item.tr,
-        }));
-
            const getFilterDep = () => {
              return filterDep?.map((item) => item.value);
            };
