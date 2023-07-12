@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Switch from "./Switch";
 import LoginModal from "../login/LoginModal";
+import RgisterModal from "./components/register/RgisterModal";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -176,12 +177,7 @@ const Navbar = () => {
           <div className="hidden md:flex pt-3">
   
      <LoginModal/>
-            <button
-              type="button"
-              className="text-black bg-green-light focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            >
-              Sign Up
-            </button>
+        <RgisterModal/>
             <Switch />
           </div>
         </div>
