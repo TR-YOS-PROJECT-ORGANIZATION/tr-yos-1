@@ -26,6 +26,47 @@ const YosContextProvider = ({ children }) => {
         console.log(error);
       }
     };
+
+    const getUni = async () => {
+      try {
+        const { data } = await axios(BASE_URL_UNI);
+        setUni(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    const getDep = async () => {
+      try {
+        const { data } = await axios(BASE_URL_DEP);
+        setDepertman(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    useEffect(() => {
+      getLoca();
+      getUni();
+      getDep();
+    }, []);
+  
+    const getCities = () => {
+      return city?.map((item) => item.value);
+    };
+  
+    const cities = getCities();
+  
+    const getUniId = () => {
+      return uniId?.map((item) => item.value);
+    };
+  
+    const uniIdies = getUniId();
+  
+    const getFilterDep = () => {
+      return filterDep?.map((item) => item.label);
+    };
+    const filterDepss = getFilterDep();
+
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };
 
