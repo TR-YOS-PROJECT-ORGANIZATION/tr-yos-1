@@ -66,7 +66,53 @@ const YosContextProvider = ({ children }) => {
       return filterDep?.map((item) => item.label);
     };
     const filterDepss = getFilterDep();
+const options = location?.map((item) => ({
+  value: item.id,
+  label: item.tr,
+}));
 
+const options1 = uni
+  ?.filter((item) => cities.includes(item.city))
+  .map((item) => ({
+    value: item.code,
+    label: item.tr,
+    img: item.images,
+  }));
+
+const options2 = depertman
+  ?.filter((item) => uniIdies.includes(item.university.code))
+  .map((item) => ({
+    value: item.department.code,
+    label: item.department.tr,
+    faculty: item.faculty.tr,
+    university: item.university.tr,
+    address: item.city.tr,
+  }));
+
+console.log(options2);
+const optionsCard = depertman
+  ?.filter((item) => filterDepss.includes(item.university.code))
+  .map((item) => ({
+    value: item.department.code,
+    label: item.department.tr,
+  }));
+
+const filterrrr = options2?.filter((item) => filterDepss.includes(item.label));
+
+const values = {
+  options,
+  options1,
+  options2,
+  setCity,
+  setUniId,
+  setFilterDep,
+  uni,
+  filterDep,
+  uniId,
+  city,
+  optionsCard,
+  filterrrr,
+};
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };
 
