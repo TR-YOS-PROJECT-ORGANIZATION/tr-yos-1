@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 import LoginForum, { registerSchema } from "./RgisterForum";
-import { Formik } from 'formik';
-
+import { Formik } from "formik";
+import RgisterForum from "./RgisterForm";
 
 const Rgister = () => {
   return (
@@ -14,7 +14,7 @@ const Rgister = () => {
           actions.resetForm();
           actions.setSubmitting(false);
         }}
-        component={(props) => <LoginForum {...props} />}
+        component={(props) => <RgisterForum {...props} />}
       ></Formik>
     </div>
   );
