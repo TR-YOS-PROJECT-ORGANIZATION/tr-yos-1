@@ -1,24 +1,21 @@
-import React from 'react'
-// import LoginForum, { loginScheme } from './LoginForum';
-// import { Formik } from 'formik';
-
+import React from "react";
+import RgisterForm, { registerSchema } from './../src/components/register/RgisterForm';
+import { Formik } from 'formik';
 
 const Login = () => {
   return (
     <div>
-      {" "}
-      {/* <Formik
+      <Formik
         initialValues={{ username: "", password: "" }}
-        validationSchema={loginScheme}
+        validationSchema={registerSchema}
         onSubmit={(values, actions) => {
-   
           actions.resetForm();
           actions.setSubmitting(false);
         }}
-        component={(props) => <LoginForum {...props} />}
-      ></Formik> */}
+        component={(props) => <RgisterForm {...props} />}
+      ></Formik>
     </div>
   );
-}
+};
 
-export default Login
+export default Login;

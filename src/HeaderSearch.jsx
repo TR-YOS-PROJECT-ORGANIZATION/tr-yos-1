@@ -13,8 +13,8 @@ const HeaderSearch = ({
  const navigate=useNavigate()
 
   return (
-    <div className="relative bottom-32 z-50">
-      <div className="m-auto max-w-[1200px]  py-1 bg-white rounded-md border-2 border-green-dark ">
+    <div className="relative bottom-36  z-50">
+      <div className="m-auto max-w-[1200px] h-20 py-1 bg-white rounded-md border-2 border-green-dark ">
         <div className="flex justify-evenly  ">
           <Select
             isMulti
