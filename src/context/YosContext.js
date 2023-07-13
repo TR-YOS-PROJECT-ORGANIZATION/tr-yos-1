@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { createContext } from "react";
+import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 
 export const YosContext = createContext();
@@ -12,12 +13,23 @@ const YosContextProvider = ({ children }) => {
   const [city, setCity] = useState([]);
   const [uniId, setUniId] = useState([]);
   const [filterDep, setFilterDep] = useState([]);
+// const [userInfo, setUserInfo] = useState({
+//   name: "",
+//   password: "",
+//   email: "",
+//   password2: "",
+// });
+// console.log(userInfo);
 
   const ApiKey =
     "mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf";
   const BASE_URL_LOCA = `https://tr-yös.com/api/v1/location/allcities.php?token=${ApiKey}`;
   const BASE_URL_UNI = `https://tr-yös.com/api/v1/education/alluniversities.php?token=${ApiKey}`;
   const BASE_URL_DEP = `https://tr-yös.com/api/v1/record/alldepartments.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
+
+  const BASE_URL_USER = `https://tr-yös.com/api/v1/users/newuser.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
+
+  const BASE_URL_LOGIN = `https://tr-yös.com/api/v1/users/login.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
 
   const getLoca = async () => {
     try {
@@ -50,6 +62,30 @@ const YosContextProvider = ({ children }) => {
     getUni();
     getDep();
   }, []);
+
+  const register = async (userInfo) => {
+    try {
+      const { data } = await axios.post(`${BASE_URL_LOGIN}`, userInfo);
+      console.log(data);
+   
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+    const login = async (userInfo) => {
+      try {
+        const { data } = await axios.post(`${BASE_URL_USER}`,userInfo);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+
+
 
   const getCities = () => {
     return city?.map((item) => item.value);
@@ -115,6 +151,8 @@ const YosContextProvider = ({ children }) => {
     city,
     optionsCard,
     filterrrr,
+    register,
+    login,
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };
