@@ -1,5 +1,6 @@
 import YosContextProvider from "./context/YosContext";
-import AppRouter from "./router/AppRouter";
+import AppRouter from "./AppRouter";
+
 function App() {
   return (
     <div>
