@@ -1,4 +1,5 @@
 import React from "react";
+import resim2 from "./helper/resim2.jpg";
 import header from "./helper/header.jpg";
 const HeaderCarousel = () => {
   return (
@@ -7,7 +8,7 @@ const HeaderCarousel = () => {
       className="relative w-full"
       data-carousel="static"
     >
-      <div className="absolute h-96 z-50 opacity-70 w-1/2 rounded-r-3xl  bg-green-light"></div>
+      <div className="absolute h-96 z-50 opacity-70 ml-12 w-1/2 rounded-r-3xl  bg-green-light"></div>
       {/* Carousel wrapper */}
       <div className="relative h-56 object-cover overflow-hidden md:h-96 ">
         {/* Item 1 */}
@@ -24,7 +25,7 @@ const HeaderCarousel = () => {
           data-carousel-item="active"
         >
           <img
-            src="../../img/slider2.jpg"
+            src={resim2}
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />

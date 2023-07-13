@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForum, { registerSchema } from "./RgisterForum";
+import { registerSchema } from "./RgisterForm";
 import { Formik } from "formik";
 import RgisterForum from "./RgisterForm";
 
