@@ -1,5 +1,5 @@
 import React from "react";
-
+import header from "./helper/header.jpg";
 const HeaderCarousel = () => {
   return (
     <div
@@ -7,14 +7,15 @@ const HeaderCarousel = () => {
       className="relative w-full"
       data-carousel="static"
     >
+      <div className="absolute h-96 z-50 opacity-70 w-1/2 rounded-r-3xl  bg-green-light"></div>
       {/* Carousel wrapper */}
-      <div className="relative h-56 object-cover overflow-hidden rounded-lg md:h-96">
+      <div className="relative h-56 object-cover overflow-hidden md:h-96 ">
         {/* Item 1 */}
-        <div className="hidden duration-700 ease-in-out" data-carousel-item="">
+        <div className=" duration-700 ease-in-out" data-carousel-item="">
           <img
-            src="../../img/slider1.jpg"
-            className="absolute block w-full  -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-            alt="..."
+            src={header}
+            className="absolute block w-full   -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+            alt=""
           />
         </div>
         {/* Item 2 */}
@@ -78,8 +79,8 @@ const HeaderCarousel = () => {
           <span className="sr-only">Next</span>
         </span>
       </button>
-      <div className="relative w-[300px] bottom-48 z-50 left-24 ">
-        <h3 className="text-white w-64 font-semibold text-lg tracking-widest ">
+      <div className="relative w-[350px] -top-[16rem] z-50 left-40 ">
+        <h3 className="text-white w-96 font-bold text-3xl tracking-widest leading-10">
           Join this educational journey with us and discover your data
         </h3>
       </div>
