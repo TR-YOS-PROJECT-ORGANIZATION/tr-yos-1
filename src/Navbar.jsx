@@ -3,8 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Switch from "./Switch";
 import RgisterModal from "./components/register/RgisterModal";
 import LoginModal from "./LoginModal";
-
-
+import trImg from "./helper/tr.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -136,7 +135,7 @@ const Navbar = () => {
                   role="menuitem"
                 >
                   <div className="inline-flex items-center">
-                    <img className="mr-1" src="img/tr.png" alt="" width={17} />
+                    <img className="mr-1" src={trImg} alt="" width={17} />
                     Turkish (TR)
                   </div>
                 </a>
@@ -177,9 +176,8 @@ const Navbar = () => {
           </button>
           {/* buttonlar */}
           <div className="hidden md:flex pt-3">
-  
-     <LoginModal/>
-        <RgisterModal/>
+            <LoginModal />
+            <RgisterModal />
             <Switch />
           </div>
         </div>

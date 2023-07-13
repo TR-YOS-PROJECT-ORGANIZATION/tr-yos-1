@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-
+import resim1 from "../helper/resim1.jpg";
 import Select from "react-select";
 import { YosContext } from "../context/YosContext";
 
@@ -93,36 +93,13 @@ const Departmens = () => {
               <div className="flex justify-center">
                 <p className="text-3xl ">-</p>
               </div>
-              {/* <select
-                id="city"
-                name="city"
-                className="border border-gray-300 rounded-md px-1 py-1 focus:outline-none w-24 mt-2"
-              >
-                <option value="">Min Price</option>
-                {cities.map((city) => (
-                  <option key={city} value={city}>
-                    {city}
-                  </option>
-                ))}
-              </select> */}
+
               <div className="mx-4">
                 <input
                   type="text"
                   placeholder="Max"
                   className="border border-gray-300 rounded-md px-4 py-2 w-28  mt-2 focus:outline-none h-9"
                 />
-                {/* <select
-                  id="city"
-                  name="city"
-                  className="border border-gray-300 rounded-md px-1 py-1 focus:outline-none w-26 mt-2"
-                >
-                  <option value="">Max Price</option>
-                  {cities.map((city) => (
-                    <option key={city} value={city}>
-                      {city}
-                    </option>
-                  ))}
-                </select> */}
               </div>
             </div>
           </div>
@@ -138,7 +115,7 @@ const Departmens = () => {
           return (
             <div className="flex flex-col justify-center  w-96 mx-auto border-2 mt-12">
               <div className="relative">
-                <img src="../img/card.jpg" alt="" className="w-96" />
+                <img src={resim1} alt="" className="w-96" />
               </div>
               <div className="mx-7 mt-2">
                 <div className="flex justify-between">
