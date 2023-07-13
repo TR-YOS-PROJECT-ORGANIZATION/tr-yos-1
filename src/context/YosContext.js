@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { createContext } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 export const YosContext = createContext();
 
@@ -20,7 +20,7 @@ const YosContextProvider = ({ children }) => {
   
     const getLoca = async () => {
       try {
-        const { data } = await axios(BASE_URL_LOCA);
+        const { data } = await fetch(BASE_URL_LOCA);
         setLocation(data);
       } catch (error) {
         console.log(error);
@@ -29,7 +29,7 @@ const YosContextProvider = ({ children }) => {
 
     const getUni = async () => {
       try {
-        const { data } = await axios(BASE_URL_UNI);
+        const { data } = await fetch(BASE_URL_UNI);
         setUni(data);
       } catch (error) {
         console.log(error);
@@ -38,7 +38,7 @@ const YosContextProvider = ({ children }) => {
   
     const getDep = async () => {
       try {
-        const { data } = await axios(BASE_URL_DEP);
+        const { data } = await fetch(BASE_URL_DEP);
         setDepertman(data);
       } catch (error) {
         console.log(error);
