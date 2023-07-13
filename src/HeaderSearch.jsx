@@ -1,16 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
+import { YosContext } from "./context/YosContext";
+import { useContext } from "react";
 
-const HeaderSearch = ({
-  options,
-  options1,
-  options2,
-  setCity,
-  setUniId,
+const HeaderSearch = () => {
+  const navigate = useNavigate();
 
-}) => {
-
- const navigate=useNavigate()
+  const { options, options1, options2, setCity, setUniId, setFilterDep } =
+    useContext(YosContext);
 
   return (
     <div className="relative bottom-32 z-50">
@@ -32,10 +29,11 @@ const HeaderSearch = ({
             className="basic-multi-select  w-[200px] "
             classNamePrefix="select"
           />
-   
+
           <Select
             isMulti
             name="colors"
+            onChange={(e) => setFilterDep(e)}
             options={options2}
             className="basic-multi-select  w-[200px] "
             classNamePrefix="select"
