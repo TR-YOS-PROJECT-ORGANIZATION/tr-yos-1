@@ -105,7 +105,7 @@ const RgisterForum = ({
       </Form>
       <hr />
       <p>
-        HAve an account <Link to="/">Sign In</Link>
+        Have an account <Link to="/">Sign In</Link>
       </p>
     </div>
   );

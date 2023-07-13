@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../components/header/Header";
 import Card from "../components/card/Card";
-import Hero from "../components/hero/Hero";
+import Header from "../Header";
+import Hero from "../Hero";
 
 const Home = () => {
   return (
