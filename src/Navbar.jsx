@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Switch from "./Switch";
-import LoginModal from "../login/LoginModal";
+import LoginModal from "./LoginModal";
+
 
 const Navbar = () => {
   const navigate = useNavigate();

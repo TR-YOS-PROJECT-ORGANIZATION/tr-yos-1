@@ -1,6 +1,11 @@
+// global.Buffer = global.Buffer || require("buffer").Buffer;
+
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import "./index.css";
+import "stream-http";
+
 import App from "./App";
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+
+const rootElement = document.getElementById("root");
+ReactDOM.createRoot(rootElement).render(<App />);

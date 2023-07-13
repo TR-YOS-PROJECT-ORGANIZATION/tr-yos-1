@@ -1,13 +1,13 @@
 import React from 'react'
-import LoginForum, { loginScheme } from './LoginForum';
-import { Formik } from 'formik';
+// import LoginForum, { loginScheme } from './LoginForum';
+// import { Formik } from 'formik';
 
 
 const Login = () => {
   return (
     <div>
       {" "}
-      <Formik
+      {/* <Formik
         initialValues={{ username: "", password: "" }}
         validationSchema={loginScheme}
         onSubmit={(values, actions) => {
@@ -16,7 +16,7 @@ const Login = () => {
           actions.setSubmitting(false);
         }}
         component={(props) => <LoginForum {...props} />}
-      ></Formik>
+      ></Formik> */}
     </div>
   );
 }
