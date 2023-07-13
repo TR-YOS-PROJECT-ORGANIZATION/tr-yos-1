@@ -4,12 +4,20 @@ import { Link } from "react-router-dom";
 import { object, string } from "yup";
 
 export const registerSchema = object({
-  username: string()
+  name: string()
     .max(10, "Kullanıcı adı 10 karakterden az olmalıdır.")
     .required("username girişi zorunludur"),
 
   email: string().email().required("email girişi zorunludur"),
-  password: string()
+  password1: string()
+    .required("password zorunludur")
+    .min(8, "password en az 8 karakter olmalıdır")
+    .max(20, "password en fazla 20 karakter olmalıdır")
+    .matches(/\d+/, "Password bir sayı içermelidir")
+    .matches(/[a-z]/, "Password bir küçük harf içermelidir")
+    .matches(/[A-Z]/, "Password bir büyük harf içermelidir")
+    .matches(/[!,?{}><%&$#£+-.]+/, "Password bir özel karakter içermelidir"),
+  password2: string()
     .required("password zorunludur")
     .min(8, "password en az 8 karakter olmalıdır")
     .max(20, "password en fazla 20 karakter olmalıdır")
@@ -32,20 +40,20 @@ const RgisterForum = ({
       <Form>
         <div className="mb-6 m-auto w-48">
           <input
-            name="username"
-            id="username"
+            name="name"
+            id="name"
             type="text"
             variant="outlined"
-            value={values.username}
+            value={values.name}
             onChange={handleChange}
             onBlur={handleBlur}
-            error={touched.username && Boolean(errors.username)}
+            error={touched.name && Boolean(errors.name)}
             className="bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-green-500"
             placeholder="Your Name"
           />
           <p className="mt-2 text-sm text-green-600 dark:text-black">
             {" "}
-            {touched.username && errors.username}
+            {touched.name && errors.name}
           </p>
           <input
             name="email"
@@ -64,24 +72,24 @@ const RgisterForum = ({
             {touched.email && errors.email}
           </p>
           <input
-            name="password"
-            id="password"
+            name="password1"
+            id="password1"
             type="password"
             variant="outlined"
-            value={values.password}
+            value={values.password1}
             onChange={handleChange}
             onBlur={handleBlur}
-            error={touched.password && Boolean(errors.password)}
+            error={touched.password1 && Boolean(errors.password1)}
             className="bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-green-500"
             placeholder="Password"
           />
           <p className="mt-2 text-sm text-green-600 dark:text-black">
             {" "}
-            {touched.password && errors.password}
+            {touched.password1 && errors.password1}
           </p>
           <input
-            name="password"
-            id="password"
+            name="password2"
+            id="password2"
             type="password"
             variant="outlined"
             value={values.password2}
