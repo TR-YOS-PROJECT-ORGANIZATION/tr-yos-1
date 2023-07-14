@@ -20,7 +20,7 @@ const YosContextProvider = ({ children }) => {
 //   password2: "",
 // });
 // console.log(userInfo);
-
+const navigate=useNavigate()
   const ApiKey =
     "mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf";
   const BASE_URL_LOCA = `https://tr-yös.com/api/v1/location/allcities.php?token=${ApiKey}`;
@@ -64,14 +64,15 @@ const YosContextProvider = ({ children }) => {
   }, []);
 
   const register = async (userInfo) => {
-    try {
-      const { data } = await axios.post(`${BASE_URL_LOGIN}`, userInfo);
+     try {
+       const { data } = await axios.post(`${BASE_URL_USER}`, userInfo);
       console.log(data);
-   
+   navigate("/")
       
     } catch (error) {
       console.log(error);
     }
+   
   };
 
 

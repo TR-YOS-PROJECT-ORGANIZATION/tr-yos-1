@@ -9,7 +9,7 @@ import RgisterModal from "./components/register/RgisterModal";
 
 const AppRouter = () => {
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -19,7 +19,7 @@ const AppRouter = () => {
 
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </>
   );
 };
 
