@@ -14,6 +14,10 @@ const Login = () => {
         validationSchema={loginScheme}
         onSubmit={(values, actions) => {
           login(values)
+          let data1 = new FormData();
+          data1.append("email", values.email);
+          data1.append("password", values.password);
+          login(data1);
           actions.resetForm();
           actions.setSubmitting(false);
         }}
