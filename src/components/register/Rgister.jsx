@@ -17,7 +17,7 @@ const Rgister = () => {
           actions.resetForm();
           actions.setSubmitting(false);
         }}
-        component={(props) => <RgisterForum {...props} />}
+        component={(props) => <RgisterForm {...props} />}
       ></Formik>
     </div>
   );

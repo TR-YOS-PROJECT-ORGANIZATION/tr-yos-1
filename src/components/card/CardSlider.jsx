@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import resim1 from "../helper/resim1.jpg";
-import resim2 from "../helper/resim2.jpg";
-import resim3 from "../helper/resim3.jpg";
+import resim1 from "../../helper/resim1.jpg";
+import resim2 from "../../helper/resim2.jpg";
+import resim3 from "../../helper/resim3.jpg";
 const CardSlider = () => {
   const [activeItem, setActiveItem] = useState(1);
   const handlePrevClick = () => {
@@ -12,20 +12,20 @@ const CardSlider = () => {
   };
   return (
     <>
-      <div className="relative">
-        <div id="controls-carousel" className="relative w-full">
+      <div className="relative ">
+        <div id="controls-carousel" className="relative w-full ">
           {/* Carousel wrapper */}
           <div className="relative h-56 overflow-hidden  ">
             {/* Item 1 */}
             <div
-              className={`duration-700 ease-in-out ${
+              className={`duration-700 ease-in-out  ${
                 activeItem === 1 ? "block" : "hidden"
               }`}
               data-carousel-item=""
             >
               <img
                 src={resim1}
-                className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 "
+                className="absolute object-cover block w-full h-60"
                 alt="..."
               />
             </div>
@@ -38,20 +38,20 @@ const CardSlider = () => {
             >
               <img
                 src={resim2}
-                className="absolute object-cover block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                className="absolute object-cover block w-full h-60"
                 alt="..."
               />
             </div>
             {/* Item 3 */}
             <div
-              className={`duration-700 ease-in-out ${
+              className={`duration-700 ease-in-out  ${
                 activeItem === 3 ? "block" : "hidden"
               }`}
               data-carousel-item="active"
             >
               <img
                 src={resim3}
-                className="absolute object-cover block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                className="absolute object-cover block w-full h-60"
                 alt="..."
               />
             </div>
