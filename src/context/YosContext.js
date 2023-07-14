@@ -13,13 +13,14 @@ const YosContextProvider = ({ children }) => {
   const [city, setCity] = useState([]);
   const [uniId, setUniId] = useState([]);
   const [filterDep, setFilterDep] = useState([]);
-// const [userInfo, setUserInfo] = useState({
-//   name: "",
-//   password: "",
-//   email: "",
-//   password2: "",
-// });
-// console.log(userInfo);
+  const [userID, setUserID] = useState([]);
+const [loginState, setLoginState] = useState([]);
+
+
+const departmentID = depertman.map((item) => item.id);
+
+
+// const {}=depertman
 const navigate=useNavigate()
   const ApiKey =
     "mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf";
@@ -30,6 +31,9 @@ const navigate=useNavigate()
   const BASE_URL_USER = `https://tr-yös.com/api/v1/users/newuser.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
 
   const BASE_URL_LOGIN = `https://tr-yös.com/api/v1/users/login.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
+
+    const BASE_URL_FAVORIADD = `  https://tr-yös.com/api/v1/users/addfavorite.php?id=${departmentID}&user_id=${userID}&token=${ApiKey}`;
+
 
   const getLoca = async () => {
     try {
@@ -61,6 +65,7 @@ const navigate=useNavigate()
     getLoca();
     getUni();
     getDep();
+   
   }, []);
 
   const register = async (userInfo) => {
@@ -75,10 +80,23 @@ const navigate=useNavigate()
    
   };
 
+console.log(userID);
 
-    const login = async (userInfo) => {
+const login = async (userInfo) => {
+  try {
+    const { data } = await axios.post(`${BASE_URL_LOGIN}`, userInfo);
+    navigate("/");
+    console.log(data);
+    setLoginState(data);
+    setUserID(data.userID);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+    const getFavori = async () => {
       try {
-        const { data } = await axios.post(`${BASE_URL_USER}`,userInfo);
+        const { data } = await axios.post(`${BASE_URL_FAVORIADD}`, );
         console.log(data);
       } catch (error) {
         console.log(error);
