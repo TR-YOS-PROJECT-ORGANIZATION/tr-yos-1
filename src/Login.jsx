@@ -1,18 +1,23 @@
-import React from "react";
-import RgisterForm, { registerSchema } from './../src/components/register/RgisterForm';
+import React, { useContext } from 'react'
+import LoginForum, { loginScheme } from './LoginForum';
 import { Formik } from 'formik';
+import { YosContext } from './context/YosContext';
+
 
 const Login = () => {
+    const { login } = useContext(YosContext);
   return (
     <div>
+      {" "}
       <Formik
-        initialValues={{ username: "", password: "" }}
-        validationSchema={registerSchema}
+        initialValues={{ email: "", password: "" }}
+        validationSchema={loginScheme}
         onSubmit={(values, actions) => {
+          login(values)
           actions.resetForm();
           actions.setSubmitting(false);
         }}
-        component={(props) => <RgisterForm {...props} />}
+        component={(props) => <LoginForum {...props} />}
       ></Formik>
     </div>
   );
