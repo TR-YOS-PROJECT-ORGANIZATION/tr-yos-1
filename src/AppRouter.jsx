@@ -16,7 +16,6 @@ const AppRouter = () => {
         <Route path="/universities" element={<Uni />} />
         <Route path="/departments" element={<Departmens />} />
         <Route path="/register" element={<RgisterModal />} />
-
       </Routes>
       <Footer />
     </>

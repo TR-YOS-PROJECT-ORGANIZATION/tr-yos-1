@@ -25,8 +25,9 @@ const Rgister = () => {
           actions.resetForm();
           actions.setSubmitting(false);
         }}
-// onSubmit={handleSubmit}
-        component={(props) => <RgisterForum {...props} />}
+
+        component={(props) => <RgisterForm {...props} />}
+
       ></Formik>
     </div>
   );
