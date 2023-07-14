@@ -6,6 +6,11 @@ import "./index.css";
 import "stream-http";
 
 import App from "./App";
+import { BrowserRouter } from "react-router-dom";
 
 const rootElement = document.getElementById("root");
-ReactDOM.createRoot(rootElement).render(<App />);
+ReactDOM.createRoot(rootElement).render(
+    <BrowserRouter>
+<App />
+    </BrowserRouter>
+);

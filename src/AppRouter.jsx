@@ -9,17 +9,16 @@ import RgisterModal from "./components/register/RgisterModal";
 
 const AppRouter = () => {
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/universities" element={<Uni />} />
         <Route path="/departments" element={<Departmens />} />
         <Route path="/register" element={<RgisterModal />} />
-
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </>
   );
 };
 

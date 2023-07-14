@@ -21,6 +21,6 @@ const Login = () => {
       ></Formik>
     </div>
   );
-}
+};
 
-export default Login
+export default Login;

@@ -20,7 +20,7 @@ const YosContextProvider = ({ children }) => {
 //   password2: "",
 // });
 // console.log(userInfo);
-
+const navigate=useNavigate()
   const ApiKey =
     "mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf";
   const BASE_URL_LOCA = `https://tr-yös.com/api/v1/location/allcities.php?token=${ApiKey}`;
@@ -64,14 +64,15 @@ const YosContextProvider = ({ children }) => {
   }, []);
 
   const register = async (userInfo) => {
-    try {
-      const { data } = await axios.post(`${BASE_URL_LOGIN}`, userInfo);
+     try {
+       const { data } = await axios.post(`${BASE_URL_USER}`, userInfo);
       console.log(data);
-   
+   navigate("/")
       
     } catch (error) {
       console.log(error);
     }
+   
   };
 
 
@@ -126,7 +127,21 @@ const YosContextProvider = ({ children }) => {
       address: item.city.tr,
     }));
 
+  const options3 = depertman?.map((item) => ({
+    value: item.department.code,
+    label: item.department.tr,
+    faculty: item.faculty.tr,
+    university: item.university.tr,
+    address: item.city.tr,
+    price: item.null,
+  }));
+
+  console.log(options3);
+  console.log("options3", options3);
   console.log(options2);
+  console.log("uniIdies:", uniIdies);
+  console.log("depertman:", depertman);
+  console.log("options2:", options2);
   const optionsCard = depertman
     ?.filter((item) => filterDepss.includes(item.university.code))
     .map((item) => ({
@@ -151,6 +166,7 @@ const YosContextProvider = ({ children }) => {
     city,
     optionsCard,
     filterrrr,
+    options3,
     register,
     login,
   };
