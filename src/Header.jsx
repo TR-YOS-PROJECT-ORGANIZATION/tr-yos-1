@@ -6,12 +6,8 @@ const Header = () => {
   return (
     <>
       <HeaderCarousel />
-<<<<<<< HEAD
-      <HeaderSearch
-      />
-=======
       <HeaderSearch />
->>>>>>> 066b5906c95ee15b4761e422b1d369c7e3abe209
+
     </>
   );
 };

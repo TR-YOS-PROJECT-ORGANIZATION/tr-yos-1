@@ -90,7 +90,21 @@ const YosContextProvider = ({ children }) => {
       address: item.city.tr,
     }));
 
+  const options3 = depertman?.map((item) => ({
+    value: item.department.code,
+    label: item.department.tr,
+    faculty: item.faculty.tr,
+    university: item.university.tr,
+    address: item.city.tr,
+    price: item.null,
+  }));
+
+  console.log(options3);
+  console.log("options3", options3);
   console.log(options2);
+  console.log("uniIdies:", uniIdies);
+  console.log("depertman:", depertman);
+  console.log("options2:", options2);
   const optionsCard = depertman
     ?.filter((item) => filterDepss.includes(item.university.code))
     .map((item) => ({
@@ -115,6 +129,7 @@ const YosContextProvider = ({ children }) => {
     city,
     optionsCard,
     filterrrr,
+    options3,
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };
