@@ -3,7 +3,8 @@ import { YosContext } from "../../context/YosContext";
 import CardSlider from "./CardSlider";
 
 const CardPre = () => {
-  const { options2, options3 } = useContext(YosContext);
+  const { options2, options3, getFavori } = useContext(YosContext);
+
   const first12Universities = options3.slice(0, 12);
   return (
     <div className="flex flex-wrap gap-15 mx-auto justify-between ">

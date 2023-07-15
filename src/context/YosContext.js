@@ -14,14 +14,13 @@ const YosContextProvider = ({ children }) => {
   const [uniId, setUniId] = useState([]);
   const [filterDep, setFilterDep] = useState([]);
   const [userID, setUserID] = useState([]);
-const [loginState, setLoginState] = useState([]);
+  const [loginState, setLoginState] = useState([]);
+  const [like, setLike] = useState([]);
 
+  const departmentID = depertman.map((item) => item.id);
 
-const departmentID = depertman.map((item) => item.id);
-
-
-// const {}=depertman
-const navigate=useNavigate()
+  // const {}=depertman
+  const navigate = useNavigate();
   const ApiKey =
     "mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf";
   const BASE_URL_LOCA = `https://tr-yös.com/api/v1/location/allcities.php?token=${ApiKey}`;
@@ -32,8 +31,7 @@ const navigate=useNavigate()
 
   const BASE_URL_LOGIN = `https://tr-yös.com/api/v1/users/login.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
 
-    const BASE_URL_FAVORIADD = `  https://tr-yös.com/api/v1/users/addfavorite.php?id=${departmentID}&user_id=${userID}&token=${ApiKey}`;
-
+  const BASE_URL_FAVORIADD = `  https://tr-yös.com/api/v1/users/addfavorite.php?id=${departmentID}&user_id=${userID}&token=${ApiKey}`;
 
   const getLoca = async () => {
     try {
@@ -65,46 +63,47 @@ const navigate=useNavigate()
     getLoca();
     getUni();
     getDep();
-   
+    getFavori();
   }, []);
 
+  const handleLike = (e) => {
+    const itemId = e.target.id;
+    setLike([...like, itemId]);
+  };
+
   const register = async (userInfo) => {
-     try {
-       const { data } = await axios.post(`${BASE_URL_USER}`, userInfo);
+    try {
+      const { data } = await axios.post(`${BASE_URL_USER}`, userInfo);
       console.log(data);
-   navigate("/")
-      
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
-   
   };
 
-console.log(userID);
+  console.log(userID);
 
-const login = async (userInfo) => {
-  try {
-    const { data } = await axios.post(`${BASE_URL_LOGIN}`, userInfo);
-    navigate("/");
-    console.log(data);
-    setLoginState(data);
-    setUserID(data.userID);
-  } catch (error) {
-    console.log(error);
-  }
-};
+  const login = async (userInfo) => {
+    try {
+      const { data } = await axios.post(`${BASE_URL_LOGIN}`, userInfo);
+      navigate("/");
+      console.log(data);
+      setLoginState(data);
+      setUserID(data.userID);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    const getFavori = async () => {
-      try {
-        const { data } = await axios.post(`${BASE_URL_FAVORIADD}`, );
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  const getFavori = async () => {
+    try {
+      const { data } = await axios.post(`${BASE_URL_FAVORIADD}`);
 
-
-
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getCities = () => {
     return city?.map((item) => item.value);
@@ -143,6 +142,7 @@ const login = async (userInfo) => {
       faculty: item.faculty.tr,
       university: item.university.tr,
       address: item.city.tr,
+      id: item.id,
     }));
 
   const options3 = depertman?.map((item) => ({
@@ -187,6 +187,11 @@ const login = async (userInfo) => {
     options3,
     register,
     login,
+    getFavori,
+    loginState,
+    like,
+    setLike,
+    handleLike,
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };
