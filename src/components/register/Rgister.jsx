@@ -1,19 +1,17 @@
 import React, { useContext } from "react";
 import { registerSchema } from "./RgisterForm";
 import { Formik } from "formik";
-import RgisterForum from "./RgisterForm";
+import RgisterForm from "./RgisterForm";
 import { YosContext } from "../../context/YosContext";
 
 const Rgister = () => {
-  const{register}=useContext(YosContext)
-
-
+  const { register } = useContext(YosContext);
 
   return (
     <div>
       {" "}
       <Formik
-        initialValues={{name:"",email:"",password1:"",password2:""}}
+        initialValues={{ name: "", email: "", password1: "", password2: "" }}
         validationSchema={registerSchema}
         onSubmit={(values, actions) => {
           let data1 = new FormData();
@@ -25,9 +23,7 @@ const Rgister = () => {
           actions.resetForm();
           actions.setSubmitting(false);
         }}
-
         component={(props) => <RgisterForm {...props} />}
-
       ></Formik>
     </div>
   );
