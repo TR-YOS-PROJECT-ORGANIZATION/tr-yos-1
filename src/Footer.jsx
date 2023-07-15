@@ -1,6 +1,7 @@
 import React from "react";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdLocalPostOffice } from "react-icons/md";
+import Like from "./components/dropdown/Like";
 
 const Footer = () => {
   return (
@@ -113,6 +114,7 @@ const Footer = () => {
           <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0"></div>
         </div>
       </div>
+      <Like />
     </div>
   );
 };
