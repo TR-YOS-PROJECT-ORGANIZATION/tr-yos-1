@@ -6,7 +6,7 @@ import Like from "./components/dropdown/Like";
 const Footer = () => {
   return (
     <div>
-      <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8 bg-[#222020] m-4 text-white">
+      <div className=" w-full  p-4 py-6 lg:py-8 bg-[#222020] mt-4 text-white">
         <div>
           <div className="flex justify-around">
             <div>
