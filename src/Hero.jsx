@@ -1,22 +1,21 @@
 import React from "react";
-
+import hero from "./helper/hero.jpg";
 const Hero = () => {
   return (
     <>
-      <div className="h-[500px] mt-12">
-        <div className="bg-green-dark z-50 rounded-xl h-[400px] container w-[400px] m-auto">
+      <div className="h-[500px] mt-36">
+        <div className="bg-green-dark z-50 rounded-xl h-[400px] container w-1/3 mx-auto">
           <img
-            className="relative rounded-lg left-10 top-14 z-50 "
-            src="../img/hero.jpg"
+            className="relative rounded-lg left-10 top-8 z-50 "
+            src={hero}
             alt=""
-            width={450}
+            width={490}
           />
-          <div className="bg-white relative h-64 bottom-[20rem] left-[22rem] w-[100px]"></div>
+          <div className=" relative h-64 bottom-[20rem] left-[22rem] w-[100px]"></div>
           <div className=" z-[-5] relative h-[14rem] bottom-[20rem] left-[22rem] w-[100px]">
             right-2
           </div>
-
-          <div className=" bg-white border-1 rounded-lg h-60 max-w-[330px] xs:max-w-[300px] relative left-64 bottom-[34rem] z-50  p-4 ">
+          <div className=" bg-white border-1 rounded-lg h-50 max-w-[350px] xs:max-w-[300px] relative left-64 bottom-[34rem] z-50  p-4 ">
             <h2 className="font-extrabold text-lg">
               Are You Already Working With Us ?
             </h2>
@@ -39,17 +38,17 @@ const Hero = () => {
           et quas molestias
         </p>
       </div>
-      <div className="w-[400px] mx-auto mb-16">
+      <div className="w-[400px] mx-auto mb-16 ">
         <input
           type="email"
           id="email"
-          className="bg-green-light absolute text-gray-900 text-sm rounded-2xl border-2 border-green-dark focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-green-light absolute h-14 text-gray-900 text-sm rounded-2xl border-2 border-green-dark focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Enter your E-mail"
           required=""
         />
         <button
           type="button"
-          className="text-white relative left-96 top-2 bg-green-dark font-bold focus:ring-4 focus:ring-blue-300  rounded-lg text-sm h-6 w-24  "
+          className="text-white relative left-96 top-2  bg-green-dark font-bold focus:ring-4 focus:ring-blue-300  rounded-lg text-sm h-10 w-24  "
         >
           Subscribe
         </button>
@@ -57,5 +56,4 @@ const Hero = () => {
     </>
   );
 };
-
 export default Hero;

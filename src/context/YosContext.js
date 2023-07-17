@@ -15,7 +15,9 @@ const YosContextProvider = ({ children }) => {
   const [filterDep, setFilterDep] = useState([]);
   const [userID, setUserID] = useState([]);
   const [loginState, setLoginState] = useState([]);
-  const [like, setLike] = useState([]);
+  const [like, setLike] = useState(
+    JSON.parse(localStorage.getItem("like")) || []
+  );
 
   const departmentID = depertman.map((item) => item.id);
 
@@ -30,8 +32,6 @@ const YosContextProvider = ({ children }) => {
   const BASE_URL_USER = `https://tr-yös.com/api/v1/users/newuser.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
 
   const BASE_URL_LOGIN = `https://tr-yös.com/api/v1/users/login.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
-
-  const BASE_URL_FAVORIADD = `  https://tr-yös.com/api/v1/users/addfavorite.php?id=${departmentID}&user_id=${userID}&token=${ApiKey}`;
 
   const getLoca = async () => {
     try {
@@ -66,9 +66,9 @@ const YosContextProvider = ({ children }) => {
     getFavori();
   }, []);
 
-  const handleLike = (e) => {
-    const itemId = e.target.id;
-    setLike([...like, itemId]);
+  const handleLike = (id) => {
+    console.log(id);
+    getFavori(id);
   };
 
   const register = async (userInfo) => {
@@ -95,10 +95,10 @@ const YosContextProvider = ({ children }) => {
     }
   };
 
-  const getFavori = async () => {
+  const getFavori = async (id) => {
     try {
+      const BASE_URL_FAVORIADD = `  https://tr-yös.com/api/v1/users/addfavorite.php?id=${id}&user_id=${userID}&token=${ApiKey}`;
       const { data } = await axios.post(`${BASE_URL_FAVORIADD}`);
-
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -192,6 +192,7 @@ const YosContextProvider = ({ children }) => {
     like,
     setLike,
     handleLike,
+    // addToFavorites,
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };

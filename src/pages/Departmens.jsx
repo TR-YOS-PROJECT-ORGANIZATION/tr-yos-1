@@ -110,25 +110,6 @@ const Departmens = () => {
               </div>
             </div>
           </div>
-          
-        </div>
-        {/* *******Check Kısmı******** */}
-      </div>
-
-      {/* *************Card Kısmı******************** */}
-      <div>
-        {/* ... */}
-        <div>
-          {currentCards.map((item) => (
-            <Card key={item.id} item={item} />
-          ))}
-        </div>
-        <div className="pagination">
-          {Array.from({ length: pageNumbers }, (_, index) => (
-            <button key={index} onClick={() => handleClick(index + 1)}>
-              {index + 1}
-            </button>
-          ))}
         </div>
       </div>
       <Card />
