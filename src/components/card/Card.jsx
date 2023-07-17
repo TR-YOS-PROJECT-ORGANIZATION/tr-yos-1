@@ -9,8 +9,8 @@ const Card = () => {
     useContext(YosContext);
   console.log(like);
   return (
-    <div className="card flex flex-wrap w-10/12 mx-auto mt-8">
-      <div className="card flex w-10/12 mx-auto flex-wrap mt-8">
+    <div className="card w-10/12 mx-auto">
+      <div className="card flex w-10/12 mx-auto flex-wrap ">
         {filterrrr.length === 0 ? (
           <CardPre />
         ) : (
