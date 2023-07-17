@@ -15,9 +15,7 @@ const YosContextProvider = ({ children }) => {
   const [filterDep, setFilterDep] = useState([]);
   const [userID, setUserID] = useState([]);
   const [loginState, setLoginState] = useState([]);
-  const [like, setLike] = useState(
-    JSON.parse(localStorage.getItem("like")) || []
-  );
+  const [like, setLike] = useState([]);
 
   const departmentID = depertman.map((item) => item.id);
 
@@ -63,12 +61,12 @@ const YosContextProvider = ({ children }) => {
     getLoca();
     getUni();
     getDep();
-    getFavori();
+    // getFavori();
   }, []);
 
   const handleLike = (id) => {
     console.log(id);
-    getFavori(id);
+    postFavori(id);
   };
 
   const register = async (userInfo) => {
@@ -97,9 +95,20 @@ const YosContextProvider = ({ children }) => {
 
   const getFavori = async (id) => {
     try {
+      const BASE_URL_FAVORIADD = ` https://tr-yös.com/api/v1/users/allfavorites.php?id=${id}&token=${ApiKey} `;
+      const { data } = await axios.get(`${BASE_URL_FAVORIADD}`);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const postFavori = async (id) => {
+    try {
       const BASE_URL_FAVORIADD = `  https://tr-yös.com/api/v1/users/addfavorite.php?id=${id}&user_id=${userID}&token=${ApiKey}`;
       const { data } = await axios.post(`${BASE_URL_FAVORIADD}`);
       console.log(data);
+      setLike(...like, departmentID);
+      getFavori(userID);
     } catch (error) {
       console.log(error);
     }
@@ -154,12 +163,6 @@ const YosContextProvider = ({ children }) => {
     price: item.null,
   }));
 
-  console.log(options3);
-  console.log("options3", options3);
-  console.log(options2);
-  console.log("uniIdies:", uniIdies);
-  console.log("depertman:", depertman);
-  console.log("options2:", options2);
   const optionsCard = depertman
     ?.filter((item) => filterDepss.includes(item.university.code))
     .map((item) => ({
@@ -187,7 +190,7 @@ const YosContextProvider = ({ children }) => {
     options3,
     register,
     login,
-    getFavori,
+    postFavori,
     loginState,
     like,
     setLike,
