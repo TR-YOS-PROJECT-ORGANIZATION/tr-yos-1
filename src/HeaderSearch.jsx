@@ -10,23 +10,23 @@ const HeaderSearch = () => {
     useContext(YosContext);
 
   return (
-    <div className="relative bottom-36  z-50">
-      <div className="m-auto max-w-[1200px] h-20 py-1 bg-white rounded-md border-2 border-green-dark ">
-        <div className="flex justify-evenly  ">
+    <div className="relative bottom-30 z-50 w-10/12 mx-auto">
+      <div className="m-auto max-w-[1030px] h-20  bg-white rounded-md border-2 border-green-dark ">
+        <div className="flex justify-evenly   ">
           <Select
             isMulti
             onChange={(e) => setCity(e)}
             name="colors"
             options={options}
-            className="basic-multi-select w-[200px] "
-            classNamePrefix="select"
+            className="basic-multi-select w-[200px] self-center h-10"
+            classNamePrefix="select "
           />
           <Select
             isMulti
             name="colors"
             options={options1}
             onChange={(e) => setUniId(e)}
-            className="basic-multi-select  w-[200px] "
+            className="basic-multi-select  w-[200px] self-center h-10"
             classNamePrefix="select"
           />
 
@@ -35,12 +35,12 @@ const HeaderSearch = () => {
             name="colors"
             onChange={(e) => setFilterDep(e)}
             options={options2}
-            className="basic-multi-select  w-[200px] "
+            className="basic-multi-select w-[200px] self-center h-10"
             classNamePrefix="select"
           />
           <button
             type="button"
-            className="text-white bg-green-dark focus:ring-4 focus:ring-blue-300 rounded-md  font-medium w-64  text-sm my-3 "
+            className="text-white bg-green-dark focus:ring-4 focus:ring-green-300  rounded-md font-medium w-64 h-10 text-sm my-4 "
             onClick={() => navigate("/departments")}
           >
             Search
