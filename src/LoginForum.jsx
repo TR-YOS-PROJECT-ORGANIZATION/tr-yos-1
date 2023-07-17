@@ -73,7 +73,7 @@ const LoginForm = ({ values, handleChange, errors, touched, handleBlur }) => {
             htmlFor="link-checkbox"
             className="ml-2 text-sm font-medium  text-gray-900 dark:text-gray-300"
           >
-            Save Password .
+            Save Password 
           </label>
         </div>
 

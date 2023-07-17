@@ -15,6 +15,7 @@ const Hero = () => {
           <div className=" z-[-5] relative h-[14rem] bottom-[20rem] left-[22rem] w-[100px]">
             right-2
           </div>
+
           <div className=" bg-white border-1 rounded-lg h-50 max-w-[350px] xs:max-w-[300px] relative left-64 bottom-[34rem] z-50  p-4 ">
             <h2 className="font-extrabold text-lg">
               Are You Already Working With Us ?
@@ -56,4 +57,5 @@ const Hero = () => {
     </>
   );
 };
+
 export default Hero;
