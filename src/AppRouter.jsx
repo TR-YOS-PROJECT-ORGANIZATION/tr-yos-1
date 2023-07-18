@@ -24,8 +24,8 @@ const AppRouter = () => {
         <Route path="/departments" element={<Departmens />} />
         <Route path="/register" element={<RgisterModal />} />
         <Route path="/myAccount" element={<MyProfile/>} />
-        <Route path="/pages" element={<FavoriteDepartmens />} />
-        <Route path="/pages" element={<CompareDepartmens />} />
+        <Route path="/favoritedepartmens" element={<FavoriteDepartmens />} />
+        <Route path="/comparedepartmens" element={<CompareDepartmens />} />
 
 
         <Route path="/myprofile" element={<MyProfile/>} />
