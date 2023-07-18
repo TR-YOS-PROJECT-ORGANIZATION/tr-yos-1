@@ -9,6 +9,8 @@ import RgisterModal from "./components/register/RgisterModal";
 import MyProfile from "./components/myAccount/MyProfile";
 import FavoriteDepartmens from "./pages/FavoriteDepartmens";
 import CompareDepartmens from "./pages/CompareDepartmens";
+import Favorites from "./pages/Favorites";
+import Compare from "./pages/Compare";
 
 
 const AppRouter = () => {
@@ -26,6 +28,9 @@ const AppRouter = () => {
         <Route path="/pages" element={<CompareDepartmens />} />
 
 
+        <Route path="/myprofile" element={<MyProfile/>} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/compare" element={<Compare />} />
       </Routes>
       <Footer />
 
