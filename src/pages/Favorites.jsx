@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import DepSlider from "../helper/slider2.jpg";
+import { YosContext } from "../context/YosContext";
 const Favorites = () => {
+  const { like } = useContext(YosContext);
+  console.log(like.departments);
   return (
     <div>
       <div>

@@ -3,13 +3,16 @@ import { YosContext } from "../../context/YosContext";
 import CardSlider from "./CardSlider";
 
 const CardPre = () => {
-  const { options2, options3, getFavori } = useContext(YosContext);
+  const { options2, options3 } = useContext(YosContext);
 
   const first12Universities = options3.slice(0, 12);
   return (
     <div className="flex flex-wrap gap-15 mx-auto justify-between ">
-      {first12Universities.map((item) => (
-        <div className="flex flex-col justify-center  w-80 mx-auto border-2 mt-12">
+      {first12Universities.map((item, index) => (
+        <div
+          key={index}
+          className="flex flex-col justify-center  w-80 mx-auto border-2 mt-12"
+        >
           <div className="text-center h-56  align-top">
             <CardSlider />
           </div>

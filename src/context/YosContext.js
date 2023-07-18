@@ -19,7 +19,6 @@ const YosContextProvider = ({ children }) => {
 
   const departmentID = depertman.map((item) => item.id);
 
-  // const {}=depertman
   const navigate = useNavigate();
   const ApiKey =
     "mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf";
@@ -97,7 +96,8 @@ const YosContextProvider = ({ children }) => {
     try {
       const BASE_URL_FAVORIADD = ` https://tr-yös.com/api/v1/users/allfavorites.php?id=${id}&token=${ApiKey} `;
       const { data } = await axios.get(`${BASE_URL_FAVORIADD}`);
-      console.log(data);
+      console.log(data.departments);
+      // setLike(data.departments);
     } catch (error) {
       console.log(error);
     }
@@ -107,7 +107,8 @@ const YosContextProvider = ({ children }) => {
       const BASE_URL_FAVORIADD = `  https://tr-yös.com/api/v1/users/addfavorite.php?id=${id}&user_id=${userID}&token=${ApiKey}`;
       const { data } = await axios.post(`${BASE_URL_FAVORIADD}`);
       console.log(data);
-      setLike(...like, departmentID);
+      setLike([...like, id]);
+      console.log(like);
       getFavori(userID);
     } catch (error) {
       console.log(error);
