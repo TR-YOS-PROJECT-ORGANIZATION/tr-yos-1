@@ -113,8 +113,8 @@ const Footer = () => {
           </span>
           <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0"></div>
         </div>
+        {/* <Like /> */}
       </div>
-      <Like />
     </div>
   );
 };

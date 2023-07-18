@@ -117,12 +117,8 @@ const Departmens = () => {
             </div>
           </div>
         </div>
-
-        {/* *******Check Kısmı******** */}
       </div>
 
-      {/* *************Card Kısmı******************** */}
-      <div>{/* ... */}</div>
       <Card />
     </div>
   );
