@@ -9,14 +9,10 @@ const Card = () => {
     filterrrr,
     options2,
     city,
-    addToFavorites,
-    like,
+
     handleLike,
-    setLike,
   } = useContext(YosContext);
-  //? Burda kaldık
-  // const isFavorite = like.some((item) => item.id === id);
-  console.log(like);
+
   return (
     <div className="card w-10/12 mx-auto">
       <div className="card flex w-10/12 mx-auto flex-wrap ">
