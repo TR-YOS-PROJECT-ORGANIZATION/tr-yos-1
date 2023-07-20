@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from "react";
-import DepSlider from "../helper/slider2.jpg";
+import React, { useContext } from "react";
+
 import { YosContext } from "../context/YosContext";
-import Card from "../components/card/Card";
+
 import CardSlider from "../components/card/CardSlider";
 const Favorites = () => {
   const { like, handleLike, depertman, filteredID } = useContext(YosContext);
@@ -12,14 +12,14 @@ const Favorites = () => {
   console.log(filteredID);
 
   return (
-    <div className="flex flex-wrap ">
-      <p className="absolute font-bold text-4xl  top-[7rem] left-36 text-green-dark ">
-        My Favorites
+    <div className="flex flex-wrap">
+      <p className="absolute font-bold text-4xl  top-[3rem] left-36 text-green-dark ">
+        My Account
       </p>
-      <div className=" w-full h-32 bg-green-light "></div>
+      <div className=" w-full h-32 bg-green-light"></div>
       {filteredID.map((item) => {
         return (
-          <div className="flex flex-col justify-center w-80 mx-auto border-2 mt-12 ">
+          <div className="flex flex-col justify-center w-80 mx-auto border-2 mt-12">
             <div className="text-center h-56 align-top">
               <CardSlider />
             </div>
