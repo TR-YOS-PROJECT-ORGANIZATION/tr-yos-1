@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import resim1 from "../../helper/resim1.jpg";
+import React, { useContext } from "react";
+
 import { YosContext } from "../../context/YosContext";
 import CardSlider from "./CardSlider";
 import CardPre from "./CardPre";
