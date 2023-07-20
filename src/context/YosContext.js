@@ -19,7 +19,6 @@ const YosContextProvider = ({ children }) => {
 
   const departmentID = depertman.map((item) => item.id);
 
-  // const {}=depertman
   const navigate = useNavigate();
   const ApiKey =
     "mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf";
@@ -30,8 +29,6 @@ const YosContextProvider = ({ children }) => {
   const BASE_URL_USER = `https://tr-yös.com/api/v1/users/newuser.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
 
   const BASE_URL_LOGIN = `https://tr-yös.com/api/v1/users/login.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
-
-  const BASE_URL_FAVORIADD = `  https://tr-yös.com/api/v1/users/addfavorite.php?id=${departmentID}&user_id=${userID}&token=${ApiKey}`;
 
   const getLoca = async () => {
     try {
@@ -66,9 +63,9 @@ const YosContextProvider = ({ children }) => {
     getFavori();
   }, []);
 
-  const handleLike = (e) => {
-    const itemId = e.target.id;
-    setLike([...like, itemId]);
+  const handleLike = (id) => {
+    console.log(id);
+    postFavori(id);
   };
 
   const register = async (userInfo) => {
@@ -81,7 +78,7 @@ const YosContextProvider = ({ children }) => {
     }
   };
 
-  console.log(userID);
+  // console.log(userID);
 
   const login = async (userInfo) => {
     try {
@@ -95,11 +92,24 @@ const YosContextProvider = ({ children }) => {
     }
   };
 
-  const getFavori = async () => {
+  const getFavori = async (id) => {
     try {
+      const BASE_URL_FAVORIGET = ` https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${id}&token=${ApiKey} `;
+      const { data } = await axios.get(`${BASE_URL_FAVORIGET}`);
+      setLike(data.departments);
+      console.log(like);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const postFavori = async (id) => {
+    try {
+      const BASE_URL_FAVORIADD = `  https://tr-yös.com/api/v1/users/addfavorite.php?id=${id}&user_id=${userID}&token=${ApiKey}`;
       const { data } = await axios.post(`${BASE_URL_FAVORIADD}`);
-
       console.log(data);
+      setLike([...like, id]);
+      console.log(like);
+      getFavori(userID);
     } catch (error) {
       console.log(error);
     }
@@ -154,12 +164,6 @@ const YosContextProvider = ({ children }) => {
     price: item.null,
   }));
 
-  console.log(options3);
-  console.log("options3", options3);
-  console.log(options2);
-  console.log("uniIdies:", uniIdies);
-  console.log("depertman:", depertman);
-  console.log("options2:", options2);
   const optionsCard = depertman
     ?.filter((item) => filterDepss.includes(item.university.code))
     .map((item) => ({
@@ -170,6 +174,7 @@ const YosContextProvider = ({ children }) => {
   const filterrrr = options2?.filter((item) =>
     filterDepss.includes(item.label)
   );
+  const filteredID = depertman?.filter((item) => like.includes(item.id));
 
   const values = {
     options,
@@ -187,11 +192,13 @@ const YosContextProvider = ({ children }) => {
     options3,
     register,
     login,
-    getFavori,
+    postFavori,
     loginState,
     like,
     setLike,
     handleLike,
+    departmentID,
+    filteredID,
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };

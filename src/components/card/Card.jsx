@@ -1,13 +1,18 @@
-import React, { useContext, useState } from "react";
-import resim1 from "../../helper/resim1.jpg";
+import React, { useContext } from "react";
+
 import { YosContext } from "../../context/YosContext";
 import CardSlider from "./CardSlider";
 import CardPre from "./CardPre";
 
 const Card = () => {
-  const { filterrrr, options2, city, getFavori, like, handleLike, setLike } =
-    useContext(YosContext);
-  console.log(like);
+  const {
+    filterrrr,
+    options2,
+    city,
+
+    handleLike,
+  } = useContext(YosContext);
+
   return (
     <div className="card w-10/12 mx-auto">
       <div className="card flex w-10/12 mx-auto flex-wrap ">
@@ -23,15 +28,16 @@ const Card = () => {
                 <div className="mx-7 mt-3 h-24">
                   <div className="flex justify-between">
                     <p className="font-bold text-xl">{item.label}</p>
+
                     <svg
-                      id={item.id}
+                      id={item?.id}
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
                       className="w-6 h-6"
-                      onClick={(e) => handleLike(e)}
+                      onClick={() => handleLike(item.id)}
                     >
                       <path
                         strokeLinecap="round"
