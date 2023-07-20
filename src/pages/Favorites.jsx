@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from "react";
-import DepSlider from "../helper/slider2.jpg";
+import React, { useContext } from "react";
+
 import { YosContext } from "../context/YosContext";
-import Card from "../components/card/Card";
+
 import CardSlider from "../components/card/CardSlider";
 const Favorites = () => {
   const { like, handleLike, depertman, filteredID } = useContext(YosContext);
