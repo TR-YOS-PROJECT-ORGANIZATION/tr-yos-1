@@ -1,4 +1,4 @@
-import { Form } from "formik";
+import { Formik, Form } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
 import { object, string } from "yup";
@@ -60,7 +60,7 @@ const RgisterForum = ({
             id="email"
             type="email"
             variant="outlined"
-            value={values.e}
+            value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
             error={touched.email && Boolean(errors.email)}

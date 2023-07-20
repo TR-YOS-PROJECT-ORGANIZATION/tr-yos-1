@@ -12,14 +12,14 @@ const Favorites = () => {
   console.log(filteredID);
 
   return (
-    <div className="flex flex-wrap">
-      <p className="absolute font-bold text-4xl  top-[3rem] left-36 text-green-dark ">
-        My Account
+    <div className="flex flex-wrap ">
+      <p className="absolute font-bold text-4xl  top-[7rem] left-36 text-green-dark ">
+        My Favorites
       </p>
-      <div className=" w-full h-32 bg-green-light"></div>
+      <div className=" w-full h-32 bg-green-light "></div>
       {filteredID.map((item) => {
         return (
-          <div className="flex flex-col justify-center w-80 mx-auto border-2 mt-12">
+          <div className="flex flex-col justify-center w-80 mx-auto border-2 mt-12 ">
             <div className="text-center h-56 align-top">
               <CardSlider />
             </div>
