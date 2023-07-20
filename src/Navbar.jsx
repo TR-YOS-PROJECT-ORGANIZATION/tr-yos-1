@@ -151,7 +151,7 @@ const Navbar2 = () => {
               </li>
             </ul>
           </div>
-          {loginState.status == "success" ? (
+          {loginState.status !== "success" ? (
             <div>
               <LoginModal />
               <RgisterModal />
@@ -196,20 +196,20 @@ const Navbar2 = () => {
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="/favoritedepartmens"
+                    <Link
+                      to="/favorites"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Favorite Departments
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="/comparedepartmens"
+                    <Link
+                      to="/compare"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Compare Departments
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a

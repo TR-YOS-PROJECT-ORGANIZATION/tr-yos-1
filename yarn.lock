@@ -1700,17 +1700,9 @@
 
 "@popperjs/core@^2.9.3":
   version "2.11.8"
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
-=======
-  resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz"
->>>>>>> 134a5e9a1a1b064d3aea04bb5e5c50ae5d51ecde
-=======
 
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
 
->>>>>>> 1ce2e7ec4264b16886e4269a9a7703379d04260b
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
 "@remix-run/router@1.7.1":
@@ -4770,18 +4762,10 @@ flowbite-react@^0.4.11:
 
 flowbite@^1.6.6, flowbite@^1.7.0:
   version "1.7.0"
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolved "https://registry.yarnpkg.com/flowbite/-/flowbite-1.7.0.tgz#82359dbd5e3b2b9591eaf18ea929fb77871346b2"
-=======
-  resolved "https://registry.npmjs.org/flowbite/-/flowbite-1.7.0.tgz"
->>>>>>> 134a5e9a1a1b064d3aea04bb5e5c50ae5d51ecde
-=======
 
   resolved "https://registry.yarnpkg.com/flowbite/-/flowbite-1.7.0.tgz#82359dbd5e3b2b9591eaf18ea929fb77871346b2"
 
 
->>>>>>> 1ce2e7ec4264b16886e4269a9a7703379d04260b
   integrity sha512-OTTmnhRgv85Rs+mcMaVU7zB6EvRQs7BaQziyMUsZLRjW9aUpeQyqKjLmxsVMMCdr8isYPCLd6UL7X1IaSVI0WQ==
   dependencies:
     "@popperjs/core" "^2.9.3"
@@ -6648,17 +6632,9 @@ mini-css-extract-plugin@^2.4.5:
 
 mini-svg-data-uri@^1.4.3:
   version "1.4.4"
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolved "https://registry.yarnpkg.com/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz#8ab0aabcdf8c29ad5693ca595af19dd2ead09939"
-=======
-  resolved "https://registry.npmjs.org/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz"
->>>>>>> 134a5e9a1a1b064d3aea04bb5e5c50ae5d51ecde
-=======
 
   resolved "https://registry.yarnpkg.com/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz#8ab0aabcdf8c29ad5693ca595af19dd2ead09939"
 
->>>>>>> 1ce2e7ec4264b16886e4269a9a7703379d04260b
   integrity sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==
 
 minimalistic-assert@^1.0.0:
@@ -7771,17 +7747,9 @@ prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.8.1:
 
 property-expr@^2.0.5:
   version "2.0.5"
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolved "https://registry.yarnpkg.com/property-expr/-/property-expr-2.0.5.tgz#278bdb15308ae16af3e3b9640024524f4dc02cb4"
-=======
-  resolved "https://registry.npmjs.org/property-expr/-/property-expr-2.0.5.tgz"
->>>>>>> 134a5e9a1a1b064d3aea04bb5e5c50ae5d51ecde
-=======
 
   resolved "https://registry.yarnpkg.com/property-expr/-/property-expr-2.0.5.tgz#278bdb15308ae16af3e3b9640024524f4dc02cb4"
 
->>>>>>> 1ce2e7ec4264b16886e4269a9a7703379d04260b
   integrity sha512-IJUkICM5dP5znhCckHSv30Q4b5/JA5enCtkRHYaOVOAocnH/1BQEYTC5NMfT3AVl/iXKdr3aqQbQn9DxyWknwA==
 
 proxy-addr@~2.0.7:
@@ -7925,7 +7893,7 @@ react-fast-compare@^2.0.1:
 
 react-icons@^4.10.1:
   version "4.10.1"
-  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.10.1.tgz#3f3b5eec1f63c1796f6a26174a1091ca6437a500"
+  resolved "https://registry.npmjs.org/react-icons/-/react-icons-4.10.1.tgz"
   integrity sha512-/ngzDP/77tlCfqthiiGNZeYFACw85fUjZtLbedmJ5DTlNDIwETxhwBzdOJ21zj4iJdvc0J3y7yOsX3PpxAJzrw==
 
 
@@ -9086,17 +9054,9 @@ thunky@^1.0.2:
 
 tiny-case@^1.0.3:
   version "1.0.3"
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolved "https://registry.yarnpkg.com/tiny-case/-/tiny-case-1.0.3.tgz#d980d66bc72b5d5a9ca86fb7c9ffdb9c898ddd03"
-=======
-  resolved "https://registry.npmjs.org/tiny-case/-/tiny-case-1.0.3.tgz"
->>>>>>> 134a5e9a1a1b064d3aea04bb5e5c50ae5d51ecde
-=======
 
   resolved "https://registry.yarnpkg.com/tiny-case/-/tiny-case-1.0.3.tgz#d980d66bc72b5d5a9ca86fb7c9ffdb9c898ddd03"
 
->>>>>>> 1ce2e7ec4264b16886e4269a9a7703379d04260b
   integrity sha512-Eet/eeMhkO6TX8mnUteS9zgPbUMQa4I6Kkp5ORiBD5476/m+PIRiumP5tmh5ioJpH7k51Kehawy2UDfsnxxY8Q==
 
 tiny-warning@^1.0.2:
@@ -9128,17 +9088,9 @@ toidentifier@1.0.1:
 
 toposort@^2.0.2:
   version "2.0.2"
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolved "https://registry.yarnpkg.com/toposort/-/toposort-2.0.2.tgz#ae21768175d1559d48bef35420b2f4962f09c330"
-=======
-  resolved "https://registry.npmjs.org/toposort/-/toposort-2.0.2.tgz"
->>>>>>> 134a5e9a1a1b064d3aea04bb5e5c50ae5d51ecde
-=======
 
   resolved "https://registry.yarnpkg.com/toposort/-/toposort-2.0.2.tgz#ae21768175d1559d48bef35420b2f4962f09c330"
 
->>>>>>> 1ce2e7ec4264b16886e4269a9a7703379d04260b
   integrity sha512-0a5EOkAUp8D4moMi2W8ZF8jcga7BgZd91O/yabJCFY8az+XSzeGyTKs0Aoo897iV1Nj6guFq8orWDS96z91oGg==
 
 tough-cookie@^4.0.0:
@@ -9238,18 +9190,10 @@ type-fest@^0.21.3, "type-fest@>=0.17.0 <4.0.0":
 
 type-fest@^2.19.0:
   version "2.19.0"
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.19.0.tgz#88068015bb33036a598b952e55e9311a60fd3a9b"
-=======
-  resolved "https://registry.npmjs.org/type-fest/-/type-fest-2.19.0.tgz"
->>>>>>> 134a5e9a1a1b064d3aea04bb5e5c50ae5d51ecde
-=======
 
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.19.0.tgz#88068015bb33036a598b952e55e9311a60fd3a9b"
 
 
->>>>>>> 1ce2e7ec4264b16886e4269a9a7703379d04260b
   integrity sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==
 
 type-is@~1.6.18:
@@ -9956,17 +9900,9 @@ yocto-queue@^0.1.0:
 
 yup@^1.2.0:
   version "1.2.0"
-<<<<<<< HEAD
-<<<<<<< HEAD
-  resolved "https://registry.yarnpkg.com/yup/-/yup-1.2.0.tgz#9e51af0c63bdfc9be0fdc6c10aa0710899d8aff6"
-=======
-  resolved "https://registry.npmjs.org/yup/-/yup-1.2.0.tgz"
->>>>>>> 134a5e9a1a1b064d3aea04bb5e5c50ae5d51ecde
-=======
 
   resolved "https://registry.yarnpkg.com/yup/-/yup-1.2.0.tgz#9e51af0c63bdfc9be0fdc6c10aa0710899d8aff6"
 
->>>>>>> 1ce2e7ec4264b16886e4269a9a7703379d04260b
   integrity sha512-PPqYKSAXjpRCgLgLKVGPA33v5c/WgEx3wi6NFjIiegz90zSwyMpvTFp/uGcVnnbx6to28pgnzp/q8ih3QRjLMQ==
   dependencies:
     property-expr "^2.0.5"

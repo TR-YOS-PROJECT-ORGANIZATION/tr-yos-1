@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\ACER\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add react-ıcons
+  C:\Program Files\nodejs\node.exe C:\Users\azimesert\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add flowbite react-flowbite
 
 PATH: 
-  C:\Users\ACER\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\ACER\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Microsoft\jdk-11.0.18.10-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;C:\Users\ACER\AppData\Local\Microsoft\WindowsApps;C:\Users\ACER\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ACER\AppData\Roaming\npm;C:\Users\ACER\AppData\Local\Android\Sdk\platform-tools;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  C:\Users\azimesert\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\azimesert\bin;C:\Program Files\Microsoft\jdk-11.0.18.10-hotspot\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;C:\Users\azimesert\AppData\Local\Microsoft\WindowsApps;C:\Users\azimesert\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\azimesert\AppData\Roaming\npm;C:\Users\azimesert\AppData\Local\Android\Sdk\platform-tools;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
   1.22.19
@@ -14,15 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  TypeError [ERR_UNESCAPED_CHARACTERS]: https://registry.yarnpkg.com/react-ıcons: Request path contains unescaped characters
-      at new NodeError (node:internal/errors:399:5)
-      at new ClientRequest (node:_http_client:184:13)
-      at Object.request (node:https:360:10)
-      at module.exports.Request.start (C:\Users\ACER\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141452:32)
-      at module.exports.Request.end (C:\Users\ACER\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:142211:10)
-      at end (C:\Users\ACER\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141265:14)
-      at Immediate.<anonymous> (C:\Users\ACER\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141279:7)
-      at process.processImmediate (node:internal/timers:476:21)
+  Error: https://registry.yarnpkg.com/react-flowbite: Not found
+      at params.callback [as _callback] (C:\Users\azimesert\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66145:18)
+      at self.callback (C:\Users\azimesert\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140890:22)
+      at Request.emit (node:events:513:28)
+      at Request.<anonymous> (C:\Users\azimesert\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141862:10)
+      at Request.emit (node:events:513:28)
+      at IncomingMessage.<anonymous> (C:\Users\azimesert\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141784:12)
+      at Object.onceWrapper (node:events:627:28)
+      at IncomingMessage.emit (node:events:525:35)
+      at endReadableNT (node:internal/streams/readable:1359:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
 
 npm manifest: 
   {
@@ -1760,7 +1762,11 @@ Lockfile:
   
   "@popperjs/core@^2.9.3":
     version "2.11.8"
+  <<<<<<< HEAD
+    resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz"
+  =======
     resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
+  >>>>>>> 066b5906c95ee15b4761e422b1d369c7e3abe209
     integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
   
   "@remix-run/router@1.7.1":
@@ -4698,7 +4704,11 @@ Lockfile:
   
   flowbite@^1.7.0:
     version "1.7.0"
+  <<<<<<< HEAD
+    resolved "https://registry.npmjs.org/flowbite/-/flowbite-1.7.0.tgz"
+  =======
     resolved "https://registry.yarnpkg.com/flowbite/-/flowbite-1.7.0.tgz#82359dbd5e3b2b9591eaf18ea929fb77871346b2"
+  >>>>>>> 066b5906c95ee15b4761e422b1d369c7e3abe209
     integrity sha512-OTTmnhRgv85Rs+mcMaVU7zB6EvRQs7BaQziyMUsZLRjW9aUpeQyqKjLmxsVMMCdr8isYPCLd6UL7X1IaSVI0WQ==
     dependencies:
       "@popperjs/core" "^2.9.3"
@@ -6553,7 +6563,11 @@ Lockfile:
   
   mini-svg-data-uri@^1.4.3:
     version "1.4.4"
+  <<<<<<< HEAD
+    resolved "https://registry.npmjs.org/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz"
+  =======
     resolved "https://registry.yarnpkg.com/mini-svg-data-uri/-/mini-svg-data-uri-1.4.4.tgz#8ab0aabcdf8c29ad5693ca595af19dd2ead09939"
+  >>>>>>> 066b5906c95ee15b4761e422b1d369c7e3abe209
     integrity sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==
   
   minimalistic-assert@^1.0.0:
@@ -7659,7 +7673,11 @@ Lockfile:
   
   property-expr@^2.0.5:
     version "2.0.5"
+  <<<<<<< HEAD
+    resolved "https://registry.npmjs.org/property-expr/-/property-expr-2.0.5.tgz"
+  =======
     resolved "https://registry.yarnpkg.com/property-expr/-/property-expr-2.0.5.tgz#278bdb15308ae16af3e3b9640024524f4dc02cb4"
+  >>>>>>> 066b5906c95ee15b4761e422b1d369c7e3abe209
     integrity sha512-IJUkICM5dP5znhCckHSv30Q4b5/JA5enCtkRHYaOVOAocnH/1BQEYTC5NMfT3AVl/iXKdr3aqQbQn9DxyWknwA==
   
   proxy-addr@~2.0.7:
@@ -8894,7 +8912,11 @@ Lockfile:
   
   tiny-case@^1.0.3:
     version "1.0.3"
+  <<<<<<< HEAD
+    resolved "https://registry.npmjs.org/tiny-case/-/tiny-case-1.0.3.tgz"
+  =======
     resolved "https://registry.yarnpkg.com/tiny-case/-/tiny-case-1.0.3.tgz#d980d66bc72b5d5a9ca86fb7c9ffdb9c898ddd03"
+  >>>>>>> 066b5906c95ee15b4761e422b1d369c7e3abe209
     integrity sha512-Eet/eeMhkO6TX8mnUteS9zgPbUMQa4I6Kkp5ORiBD5476/m+PIRiumP5tmh5ioJpH7k51Kehawy2UDfsnxxY8Q==
   
   tiny-warning@^1.0.2:
@@ -8926,7 +8948,11 @@ Lockfile:
   
   toposort@^2.0.2:
     version "2.0.2"
+  <<<<<<< HEAD
+    resolved "https://registry.npmjs.org/toposort/-/toposort-2.0.2.tgz"
+  =======
     resolved "https://registry.yarnpkg.com/toposort/-/toposort-2.0.2.tgz#ae21768175d1559d48bef35420b2f4962f09c330"
+  >>>>>>> 066b5906c95ee15b4761e422b1d369c7e3abe209
     integrity sha512-0a5EOkAUp8D4moMi2W8ZF8jcga7BgZd91O/yabJCFY8az+XSzeGyTKs0Aoo897iV1Nj6guFq8orWDS96z91oGg==
   
   tough-cookie@^4.0.0:
@@ -9026,7 +9052,11 @@ Lockfile:
   
   type-fest@^2.19.0:
     version "2.19.0"
+  <<<<<<< HEAD
+    resolved "https://registry.npmjs.org/type-fest/-/type-fest-2.19.0.tgz"
+  =======
     resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.19.0.tgz#88068015bb33036a598b952e55e9311a60fd3a9b"
+  >>>>>>> 066b5906c95ee15b4761e422b1d369c7e3abe209
     integrity sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==
   
   type-is@~1.6.18:
@@ -9728,7 +9758,11 @@ Lockfile:
   
   yup@^1.2.0:
     version "1.2.0"
+  <<<<<<< HEAD
+    resolved "https://registry.npmjs.org/yup/-/yup-1.2.0.tgz"
+  =======
     resolved "https://registry.yarnpkg.com/yup/-/yup-1.2.0.tgz#9e51af0c63bdfc9be0fdc6c10aa0710899d8aff6"
+  >>>>>>> 066b5906c95ee15b4761e422b1d369c7e3abe209
     integrity sha512-PPqYKSAXjpRCgLgLKVGPA33v5c/WgEx3wi6NFjIiegz90zSwyMpvTFp/uGcVnnbx6to28pgnzp/q8ih3QRjLMQ==
     dependencies:
       property-expr "^2.0.5"
