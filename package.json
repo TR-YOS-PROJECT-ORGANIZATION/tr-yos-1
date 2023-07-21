@@ -12,6 +12,8 @@
     "flowbite": "^1.7.0",
     "flowbite-react": "^0.4.11",
     "formik": "^2.4.2",
+    "mini-svg-data-uri": "^1.4.4",
+    "postcss": "^8.4.27",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
@@ -49,6 +51,6 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^3.3.2"
+    "tailwindcss": "^3.3.3"
   }
 }
