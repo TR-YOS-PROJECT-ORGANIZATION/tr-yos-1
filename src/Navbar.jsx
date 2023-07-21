@@ -8,7 +8,7 @@ import { YosContext } from "./context/YosContext";
 import profile from "./helper/Profil_sm.jpg";
 
 const Navbar2 = () => {
-  const { loginState } = useContext(YosContext);
+  const { loginState, handleLogout } = useContext(YosContext);
   const navigate = useNavigate();
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
@@ -175,7 +175,7 @@ const Navbar2 = () => {
               </button>
               {/* Dropdown menu */}
               <div
-                className="z-50  my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                className="z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                 id="user-dropdown"
               >
                 <div className="px-4 py-3">
@@ -188,36 +188,37 @@ const Navbar2 = () => {
                 </div>
                 <ul className="py-2" aria-labelledby="user-menu-button">
                   <li>
-                    <a
-                      href="/"
+                    <Link
+                      to="/"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Dashboard
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="/favorites"
+                    <Link
+                      to="/favorites"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Favorite Departments
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="/compare"
+                    <Link
+                      to="/compare"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Compare Departments
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="/"
+                    <Link
+                      to="/"
+                      onClick={handleLogout}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Log Out
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

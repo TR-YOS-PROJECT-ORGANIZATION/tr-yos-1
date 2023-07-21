@@ -55,7 +55,7 @@ const Departmens = () => {
                 onChange={(e) => setCity(e)}
                 name="colors"
                 options={options}
-                className="basic-multi-select w-[200px] "
+                className="basic-multi-select border-0 w-[200px] "
                 classNamePrefix="select"
               />
             </div>

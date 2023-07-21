@@ -5,13 +5,10 @@ import CardSlider from "./CardSlider";
 import CardPre from "./CardPre";
 
 const Card = () => {
-  const {
-    filterrrr,
-    options2,
-    city,
 
-    handleLike,
-  } = useContext(YosContext);
+  const { filterrrr, userID, handleLike, active, like,handleCompare, handleDelete } =
+
+    useContext(YosContext);
 
   return (
     <div className="card w-10/12 mx-auto">
@@ -27,17 +24,19 @@ const Card = () => {
                 </div>
                 <div className="mx-7 mt-3 h-24">
                   <div className="flex justify-between">
-                    <p className="font-bold text-xl">{item.label}</p>
+                    <p className="font-bold text-xl w-60">{item.label}</p>
 
                     <svg
+                      className={`w-6 h-6 ${
+                        like.includes(item.id) ? "active" : ""
+                      }`}
                       id={item?.id}
                       xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
+                      fill=""
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
-                      className="w-6 h-6"
-                      onClick={() => handleLike(item.id)}
+                      onClick={() => handleLike(item.id, userID)}
                     >
                       <path
                         strokeLinecap="round"
@@ -50,7 +49,14 @@ const Card = () => {
                   <p className="text-sm mt-1">{item.university}</p>
                 </div>
                 <div className="mx-7 mt-8 bg-green-light font-bold w-32 text-center rounded-md flex">
-                  <button className="m-2">Compare</button>
+                  <button
+                    id={item?.id}
+                    className="m-2"
+                    onClick={() => handleCompare(item.id)}
+                  >
+                    Compare
+                  </button>
+
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -65,6 +71,16 @@ const Card = () => {
                       d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
                     />
                   </svg>
+                </div>
+                <div>
+                  {" "}
+                  <button
+                    id={item?.id}
+                    className="m-2"
+                    onClick={() => handleDelete(item.id)}
+                  >
+                    Sil
+                  </button>
                 </div>
                 <div className="w-80 mb-2 bg-grey-primary mx-auto mt-5 border border-t-1"></div>
                 <div className="flex mx-7 m-4 justify-between">
