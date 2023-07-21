@@ -3,14 +3,24 @@ import React, { useContext } from "react";
 import { YosContext } from "../context/YosContext";
 
 import CardSlider from "../components/card/CardSlider";
+
+
 const Favorites = () => {
-  const { like, handleLike, depertman, filteredID, active } =
-    useContext(YosContext);
 
-  console.log(like);
-  console.log(depertman);
+  const {
+    like,
+    handleLike,
+    depertman,
+    filteredID,
+    delFavori,
+    handleDelete,
+    departmentID,
+    userID,
+    active
+  } = useContext(YosContext);
+const{id}=filteredID
 
-  console.log(active);
+
 
   return (
     <div className="flex flex-wrap">
@@ -35,10 +45,14 @@ const Favorites = () => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
+                  onClick={() => {handleDelete(item.id);
+                    handleLike(item.id)}
+
                   className={`w-6 h-6 ${
                     like.includes(item.id) ? "active" : ""
                   }`}
-                  onClick={(e) => handleLike(item.id)}
+
+
                 >
                   <path
                     strokeLinecap="round"
@@ -52,6 +66,7 @@ const Favorites = () => {
             </div>
             <div className="mx-7 mt-8 bg-green-light font-bold w-32 text-center rounded-md flex">
               <button className="m-2">Compare</button>
+          
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

@@ -91,7 +91,7 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-  // console.log(userID);
+
   const login = async (userInfo) => {
     try {
       const { data } = await axios.post(`${BASE_URL_LOGIN}`, userInfo);
@@ -141,6 +141,22 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+
+    const delFavori = async (id) => {
+      const BASE_URL_FAVORIDELL = `https://tr-yös.com/api/v1/users/deletefavorite.php?id=${id}&user_id=${userID}&token=${ApiKey}`;
+      try {
+        const { data } = await axios.delete(`${BASE_URL_FAVORIDELL}`);
+
+        console.log(like);
+        getFavori(userID);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+
   const getCompare = async (id) => {
     try {
       const BASE_URL_COMPAREGET = ` https://tr-yös.com/api/v1/users/allcompares.php?user_id=${id}&token=${ApiKey} `;
@@ -163,6 +179,7 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
   const getCities = () => {
     return city?.map((item) => item.value);
   };
@@ -215,10 +232,18 @@ const YosContextProvider = ({ children }) => {
     filterDepss.includes(item.label)
   );
   const filteredID = depertman?.filter((item) => like.includes(item.id));
+
+
+const handleDelete = (id) => {
+  delFavori(id);
+
+};
+
   const filteredCompare = depertman?.filter((item) =>
     compare?.includes(item.id)
   );
   console.log(filteredCompare);
+
   const values = {
     options,
     options1,
@@ -242,16 +267,18 @@ const YosContextProvider = ({ children }) => {
     handleLike,
     departmentID,
     filteredID,
-
+    delFavori,
+    userID,
+    handleDelete,
     compare,
     setCompare,
     handleCompare,
     filteredCompare,
     handleDelete,
-
     userID,
     handleLogout,
     active,
+
 
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
