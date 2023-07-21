@@ -5,13 +5,8 @@ import CardSlider from "./CardSlider";
 import CardPre from "./CardPre";
 
 const Card = () => {
-  const {
-    filterrrr,
-    options2,
-    city,
-
-    handleLike,
-  } = useContext(YosContext);
+  const { filterrrr, userID, handleLike, active, like } =
+    useContext(YosContext);
 
   return (
     <div className="card w-10/12 mx-auto">
@@ -27,17 +22,19 @@ const Card = () => {
                 </div>
                 <div className="mx-7 mt-3 h-24">
                   <div className="flex justify-between">
-                    <p className="font-bold text-xl">{item.label}</p>
+                    <p className="font-bold text-xl w-60">{item.label}</p>
 
                     <svg
+                      className={`w-6 h-6 ${
+                        like.includes(item.id) ? "active" : ""
+                      }`}
                       id={item?.id}
                       xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
+                      fill=""
                       viewBox="0 0 24 24"
                       strokeWidth={1.5}
                       stroke="currentColor"
-                      className="w-6 h-6"
-                      onClick={() => handleLike(item.id)}
+                      onClick={() => handleLike(item.id, userID)}
                     >
                       <path
                         strokeLinecap="round"
