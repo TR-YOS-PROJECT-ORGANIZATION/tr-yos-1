@@ -11,11 +11,17 @@ const YosContextProvider = ({ children }) => {
   const [city, setCity] = useState([]);
   const [uniId, setUniId] = useState([]);
   const [filterDep, setFilterDep] = useState([]);
-  const [userID, setUserID] = useState([]);
+  const [userID, setUserID] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
   const [loginState, setLoginState] = useState([]);
   const [like, setLike] = useState([]);
+
   const [compare, setCompare] = useState([]);
   const [deleteCompare, setDeleteCompare] = useState([]);
+
+  const [active, setActive] = useState([]);
+
   const departmentID = depertman.map((item) => item.id);
   const navigate = useNavigate();
   const ApiKey =
@@ -49,29 +55,23 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-  useEffect(() => {
+  useEffect((id) => {
     getLoca();
     getUni();
     getDep();
     getFavori();
-    getCompare();
-    const storedCompare = localStorage.getItem("compare");
-    if (storedCompare) {
-      setCompare(JSON.parse(storedCompare));
-    }
+    getCompare(id);
   }, []);
-  const updateCompareAndStorage = (updatedCompare) => {
-    setCompare(updatedCompare);
-    localStorage.setItem("compare", JSON.stringify(updatedCompare));
-  };
-  const handleLike = (id) => {
+  
+  const handleLike = (id, userID) => {
     console.log(id);
-    postFavori(id);
+    postFavori(id, userID);
   };
+  
   const handleCompare = (id) => {
     console.log(id);
     postCompare(id);
-    updateCompareAndStorage([...compare, id]);
+
   };
   const handleDelete = (id) => {
     try {
@@ -96,28 +96,43 @@ const YosContextProvider = ({ children }) => {
     try {
       const { data } = await axios.post(`${BASE_URL_LOGIN}`, userInfo);
       navigate("/");
-      console.log(data);
       setLoginState(data);
       setUserID(data.userID);
       getCompare(data.userID);
+      getFavori(data.userID);
+      localStorage.setItem("user", JSON.stringify(data.userID));
+
     } catch (error) {
       console.log(error);
     }
   };
+
+  const handleLogout = () => {
+    setUserID([]);
+    localStorage.clear();
+    setLoginState([]);
+  };
+
+
   const getFavori = async (id) => {
     try {
       const BASE_URL_FAVORIGET = ` https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${id}&token=${ApiKey} `;
       const { data } = await axios.get(`${BASE_URL_FAVORIGET}`);
+
       setLike(data.departments);
       console.log(like);
     } catch (error) {
       console.log(error);
     }
   };
-  const postFavori = async (id) => {
+  // const svg = document.querySelector(".w-6");
+  const postFavori = async (id, userID) => {
     try {
       const BASE_URL_FAVORIADD = `  https://tr-yös.com/api/v1/users/addfavorite.php?id=${id}&user_id=${userID}&token=${ApiKey}`;
       const { data } = await axios.post(`${BASE_URL_FAVORIADD}`);
+      if (data) {
+        setActive([...active, id]);
+      }
       console.log(data);
       setLike([...like, id]);
       console.log(like);
@@ -188,6 +203,7 @@ const YosContextProvider = ({ children }) => {
     university: item.university.tr,
     address: item.city.tr,
     price: item.null,
+    id: item.id,
   }));
   const optionsCard = depertman
     ?.filter((item) => filterDepss.includes(item.university.code))
@@ -226,11 +242,17 @@ const YosContextProvider = ({ children }) => {
     handleLike,
     departmentID,
     filteredID,
+
     compare,
     setCompare,
     handleCompare,
     filteredCompare,
     handleDelete,
+
+    userID,
+    handleLogout,
+    active,
+
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };
