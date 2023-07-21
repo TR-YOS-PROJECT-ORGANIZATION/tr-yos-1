@@ -6,6 +6,7 @@ import CardSlider from "../components/card/CardSlider";
 
 
 const Favorites = () => {
+
   const {
     like,
     handleLike,
@@ -15,15 +16,11 @@ const Favorites = () => {
     handleDelete,
     departmentID,
     userID,
+    active
   } = useContext(YosContext);
 const{id}=filteredID
-console.log(filteredID);
-console.log(userID);
 
-  console.log(like);
-  console.log(depertman);
 
-  console.log(filteredID);
 
   return (
     <div className="flex flex-wrap">
@@ -39,17 +36,23 @@ console.log(userID);
             </div>
             <div className="mx-7 mt-3 h-24">
               <div className="flex justify-between">
-                <p className="font-bold text-xl">{item.department.tr}</p>
+                <p className="font-bold text-xl w-60">{item.department.tr}</p>
 
                 <svg
                   id={item?.id}
                   xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
+                  fill=""
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
-                  onClick={() => handleDelete(item.id)}
+                  onClick={() => {handleDelete(item.id);
+                    handleLike(item.id)}
+
+                  className={`w-6 h-6 ${
+                    like.includes(item.id) ? "active" : ""
+                  }`}
+
+
                 >
                   <path
                     strokeLinecap="round"
