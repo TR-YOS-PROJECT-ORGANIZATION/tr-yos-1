@@ -3,8 +3,22 @@ import React, { useContext } from "react";
 import { YosContext } from "../context/YosContext";
 
 import CardSlider from "../components/card/CardSlider";
+
+
 const Favorites = () => {
-  const { like, handleLike, depertman, filteredID } = useContext(YosContext);
+  const {
+    like,
+    handleLike,
+    depertman,
+    filteredID,
+    delFavori,
+    handleDelete,
+    departmentID,
+    userID,
+  } = useContext(YosContext);
+const{id}=filteredID
+console.log(filteredID);
+console.log(userID);
 
   console.log(like);
   console.log(depertman);
@@ -35,7 +49,7 @@ const Favorites = () => {
                   strokeWidth={1.5}
                   stroke="currentColor"
                   className="w-6 h-6"
-                  onClick={() => handleLike(item.id)}
+                  onClick={() => handleDelete(item.id)}
                 >
                   <path
                     strokeLinecap="round"
@@ -49,6 +63,7 @@ const Favorites = () => {
             </div>
             <div className="mx-7 mt-8 bg-green-light font-bold w-32 text-center rounded-md flex">
               <button className="m-2">Compare</button>
+          
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

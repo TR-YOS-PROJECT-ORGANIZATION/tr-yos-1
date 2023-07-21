@@ -78,7 +78,7 @@ const YosContextProvider = ({ children }) => {
     }
   };
 
-  // console.log(userID);
+  console.log(userID);
 
   const login = async (userInfo) => {
     try {
@@ -114,6 +114,19 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+    const delFavori = async (id) => {
+      const BASE_URL_FAVORIDELL = `https://tr-yös.com/api/v1/users/deletefavorite.php?id=${id}&user_id=${userID}&token=${ApiKey}`;
+      try {
+        const { data } = await axios.delete(`${BASE_URL_FAVORIDELL}`);
+
+        console.log(like);
+        getFavori(userID);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
   const getCities = () => {
     return city?.map((item) => item.value);
@@ -176,6 +189,10 @@ const YosContextProvider = ({ children }) => {
   );
   const filteredID = depertman?.filter((item) => like.includes(item.id));
 
+const handleDelete = (id) => {
+  delFavori(id);
+
+};
   const values = {
     options,
     options1,
@@ -199,6 +216,9 @@ const YosContextProvider = ({ children }) => {
     handleLike,
     departmentID,
     filteredID,
+    delFavori,
+    userID,
+    handleDelete,
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };
