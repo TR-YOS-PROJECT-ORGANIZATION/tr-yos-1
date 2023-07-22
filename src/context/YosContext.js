@@ -17,12 +17,9 @@ const YosContextProvider = ({ children }) => {
   );
   const [loginState, setLoginState] = useState([]);
   const [like, setLike] = useState([]);
-
   const [compare, setCompare] = useState([]);
   const [deleteCompare, setDeleteCompare] = useState([]);
-
   const [active, setActive] = useState([]);
-
   const departmentID = depertman.map((item) => item.id);
   const navigate = useNavigate();
   const ApiKey =
@@ -278,6 +275,7 @@ const YosContextProvider = ({ children }) => {
     handleDeleteFavori,
     handleLogout,
     active,
+    handleLogout
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };

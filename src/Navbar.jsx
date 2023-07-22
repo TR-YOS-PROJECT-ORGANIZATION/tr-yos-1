@@ -10,6 +10,15 @@ import profile from "./helper/Profil_sm.jpg";
 const Navbar2 = () => {
   const { loginState, handleLogout } = useContext(YosContext);
   const navigate = useNavigate();
+  const [showDropDown, setShowDropDown] = useState(true);
+  const toggleDropDown = () => {
+    setShowDropDown((prevState) => !prevState);
+  };
+
+  const handleLogoutClick = () => {
+    handleLogout();
+  };
+
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -151,7 +160,8 @@ const Navbar2 = () => {
               </li>
             </ul>
           </div>
-          {loginState.status !== "success" ? (
+          {showDropDown && !loginState.status === "success" ? (
+
             <div>
               <LoginModal />
               <RgisterModal />
@@ -206,7 +216,7 @@ const Navbar2 = () => {
                   <li>
                     <Link
                       to="/"
-                      onClick={handleLogout}
+                      onClick={handleLogoutClick}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                     >
                       Log Out
