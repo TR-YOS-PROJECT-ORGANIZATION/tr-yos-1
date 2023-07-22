@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import resim2 from "./helper/resim2.jpg";
 import header from "./helper/header.jpg";
 const HeaderCarousel = () => {
+  const images = [header, resim2];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const handlePrevClick = () => {
+    setActiveIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNextClick = () => {
+    setActiveIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+
+    
+  };
+  
   return (
     <div
-      id="controls-carousel"
       className="relative w-full -mb-40 "
-      data-carousel="static"
     >
       {/* Slider controls */}
-      <div classname="">
+      <div className="">
         <button
           type="button"
           className="absolute top-40 left-0 z-40 flex items-center justify-center h-20 px-4 cursor-pointer group focus:outline-none"
           data-carousel-prev=""
+          onClick={handlePrevClick}
         >
           <span className="inline-flex items-center border-2 border-white z-40 justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
             <svg
@@ -38,6 +53,7 @@ const HeaderCarousel = () => {
           type="button"
           className="absolute top-40 right-0 z-40 flex items-center justify-center h-20 px-4 cursor-pointer group focus:outline-none"
           data-carousel-next=""
+          onClick={handleNextClick}
         >
           <span className="inline-flex z-40 items-center border-2 border-white justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
             <svg
@@ -65,9 +81,13 @@ const HeaderCarousel = () => {
       {/* Carousel wrapper */}
       <div className="relative object-cover overflow-hidden md:h-96 ">
         {/* Item 1 */}
-        <div className=" duration-700 ease-in-out" data-carousel-item="">
+        <div
+          className=" duration-700 ease-in-out"
+          data-carousel-item=""
+          style={{ display: activeIndex === 0 ? "block" : "none" }}
+        >
           <img
-            src={header}
+            src={images[0]}
             className="absolute block w-full   -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt=""
           />
@@ -75,10 +95,11 @@ const HeaderCarousel = () => {
         {/* Item 2 */}
         <div
           className=" object-cover  duration-700 ease-in-out"
+          style={{ display: activeIndex === 1 ? "block" : "none" }}
           data-carousel-item="active"
         >
           <img
-            src={resim2}
+            src={images[1]}
             className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
             alt="..."
           />
