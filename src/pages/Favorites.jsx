@@ -1,16 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { YosContext } from "../context/YosContext";
 
 import CardSlider from "../components/card/CardSlider";
 const Favorites = () => {
-  const { like, handleLike, depertman, filteredID, active } =
-    useContext(YosContext);
-
-  console.log(like);
-  console.log(depertman);
-
-  console.log(active);
+  const {
+    like,
+    handleLike,
+    depertman,
+    filteredID,
+    active,
+    getFavori,
+    handleDeleteFavori,
+    userID,
+  } = useContext(YosContext);
 
   return (
     <div className="flex flex-wrap">
@@ -18,7 +21,7 @@ const Favorites = () => {
         My Account
       </p>
       <div className=" w-full h-32 bg-green-light"></div>
-      {filteredID.map((item) => {
+      {filteredID?.map((item) => {
         return (
           <div className="flex flex-col justify-center w-80 mx-auto border-2 mt-12">
             <div className="text-center h-56 align-top">
@@ -38,7 +41,7 @@ const Favorites = () => {
                   className={`w-6 h-6 ${
                     like.includes(item.id) ? "active" : ""
                   }`}
-                  onClick={(e) => handleLike(item.id)}
+                  onClick={() => handleDeleteFavori(item.id)}
                 >
                   <path
                     strokeLinecap="round"
