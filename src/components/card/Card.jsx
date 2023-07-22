@@ -5,10 +5,16 @@ import CardSlider from "./CardSlider";
 import CardPre from "./CardPre";
 
 const Card = () => {
-
-  const { filterrrr, userID, handleLike, active, like,handleCompare, handleDelete } =
-
-    useContext(YosContext);
+  const {
+    delFavori,
+    filterrrr,
+    userID,
+    handleLike,
+    active,
+    like,
+    handleCompare,
+    handleDelete,
+  } = useContext(YosContext);
 
   return (
     <div className="card w-10/12 mx-auto">
