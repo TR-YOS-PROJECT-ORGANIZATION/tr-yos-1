@@ -239,13 +239,11 @@ const YosContextProvider = ({ children }) => {
     handleLike,
     departmentID,
     filteredID,
-
     compare,
     setCompare,
     handleCompare,
     filteredCompare,
     handleDelete,
-
     userID,
     handleLogout,
     active,

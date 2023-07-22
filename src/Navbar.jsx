@@ -151,7 +151,7 @@ const Navbar2 = () => {
               </li>
             </ul>
           </div>
-          {loginState.status !== "success" ? (
+          {loginState.status == "success" ? (
             <div>
               <LoginModal />
               <RgisterModal />
