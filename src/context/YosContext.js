@@ -55,12 +55,14 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  
   useEffect((id) => {
     getLoca();
     getUni();
     getDep();
     getFavori();
-    getCompare(id);
+    getCompare();
   }, []);
 
   const handleLike = (id, userID) => {
@@ -69,8 +71,12 @@ const YosContextProvider = ({ children }) => {
   };
 
   const handleCompare = (id) => {
+    if (!compare.includes(id)) {
+      setCompare((prevCompare) => [...prevCompare, id]);
+    } else {
+      postCompare(id);
+    }
     console.log(id);
-    postCompare(id);
   };
   const handleDelete = (id) => {
     try {
@@ -153,7 +159,7 @@ const YosContextProvider = ({ children }) => {
       const BASE_URL_COMPAREADD = `https://tr-yös.com/api/v1/users/addcompare.php?id=${id}&user_id=${userID}&token=${ApiKey}`;
       const { data } = await axios.post(`${BASE_URL_COMPAREADD}`);
       console.log(data);
-      setCompare([...compare, id]);
+      // setCompare([...compare, id]);
       console.log(compare);
       getCompare(userID);
     } catch (error) {
