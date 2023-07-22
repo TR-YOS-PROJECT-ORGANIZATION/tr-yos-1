@@ -3,7 +3,7 @@ import { YosContext } from "../../context/YosContext";
 import CardSlider from "./CardSlider";
 
 const CardPre = () => {
-  const { options2, options3, like, handleLike, userID } =
+  const { options3, like, handleLike, userID, handleCompare, handleDelete } =
     useContext(YosContext);
 
   const first12Universities = options3.slice(0, 12);
@@ -22,7 +22,9 @@ const CardPre = () => {
               <p className="font-bold text-xl w-60">{item.label}</p>
               <svg
                 id={item.id}
-                className={`w-6 h-6 ${like.includes(item.id) ? "active" : ""}`}
+                className={`w-6 h-6  ${
+                  like.includes(item.id) ? "active" : ""
+                }`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill=""
                 viewBox="0 0 24 24"
@@ -41,22 +43,31 @@ const CardPre = () => {
             <p className="font-semibold">{item.faculty}</p>
             <p className="text-sm mt-1">{item.university}</p>
           </div>
-          <div className="mx-7 mt-8 bg-green-light font-bold w-32 text-center rounded-md  flex">
-            <button className="m-2">Compare</button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-5 h-5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
-              />
-            </svg>
+          <div className="mx-7 mt-8  flex justify-between">
+            <div className=" bg-green-light font-bold w-32 text-center rounded-md flex">
+              <button
+                id={item?.id}
+                className="m-2 ml-3"
+                onClick={() => handleCompare(item.id)}
+              >
+                Compare
+              </button>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-4 h-4 mt-3"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
+                />
+              </svg>
+            </div>
           </div>
           <div className="w-80  mb-2 bg-grey-primary mx-auto mt-5  border border-t-1"></div>
           <div className="flex mx-7 m-4 justify-between">
