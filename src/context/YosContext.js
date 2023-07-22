@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import React, { useEffect, useState } from "react";
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -56,13 +57,14 @@ const YosContextProvider = ({ children }) => {
     }
   };
 
-  
-  useEffect((id) => {
+  useEffect((id, userID) => {
     getLoca();
     getUni();
     getDep();
-    getFavori();
-    getCompare();
+    if (userID) {
+      getFavori(id);
+      getCompare(id);
+    }
   }, []);
 
   const handleLike = (id, userID) => {
@@ -70,14 +72,19 @@ const YosContextProvider = ({ children }) => {
     postFavori(id, userID);
   };
 
+  const handleDeleteFavori = (id) => {
+    delFavori(id);
+  };
+
+
   const handleCompare = (id) => {
     if (!compare.includes(id)) {
       setCompare((prevCompare) => [...prevCompare, id]);
     } else {
       postCompare(id);
     }
-    console.log(id);
   };
+  
   const handleDelete = (id) => {
     try {
       const BASE_URL_DELETECOMPARE = `https://tr-yös.com/api/v1/users/deletecompare.php?id=${id}&user_id=${userID}&token=${ApiKey}`;
@@ -96,16 +103,18 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-  // console.log(userID);
+
   const login = async (userInfo) => {
     try {
       const { data } = await axios.post(`${BASE_URL_LOGIN}`, userInfo);
+      const { userID } = data;
       navigate("/");
       setLoginState(data);
-      setUserID(data.userID);
-      getCompare(data.userID);
-      getFavori(data.userID);
-      localStorage.setItem("user", JSON.stringify(data.userID));
+      setUserID(userID);
+      getCompare(userID);
+      getFavori(userID);
+      localStorage.setItem("user", JSON.stringify({ userID }));
+
     } catch (error) {
       console.log(error);
     }
@@ -121,14 +130,13 @@ const YosContextProvider = ({ children }) => {
     try {
       const BASE_URL_FAVORIGET = ` https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${id}&token=${ApiKey} `;
       const { data } = await axios.get(`${BASE_URL_FAVORIGET}`);
-
       setLike(data.departments);
       console.log(like);
     } catch (error) {
       console.log(error);
     }
   };
-  // const svg = document.querySelector(".w-6");
+
   const postFavori = async (id, userID) => {
     try {
       const BASE_URL_FAVORIADD = `  https://tr-yös.com/api/v1/users/addfavorite.php?id=${id}&user_id=${userID}&token=${ApiKey}`;
@@ -144,6 +152,19 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  const delFavori = (id) => {
+    try {
+      const BASE_URL_FAVORIDELL = `https://tr-yös.com/api/v1/users/deletefavorite.php?id=${id}&user_id=${userID}&token=${ApiKey} `;
+      axios.delete(`${BASE_URL_FAVORIDELL}`);
+      setLike((like) => like.filter((item) => item !== id));
+      // getFavori(userID);
+      console.log(like);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getCompare = async (id) => {
     try {
       const BASE_URL_COMPAREGET = ` https://tr-yös.com/api/v1/users/allcompares.php?user_id=${id}&token=${ApiKey} `;
@@ -166,6 +187,7 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
   const getCities = () => {
     return city?.map((item) => item.value);
   };
@@ -218,10 +240,12 @@ const YosContextProvider = ({ children }) => {
     filterDepss.includes(item.label)
   );
   const filteredID = depertman?.filter((item) => like.includes(item.id));
+
   const filteredCompare = depertman?.filter((item) =>
     compare?.includes(item.id)
   );
   console.log(filteredCompare);
+
   const values = {
     options,
     options1,
@@ -245,12 +269,15 @@ const YosContextProvider = ({ children }) => {
     handleLike,
     departmentID,
     filteredID,
+    getFavori,
     compare,
     setCompare,
     handleCompare,
     filteredCompare,
     handleDelete,
-    userID,
+    delFavori,
+    userID,  
+    handleDeleteFavori,
     handleLogout,
     active,
   };

@@ -1,21 +1,32 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { YosContext } from "../context/YosContext";
 
 import CardSlider from "../components/card/CardSlider";
+
+
 const Favorites = () => {
-  const { like, handleLike, depertman, filteredID, active } =
-    useContext(YosContext);
+  const {
+    like,
+    handleLike,
+    depertman,
+    filteredID,
+    getFavori,
+    handleDeleteFavori,
+    delFavori,
+    handleDelete,
+    departmentID,
+    userID,
+    active
+  } = useContext(YosContext);
+const{id}=filteredID
 
-  console.log(like);
-  console.log(depertman);
 
-  console.log(active);
 
   return (
     <div className="flex flex-wrap">
       <div className=" w-full h-32 bg-green-light"></div>
-      {filteredID.map((item) => {
+      {filteredID?.map((item) => {
         return (
           <div className="flex flex-col justify-center w-80 mx-auto border-2 mt-12">
             <div className="text-center h-56 align-top">
@@ -35,7 +46,7 @@ const Favorites = () => {
                   className={`w-6 h-6 ${
                     like.includes(item.id) ? "active" : ""
                   }`}
-                  onClick={(e) => handleLike(item.id)}
+                  onClick={() => handleDeleteFavori(item.id)}
                 >
                   <path
                     strokeLinecap="round"
@@ -49,6 +60,7 @@ const Favorites = () => {
             </div>
             <div className="mx-7 mt-8 bg-green-light font-bold w-32 text-center rounded-md flex">
               <button className="m-2">Compare</button>
+          
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
