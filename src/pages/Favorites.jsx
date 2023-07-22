@@ -3,17 +3,25 @@ import React, { useContext, useEffect } from "react";
 import { YosContext } from "../context/YosContext";
 
 import CardSlider from "../components/card/CardSlider";
+
+
 const Favorites = () => {
   const {
     like,
     handleLike,
     depertman,
     filteredID,
-    active,
     getFavori,
     handleDeleteFavori,
+    delFavori,
+    handleDelete,
+    departmentID,
     userID,
+    active
   } = useContext(YosContext);
+const{id}=filteredID
+
+
 
   return (
     <div className="flex flex-wrap">
@@ -55,6 +63,7 @@ const Favorites = () => {
             </div>
             <div className="mx-7 mt-8 bg-green-light font-bold w-32 text-center rounded-md flex">
               <button className="m-2">Compare</button>
+          
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
