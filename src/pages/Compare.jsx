@@ -44,39 +44,39 @@ const Compare = () => {
               <p className="text-sm mt-1">{item.university.tr}</p>
             </div>
             <div className="mx-7 mt-8 bg-green-light font-bold w-32 text-center rounded-md flex">
-                  <button
-                    id={item?.id}
-                    className="m-2"
-                    onClick={() => handleCompare(item.id)}
-                  >
-                    Compare
-                  </button>
+              <button
+                id={item?.id}
+                className="m-2"
+                onClick={() => handleCompare(item.id)}
+              >
+                Compare
+              </button>
 
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-4 h-4 mt-3"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  {" "}
-                  <button
-                    id={item?.id}
-                    className="m-2"
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    Sil
-                  </button>
-                </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-4 h-4 mt-3"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
+                />
+              </svg>
+            </div>
+            <div>
+              {" "}
+              <button
+                id={item?.id}
+                className="m-2"
+                onClick={() => handleDelete(item.id)}
+              >
+                Sil
+              </button>
+            </div>
             <div className="w-80 mb-2 bg-grey-primary mx-auto mt-5 border border-t-1"></div>
             <div className="flex mx-7 m-4 justify-between">
               <div className="flex">

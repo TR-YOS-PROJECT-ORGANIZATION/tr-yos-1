@@ -8,7 +8,8 @@ import Departmens from "./pages/Departmens";
 import RgisterModal from "./components/register/RgisterModal";
 import Favorites from "./pages/Favorites";
 import Compare from "./pages/Compare";
-import MyProfile from "./components/myAccount/MyProfile";
+// import MyProfile from "./pages/MyProfile";
+import MainAcc from "./components/myAccount/MainAcc";
 
 const AppRouter = () => {
   return (
@@ -19,7 +20,7 @@ const AppRouter = () => {
         <Route path="/universities" element={<Uni />} />
         <Route path="/departments" element={<Departmens />} />
         <Route path="/register" element={<RgisterModal />} />
-        <Route path="/myprofile" element={<MyProfile/>} />
+        <Route path="/dashboard" element={<MainAcc />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/compare" element={<Compare />} />
       </Routes>

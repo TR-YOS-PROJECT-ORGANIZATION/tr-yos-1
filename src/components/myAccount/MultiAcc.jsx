@@ -21,7 +21,7 @@ const MultiAcc = ({ activeTab, setActiveTab }) => {
   };
 
   return (
-    <div>
+    <div className="border-2 max-w-[55rem] min-w-[55rem]">
       <main>{renderStep(activeTab)}</main>
     </div>
   );

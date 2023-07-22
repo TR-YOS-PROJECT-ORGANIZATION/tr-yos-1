@@ -62,16 +62,15 @@ const YosContextProvider = ({ children }) => {
     getFavori();
     getCompare(id);
   }, []);
-  
+
   const handleLike = (id, userID) => {
     console.log(id);
     postFavori(id, userID);
   };
-  
+
   const handleCompare = (id) => {
     console.log(id);
     postCompare(id);
-
   };
   const handleDelete = (id) => {
     try {
@@ -101,7 +100,6 @@ const YosContextProvider = ({ children }) => {
       getCompare(data.userID);
       getFavori(data.userID);
       localStorage.setItem("user", JSON.stringify(data.userID));
-
     } catch (error) {
       console.log(error);
     }
@@ -112,7 +110,6 @@ const YosContextProvider = ({ children }) => {
     localStorage.clear();
     setLoginState([]);
   };
-
 
   const getFavori = async (id) => {
     try {
@@ -252,7 +249,6 @@ const YosContextProvider = ({ children }) => {
     userID,
     handleLogout,
     active,
-
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };
