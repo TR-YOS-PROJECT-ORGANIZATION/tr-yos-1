@@ -273,9 +273,9 @@ const YosContextProvider = ({ children }) => {
     delFavori,
     userID,
     handleDeleteFavori,
-    handleLogout,
+
     active,
-    handleLogout
+    handleLogout,
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };
