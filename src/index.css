@@ -17,6 +17,9 @@ code {
 }
 
 .active {
-  width: 100;
   color: red;
+}
+
+.activeCompare {
+  color: blue;
 }

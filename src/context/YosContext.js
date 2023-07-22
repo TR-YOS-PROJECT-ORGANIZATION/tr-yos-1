@@ -13,7 +13,7 @@ const YosContextProvider = ({ children }) => {
   const [uniId, setUniId] = useState([]);
   const [filterDep, setFilterDep] = useState([]);
   const [userID, setUserID] = useState(
-    JSON.parse(localStorage.getItem("user"))
+    JSON.parse(localStorage.getItem("user") || null)
   );
   const [loginState, setLoginState] = useState([]);
   const [like, setLike] = useState([]);
@@ -76,7 +76,6 @@ const YosContextProvider = ({ children }) => {
     delFavori(id);
   };
 
-
   const handleCompare = (id) => {
     if (!compare.includes(id)) {
       setCompare((prevCompare) => [...prevCompare, id]);
@@ -84,7 +83,7 @@ const YosContextProvider = ({ children }) => {
       postCompare(id);
     }
   };
-  
+
   const handleDelete = (id) => {
     try {
       const BASE_URL_DELETECOMPARE = `https://tr-yös.com/api/v1/users/deletecompare.php?id=${id}&user_id=${userID}&token=${ApiKey}`;
@@ -114,7 +113,6 @@ const YosContextProvider = ({ children }) => {
       getCompare(userID);
       getFavori(userID);
       localStorage.setItem("user", JSON.stringify({ userID }));
-
     } catch (error) {
       console.log(error);
     }
@@ -276,7 +274,7 @@ const YosContextProvider = ({ children }) => {
     filteredCompare,
     handleDelete,
     delFavori,
-    userID,  
+    userID,
     handleDeleteFavori,
     handleLogout,
     active,

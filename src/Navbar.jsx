@@ -151,7 +151,7 @@ const Navbar2 = () => {
               </li>
             </ul>
           </div>
-          {loginState.status == "success" ? (
+          {loginState.status !== "success" ? (
             <div>
               <LoginModal />
               <RgisterModal />
@@ -175,10 +175,9 @@ const Navbar2 = () => {
               </button>
               {/* Dropdown menu */}
               <div
-                className="z-50 my-4 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                className="z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                 id="user-dropdown"
               >
-             
                 <ul className="py-2" aria-labelledby="user-menu-button">
                   <li>
                     <Link
@@ -187,7 +186,6 @@ const Navbar2 = () => {
                     >
                       Dashboard
                     </Link>
-
                   </li>
                   <li>
                     <Link
