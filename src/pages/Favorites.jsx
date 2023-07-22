@@ -25,9 +25,6 @@ const{id}=filteredID
 
   return (
     <div className="flex flex-wrap">
-      <p className="absolute font-bold text-4xl  top-[3rem] left-36 text-green-dark ">
-        My Account
-      </p>
       <div className=" w-full h-32 bg-green-light"></div>
       {filteredID?.map((item) => {
         return (
