@@ -29,6 +29,18 @@ const YosContextProvider = ({ children }) => {
   const BASE_URL_DEP = `https://tr-yös.com/api/v1/record/alldepartments.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
   const BASE_URL_USER = `https://tr-yös.com/api/v1/users/newuser.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
   const BASE_URL_LOGIN = `https://tr-yös.com/api/v1/users/login.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
+
+  const updateName = async (newName) => {
+    try {
+      const BASE_URL_UPDATE_NAME = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${ApiKey}`;
+      const updatedUser = { name: newName };
+      const { data } = await axios.post(BASE_URL_UPDATE_NAME, updatedUser);
+      console.log("updated successfully:", data);
+    } catch (error) {
+      console.error("error", error);
+    }
+  };
+
   const getLoca = async () => {
     try {
       const { data } = await axios(BASE_URL_LOCA);
@@ -224,6 +236,7 @@ const YosContextProvider = ({ children }) => {
     address: item.city.tr,
     price: item.null,
     id: item.id,
+    uniID: item.uniID
   }));
   const optionsCard = depertman
     ?.filter((item) => filterDepss.includes(item.university.code))
@@ -273,7 +286,7 @@ const YosContextProvider = ({ children }) => {
     delFavori,
     userID,
     handleDeleteFavori,
-
+    updateName,
     active,
     handleLogout,
   };

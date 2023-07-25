@@ -4,8 +4,10 @@ import { YosContext } from "../../context/YosContext";
 import CardSlider from "./CardSlider";
 import CardPre from "./CardPre";
 import { FaCodeCompare, FaHeartCircleCheck } from "react-icons/fa6";
+import { Link, useParams } from "react-router-dom";
 
 const Card = () => {
+  const { departmentID } = useParams();
   const {
     delFavori,
     filterrrr,
@@ -16,13 +18,14 @@ const Card = () => {
     like,
     handleCompare,
     handleDelete,
+    
   } = useContext(YosContext);
 
   return (
     <div className="card w-10/12 mx-auto">
       <div className="card flex w-10/12 mx-auto flex-wrap ">
         {filterrrr.length === 0 ? (
-          <CardPre />
+          <CardPre departmentID={departmentID} />
         ) : (
           filterrrr.map((item) => {
             return (
@@ -32,7 +35,7 @@ const Card = () => {
                 </div>
                 <div className="mx-7 mt-3 h-24">
                   <div className="flex justify-between">
-                    <p className="font-bold text-xl w-60">{item.label}</p>
+                  <Link to={`department/${item.label}`} className="font-bold text-xl w-60">{item.label}</Link>
                     <div>
                       <FaHeartCircleCheck
                         id={item.id}
@@ -42,25 +45,9 @@ const Card = () => {
                         }`}
                       />
                     </div>
-                    {/* <svg
-                      id={item?.id}
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill=""
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke={active}
-                      onClick={() => handleLike(item.id, userID)}
-                    >
-                      <path
-                        className={`w-6 h-6 ${
-                          like.includes(item.id) ? "active" : ""
-                        }`}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                      />
-                    </svg> */}
+                
                   </div>
+                  {/* <Link to={`/${departmentID}`} className="font-semibold">{item.faculty}</Link> */}
                   <p className="font-semibold">{item.faculty}</p>
                   <p className="text-sm mt-1">{item.university}</p>
                 </div>
