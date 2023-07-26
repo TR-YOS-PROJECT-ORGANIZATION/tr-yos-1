@@ -3,7 +3,7 @@ import React from "react";
 const LeftNavigation = ({ activeTab, handleTabClick }) => {
   return (
     <>
-      <div className="buton w-5/6 mx-auto text-center justify-center my-6">
+      <div className="buton w-5/6 mx-auto text-center justify-center m-20">
         {/* Dashboard */}
         <div className="bg-gray-200 font-bold rounded-md mt-5 flex justify-center hover:bg-gray-400 duration-100 hover:text-white">
           <svg

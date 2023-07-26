@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useContext } from "react";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Home from "./pages/Home";
@@ -10,8 +10,11 @@ import Favorites from "./pages/Favorites";
 import Compare from "./pages/Compare";
 // import MyProfile from "./pages/MyProfile";
 import MainAcc from "./components/myAccount/MainAcc";
-
+import UniDetail from "./pages/UniDetail";
+import { YosContext } from "./context/YosContext";
+import CardPre from "./components/card/CardPre";
 const AppRouter = () => {
+  const { departmentID } = useParams();
   return (
     <>
       <Navbar />
@@ -23,10 +26,10 @@ const AppRouter = () => {
         <Route path="/myprofile" element={<MainAcc />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/compare" element={<Compare />} />
+        <Route path="/department/:name" element={<UniDetail />} />
       </Routes>
       <Footer />
     </>
   );
 };
-
 export default AppRouter;

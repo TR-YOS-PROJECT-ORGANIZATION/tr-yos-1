@@ -224,6 +224,7 @@ const YosContextProvider = ({ children }) => {
     address: item.city.tr,
     price: item.null,
     id: item.id,
+    adress2:item.data?.adress,
   }));
   const optionsCard = depertman
     ?.filter((item) => filterDepss.includes(item.university.code))
@@ -241,6 +242,29 @@ const YosContextProvider = ({ children }) => {
   );
   console.log(filteredCompare);
 
+
+
+
+  const handlePasswordChange = async (currentPassword, newPassword) => {
+    try {
+      const BASE_URL_UPDATE_PASSWORD = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${ApiKey}`;
+      const userData = {
+        password: currentPassword,
+        new_password: newPassword,
+      };
+      const { data } = await axios.post(BASE_URL_UPDATE_PASSWORD, userData);
+      console.log(data); // Handle the response accordingly (e.g., show success message)
+
+      return true; // Başarılı şifre değiştirme durumunda true döndürebilirsiniz.
+    } catch (error) {
+      console.log(error);
+      return false; // Şifre değiştirme sırasında bir hata oluşursa false döndürebilirsiniz.
+    }
+  };
+
+
+
+  
   const values = {
     options,
     options1,
@@ -273,9 +297,10 @@ const YosContextProvider = ({ children }) => {
     delFavori,
     userID,
     handleDeleteFavori,
-
+    handleLogout,
     active,
     handleLogout,
+    handlePasswordChange,
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import RightMyAccount from "./RightMyAccount";
-import RightSocialAccounts from "./RightSocialAccounts";
+
 import RightSaveButton from "./RightSaveButton";
 
 const MyProfile = () => {
@@ -10,7 +10,6 @@ const MyProfile = () => {
         <div>
           <p className="text-2xl font-bold p-5">My Account</p>
           <RightMyAccount />
-          <RightSocialAccounts />
           <RightSaveButton />
         </div>
       </div>
