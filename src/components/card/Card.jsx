@@ -35,7 +35,8 @@ const Card = () => {
                 </div>
                 <div className="mx-7 mt-3 h-24">
                   <div className="flex justify-between">
-                  <Link to={`department/${item.label}`} className="font-bold text-xl w-60">{item.label}</Link>
+                  <Link to={`
+                  /${item.label}`} className="font-bold text-xl w-60">{item.label}</Link>
                     <div>
                       <FaHeartCircleCheck
                         id={item.id}

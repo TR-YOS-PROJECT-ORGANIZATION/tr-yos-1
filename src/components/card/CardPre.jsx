@@ -5,7 +5,7 @@ import { FaHeartCircleCheck } from "react-icons/fa6";
 import { FaCodeCompare } from "react-icons/fa6";
 import { Link, useParams } from "react-router-dom";
 
-const CardPre = (  ) => {
+const CardPre = () => {
   const { departmentID } = useParams();
   const { options3, like, handleLike, userID, handleCompare, compare } =
     useContext(YosContext);
@@ -23,7 +23,12 @@ const CardPre = (  ) => {
           </div>
           <div className="mx-7 mt-3 h-24">
             <div className="flex justify-between">
-              <Link to={`department/${item.label}`} className="font-bold text-xl w-60">{item.label}</Link>
+              <Link
+                to={`/departments/department/${item.label}`}
+                className="font-bold text-xl w-60"
+              >
+                {item.label}
+              </Link>
               <div>
                 <FaHeartCircleCheck
                   id={item.id}
@@ -33,7 +38,6 @@ const CardPre = (  ) => {
                   }`}
                 />
               </div>
-       
             </div>
             {/* <Link to={`/${departmentID}`} className="font-semibold">{item.faculty}</Link> */}
             <p className="font-semibold">{item.faculty}</p>
@@ -55,21 +59,6 @@ const CardPre = (  ) => {
                   />
                 </span>
               </button>
-
-              {/* <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-4 mt-3"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
-                />
-              </svg> */}
             </div>
           </div>
           <div className="w-80  mb-2 bg-grey-primary mx-auto mt-5  border border-t-1"></div>

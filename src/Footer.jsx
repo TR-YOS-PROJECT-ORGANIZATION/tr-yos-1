@@ -35,7 +35,7 @@ const Footer = () => {
                 <li className="mb-4">
                   <a
                     href="https://github.com/themesberg/flowbite"
-                    className="hover:underline "
+                    className="hover:underline"
                   >
                     About Us
                   </a>
@@ -87,7 +87,7 @@ const Footer = () => {
                 <li className="mb-6">
                   <a
                     href="#"
-                    className="hover:underline  border rounded-md p-2"
+                    className="hover:underline border rounded-md p-2"
                   >
                     My Account
                   </a>
@@ -95,7 +95,7 @@ const Footer = () => {
                 <li>
                   <a
                     href="#"
-                    className="hover:underline  border rounded-md p-2"
+                    className="hover:underline border rounded-md p-2"
                   >
                     Favorites
                   </a>
@@ -108,7 +108,7 @@ const Footer = () => {
         <div className="text-center m-auto max-w-[800px] border-t-[1px]  pt-3 border-gray-500">
           <span className="text-sm  sm:text-center dark:text-gray-400 ">
             © 2023{" "}
-            <a href="https://flowbite.com/" className="hover:underline "></a>.
+            <a href="https://flowbite.com/" className="hover:underline"></a>.
             All Rights Reserved.
           </span>
           <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0"></div>

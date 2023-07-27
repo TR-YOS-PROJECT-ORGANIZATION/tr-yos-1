@@ -227,6 +227,7 @@ const YosContextProvider = ({ children }) => {
       university: item.university.tr,
       address: item.city.tr,
       id: item.id,
+      adress2: item.data?.adress,
     }));
   const options3 = depertman?.map((item) => ({
     value: item.department.code,
@@ -236,7 +237,8 @@ const YosContextProvider = ({ children }) => {
     address: item.city.tr,
     price: item.null,
     id: item.id,
-    uniID: item.uniID
+    uniID: item.uniID,
+    adress2: item.data?.adress,
   }));
   const optionsCard = depertman
     ?.filter((item) => filterDepss.includes(item.university.code))
