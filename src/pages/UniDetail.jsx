@@ -137,8 +137,8 @@ const UniDetail = () => {
       </div>
       <div className="grid grid-cols-6 gap-8 w-8/12 m-auto mt-8 ">
         <div className="left col-span-4">
-          <div className="bg-white rounded-lg p-5 grid grid-cols-4">
-            <div className="col-span-3 ">
+          <div className="bg-white rounded-lg p-5 grid grid-cols-4 mb-4">
+            <div className="name col-span-3 ">
               <p className="font-bold text-2xl mb-1 w-96 leading-8">
                 {department ? department.label : "Department Not Found"}
               </p>
@@ -157,7 +157,13 @@ const UniDetail = () => {
               $5800 / year
             </div>
           </div>
-          <div></div>
+          <div className="other bg-white rounded-lg p-5 grid grid-cols-4">
+            <div>Other</div>
+            <div><div></div>
+            <div></div>
+            <div></div>
+            <div></div></div>
+          </div>
           <div></div>
           <div></div>
           <div></div>

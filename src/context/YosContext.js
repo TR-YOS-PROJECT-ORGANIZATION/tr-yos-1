@@ -30,14 +30,42 @@ const YosContextProvider = ({ children }) => {
   const BASE_URL_USER = `https://tr-yös.com/api/v1/users/newuser.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
   const BASE_URL_LOGIN = `https://tr-yös.com/api/v1/users/login.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
 
-  const updateName = async (newName) => {
+  //todo ŞİFRE DEĞİŞTİRME: mevcut şifreyi doğrulama
+  const changePasswordStep1 = async (currentPassword, newPassword) => {
     try {
-      const BASE_URL_UPDATE_NAME = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${ApiKey}`;
-      const updatedUser = { name: newName };
-      const { data } = await axios.post(BASE_URL_UPDATE_NAME, updatedUser);
-      console.log("updated successfully:", data);
+      const BASE_URL_CHANGE_PASSWORD_STEP_1 = `https://tr-yös.com/api/v1/users/changepassword.php?user_id=${userID}&token=${ApiKey}`;
+      let data = new FormData();
+      data.append("password_current", currentPassword);
+      data.append("password_new1", newPassword);
+      data.append("password_new2", newPassword);
+      data.append("user_id", `${userID}`);
+      const response = await axios.post(BASE_URL_CHANGE_PASSWORD_STEP_1, data);
+      console.log(response.data);
+      console.log(newPassword);
+      console.log(currentPassword);
+      changePasswordStep2(newPassword, currentPassword);
     } catch (error) {
-      console.error("error", error);
+      console.error("şifre değiştirme hatası adım: 1", error);
+    }
+  };
+  //todo: ŞİFRE DEĞİŞTİRME: şifre belirleme
+  const changePasswordStep2 = async (newPassword, currentPassword) => {
+    try {
+      const BASE_URL_CHANGE_PASSWORD_STEP_2 = `https://tr-yös.com/api/v1/users/changepassword2.php?user_id=${userID}&token=${ApiKey}`;
+      const requestData = {
+        password_current: currentPassword,
+        password_new1: newPassword,
+        password_new2: newPassword,
+      };
+      const response = await axios.put(
+        BASE_URL_CHANGE_PASSWORD_STEP_2,
+        requestData
+      );
+      console.log(response.data);
+      console.log(newPassword);
+      console.log(currentPassword);
+    } catch (error) {
+      console.error("şifre değiştirme hatası adım 2", error);
     }
   };
 
@@ -66,15 +94,18 @@ const YosContextProvider = ({ children }) => {
     }
   };
 
-  useEffect((id, userID) => {
-    getLoca();
-    getUni();
-    getDep();
-    if (userID) {
-      getFavori(id);
-      getCompare(id);
-    }
-  }, []);
+  useEffect(
+    (id, userID) => {
+      getLoca();
+      getUni();
+      getDep();
+      if (userID) {
+        getFavori(id);
+        getCompare(id);
+      }
+    },
+    [userID]
+  );
 
   const handleLike = (id, userID) => {
     console.log(id);
@@ -288,9 +319,11 @@ const YosContextProvider = ({ children }) => {
     delFavori,
     userID,
     handleDeleteFavori,
-    updateName,
+    // updateName,
     active,
     handleLogout,
+    changePasswordStep1,
+    changePasswordStep2,
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };
