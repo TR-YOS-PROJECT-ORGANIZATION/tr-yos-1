@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { YosContext } from "../../context/YosContext";
+import { useNavigate } from "react-router-dom";
 
 const RightMyAccount = () => {
+  const { updateName } = useContext(YosContext);
+  const [oldName, setOldName] = useState("");
+  const [newName, setNewName] = useState("");
+  const [confirmNewName, setConfirmNewName] = useState("");
+  const navigate = useNavigate();
+  const handleChangeName = (e) => {
+    e.preventDefault();
+    if (newName === confirmNewName) {
+      updateName(newName);
+    } else {
+      console.log("şifreler eşleşmiyor");
+    }
+  };
   return (
-    <>
+    <form>
       <div className="flex justify-evenly">
         <div className=" w-5/12">
           <label htmlFor="" className="font-bold">
             Your Name*
           </label>
           <input
+            value={oldName}
+            onChange={(e) => setOldName(e.target.value)}
             type="text"
             required
             className="w-full rounded-md mt-2 focus:border-green-light focus:ring-green-dark"
@@ -70,7 +87,9 @@ const RightMyAccount = () => {
           ></textarea>
         </div>
       </div>
-    </>
+      <button onClick={handleChangeName}> deneme </button>
+      
+    </form>
   );
 };
 

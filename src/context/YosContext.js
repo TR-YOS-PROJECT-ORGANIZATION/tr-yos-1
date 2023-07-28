@@ -14,11 +14,11 @@ const YosContextProvider = ({ children }) => {
   const [filterDep, setFilterDep] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [cardPage, setCardPage] = useState([]);
+  const [userID, setUserID] = useState(localStorage.getItem("user") || "");
+  const [loginState, setLoginState] = useState(
+    JSON.parse(localStorage.getItem("userInfo")) || ""
 
-  const [userID, setUserID] = useState(
-    JSON.parse(localStorage.getItem("user") || null)
   );
-  const [loginState, setLoginState] = useState([]);
   const [like, setLike] = useState([]);
   const [compare, setCompare] = useState([]);
   const [deleteCompare, setDeleteCompare] = useState([]);
@@ -32,11 +32,46 @@ const YosContextProvider = ({ children }) => {
   const BASE_URL_DEP = `https://tr-yös.com/api/v1/record/alldepartments.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
   const BASE_URL_USER = `https://tr-yös.com/api/v1/users/newuser.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
   const BASE_URL_LOGIN = `https://tr-yös.com/api/v1/users/login.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
-
-
   const BASE_URL_CARD = `https://tr-yös.com/api/v1/record/alldepartments.php?page=${currentPage}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
   
-
+  //todo ŞİFRE DEĞİŞTİRME: mevcut şifreyi doğrulama
+  const changePasswordStep1 = async (currentPassword, newPassword) => {
+    try {
+      const BASE_URL_CHANGE_PASSWORD_STEP_1 = `https://tr-yös.com/api/v1/users/changepassword.php?user_id=${userID}&token=${ApiKey}`;
+      let data = new FormData();
+      data.append("password_current", currentPassword);
+      data.append("password_new1", newPassword);
+      data.append("password_new2", newPassword);
+      data.append("user_id", `${userID}`);
+      const response = await axios.post(BASE_URL_CHANGE_PASSWORD_STEP_1, data);
+      console.log(response.data);
+      console.log(newPassword);
+      console.log(currentPassword);
+      changePasswordStep2(newPassword, currentPassword);
+    } catch (error) {
+      console.error("şifre değiştirme hatası adım: 1", error);
+    }
+  };
+  //todo: ŞİFRE DEĞİŞTİRME: şifre belirleme
+  const changePasswordStep2 = async (newPassword, currentPassword) => {
+    try {
+      const BASE_URL_CHANGE_PASSWORD_STEP_2 = `https://tr-yös.com/api/v1/users/changepassword2.php?user_id=${userID}&token=${ApiKey}`;
+      const requestData = {
+        password_current: currentPassword,
+        password_new1: newPassword,
+        password_new2: newPassword,
+      };
+      const response = await axios.put(
+        BASE_URL_CHANGE_PASSWORD_STEP_2,
+        requestData
+      );
+      console.log(response.data);
+      console.log(newPassword);
+      console.log(currentPassword);
+    } catch (error) {
+      console.error("şifre değiştirme hatası adım 2", error);
+    }
+  };
 
 
   const getLoca = async () => {
@@ -64,17 +99,18 @@ const YosContextProvider = ({ children }) => {
     }
   };
 
-  useEffect((id, userID) => {
+  useEffect(() => {
     getLoca();
     getUni();
     getDep();
     getPage(currentPage);
   
     if (userID) {
-      getFavori(id);
-      getCompare(id);
+      getFavori(userID);
+      getCompare(userID);
     }
   }, []);
+  
   console.log(currentPage);
     const getPage = async (currentPage) => {
       try {
@@ -88,22 +124,17 @@ const YosContextProvider = ({ children }) => {
       }
     };
 
-
   const handleLike = (id, userID) => {
     console.log(id);
     postFavori(id, userID);
   };
-
+  console.log(like);
   const handleDeleteFavori = (id) => {
     delFavori(id);
   };
 
   const handleCompare = (id) => {
-    if (!compare.includes(id)) {
-      setCompare((prevCompare) => [...prevCompare, id]);
-    } else {
-      postCompare(id);
-    }
+    postCompare(id);
   };
 
   const handleDelete = (id) => {
@@ -131,10 +162,11 @@ const YosContextProvider = ({ children }) => {
       const { userID } = data;
       navigate("/");
       setLoginState(data);
+      localStorage.setItem("userInfo", JSON.stringify(data));
       setUserID(userID);
       getCompare(userID);
       getFavori(userID);
-      localStorage.setItem("user", JSON.stringify({ userID }));
+      localStorage.setItem("user", userID);
     } catch (error) {
       console.log(error);
     }
@@ -144,14 +176,17 @@ const YosContextProvider = ({ children }) => {
     setUserID([]);
     localStorage.clear();
     setLoginState([]);
+    setLike([]);
   };
 
   const getFavori = async (id) => {
     try {
       const BASE_URL_FAVORIGET = ` https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${id}&token=${ApiKey} `;
       const { data } = await axios.get(`${BASE_URL_FAVORIGET}`);
-      setLike(data.departments);
-      console.log(like);
+      if (data.departments) {
+        setLike(data.departments);
+      }
+      console.log(data.departments);
     } catch (error) {
       console.log(error);
     }
@@ -165,14 +200,14 @@ const YosContextProvider = ({ children }) => {
         setActive([...active, id]);
       }
       console.log(data);
-      setLike([...like, id]);
+      // setLike([...like, id]);
       console.log(like);
       getFavori(userID);
     } catch (error) {
       console.log(error);
     }
   };
-
+  console.log(userID);
   const delFavori = (id) => {
     try {
       const BASE_URL_FAVORIDELL = `https://tr-yös.com/api/v1/users/deletefavorite.php?id=${id}&user_id=${userID}&token=${ApiKey} `;
@@ -189,7 +224,10 @@ const YosContextProvider = ({ children }) => {
     try {
       const BASE_URL_COMPAREGET = ` https://tr-yös.com/api/v1/users/allcompares.php?user_id=${id}&token=${ApiKey} `;
       const { data } = await axios.get(`${BASE_URL_COMPAREGET}`);
-      setCompare(data.departments);
+      console.log(data);
+      if (data.departments) {
+        setCompare(data.departments);
+      }
       console.log(compare);
     } catch (error) {
       console.log(error);
@@ -200,7 +238,7 @@ const YosContextProvider = ({ children }) => {
       const BASE_URL_COMPAREADD = `https://tr-yös.com/api/v1/users/addcompare.php?id=${id}&user_id=${userID}&token=${ApiKey}`;
       const { data } = await axios.post(`${BASE_URL_COMPAREADD}`);
       console.log(data);
-      // setCompare([...compare, id]);
+      setCompare([...compare, id]);
       console.log(compare);
       getCompare(userID);
     } catch (error) {
@@ -240,6 +278,7 @@ const YosContextProvider = ({ children }) => {
       university: item.university.tr,
       address: item.city.tr,
       id: item.id,
+      adress2: item.data?.adress,
     }));
   const options3 = depertman?.map((item) => ({
     value: item.department.code,
@@ -249,6 +288,8 @@ const YosContextProvider = ({ children }) => {
     address: item.city.tr,
     price: item.null,
     id: item.id,
+    uniID: item.uniID,
+    adress2: item.data?.adress,
   }));
   const optionsCard = depertman
     ?.filter((item) => filterDepss.includes(item.university.code))
@@ -303,7 +344,10 @@ const YosContextProvider = ({ children }) => {
     getPage,
     active,
     handleLogout,
-    cardPage,
+    cardPage,   
+    changePasswordStep1,
+    changePasswordStep2,
+
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };
