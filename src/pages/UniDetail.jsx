@@ -181,7 +181,7 @@ const UniDetail = () => {
               <p className="ml-3"> Add Favorite</p>
             </div>
           </div>
-          <div className="flex text-center self-center text-xl font-bold mb-4 w-full p-5 bg-white rounded-lg">
+          <div className="compare flex text-center self-center text-xl font-bold mb-4 w-full p-5 bg-white rounded-lg">
             <button
               id={department?.id}
               className="m-2 mx-auto px-3 flex "
@@ -197,7 +197,11 @@ const UniDetail = () => {
               </span>
             </button>
           </div>
-          <div className="bg-white rounded-lg"></div>
+          <div>
+
+          <div className="bg-white rounded-lg"> {department.university ? department.university : "University Not Found"}</div>
+
+          </div>
         </div>
       </div>
     </div>
