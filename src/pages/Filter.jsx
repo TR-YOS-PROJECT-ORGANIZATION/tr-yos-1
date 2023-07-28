@@ -28,8 +28,8 @@ const Filter = () => {
             Select Department
           </label>
           <select
-            id="city"
-            name="city"
+            id="department"
+            name="department"
             className="border border-gray-300 rounded-md px-1 py-1 h-9 focus:outline-none w-48 mt-2"
           >
             <option value="">Ethnology</option>
@@ -45,8 +45,8 @@ const Filter = () => {
             Select University
           </label>
           <select
-            id="city"
-            name="city"
+            id="university"
+            name="university"
             className="border border-gray-300 rounded-md px-1 py-1 h-9 focus:outline-none w-48 mt-2"
           >
             <option value="">Boğaziçi University</option>
@@ -60,18 +60,18 @@ const Filter = () => {
       </div>
 
       <div className="">
-        <div className="mb-1 flex flex-col ">
-          <label htmlFor="city" className="mr-2  mt-2 font-bold">
+        <div className="mb-1 flex flex-col">
+          <label htmlFor="price" className="mr-2 mt-2 font-bold">
             Price
           </label>
           <div className="flex">
             <input
-              type="text "
-              placeholder="Min "
+              type="text"
+              placeholder="Min"
               className="border border-gray-300 rounded-md px-1 py-2 w-28 mt-2 h-9 focus:outline-none"
             />
             <div className="flex justify-center ml-3">
-              <p className="text-3xl self-center ">-</p>
+              <p className="text-3xl self-center">-</p>
             </div>
 
             {/* <select
@@ -118,7 +118,7 @@ const Filter = () => {
           Advance Features
         </label>
         <div className="flex justify-between">
-          <div className="first-col ">
+          <div className="first-col">
             <div className="flex mt-3">
               <div>
                 <input
@@ -155,7 +155,7 @@ const Filter = () => {
                 />
               </div>
               <div className="">
-                <p className="mx-1 ">Item1</p>
+                <p className="mx-1">Item1</p>
               </div>
             </div>
           </div>
@@ -171,7 +171,7 @@ const Filter = () => {
                 />
               </div>
               <div className="">
-                <p className="mx-1 ">Item1</p>
+                <p className="mx-1">Item1</p>
               </div>
             </div>
             <div className="flex mt-1">
@@ -203,7 +203,7 @@ const Filter = () => {
           </div>
         </div>
         <div className="self-end mt-24 bg-green-dark text-white font-bold w-20 h-10  text-center rounded-md ">
-          <button className="m-2 ">Search</button>
+          <button className="m-2">Search</button>
         </div>
       </div>
 
