@@ -10,6 +10,7 @@ const MyProfile = () => {
         <div>
           <p className="text-2xl font-bold p-5">My Account</p>
           <RightMyAccount />
+          {/* <RightSocialAccounts /> */}
           <RightSaveButton />
         </div>
       </div>

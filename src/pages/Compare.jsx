@@ -9,8 +9,17 @@ const Compare = () => {
     useContext(YosContext);
 
   return (
+<<<<<<< HEAD
     <div className="flex flex-wrap min-h-screen"> 
       <p className="absolute font-bold text-4xl top-[7rem] left-36 text-green-dark">
+=======
+    <div
+      className={`flex flex-wrap  ${
+        compare.length === 0 ? "h-[39.2vh]" : "h-[100vh]"
+      }`}
+    >
+      <p className="absolute font-bold text-4xl  top-[7rem] left-36 text-green-dark ">
+>>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
         Compare Universities
       </p>
       <div className="w-full h-32 bg-green-light"></div>

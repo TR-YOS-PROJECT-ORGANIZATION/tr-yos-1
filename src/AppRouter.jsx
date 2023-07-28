@@ -13,6 +13,10 @@ import MainAcc from "./components/myAccount/MainAcc";
 import UniDetail from "./pages/UniDetail";
 import { YosContext } from "./context/YosContext";
 import CardPre from "./components/card/CardPre";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
 const AppRouter = () => {
   const { departmentID } = useParams();
   return (
@@ -26,7 +30,9 @@ const AppRouter = () => {
         <Route path="/myprofile" element={<MainAcc />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/compare" element={<Compare />} />
-        <Route path="/department/:name" element={<UniDetail />} />
+        {/* <Route path="/:departmentID" element={<UniDetail />} /> */}
+        <Route path="/departments/department/:departmentID" element={<UniDetail departmentID={departmentID} />} />
+      
       </Routes>
       <Footer />
     </>

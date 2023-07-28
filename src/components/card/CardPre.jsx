@@ -3,9 +3,14 @@ import { YosContext } from "../../context/YosContext";
 import CardSlider from "./CardSlider";
 import { FaHeartCircleCheck } from "react-icons/fa6";
 import { FaCodeCompare } from "react-icons/fa6";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
+=======
+import { Link, useParams } from "react-router-dom";
+>>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
 
 const CardPre = () => {
+  const { departmentID } = useParams();
   const { options3, like, handleLike, userID, handleCompare, compare } =
     useContext(YosContext);
 
@@ -22,7 +27,16 @@ const CardPre = () => {
           </div>
           <div className="mx-7 mt-3 h-24">
             <div className="flex justify-between">
+<<<<<<< HEAD
             <Link to={`department/${item.label}`} className="font-bold text-xl w-60">{item.label}</Link>
+=======
+              <Link
+                to={`/departments/department/${item.label}`}
+                className="font-bold text-xl w-60"
+              >
+                {item.label}
+              </Link>
+>>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
               <div>
                 <FaHeartCircleCheck
                   id={item.id}
@@ -33,6 +47,7 @@ const CardPre = () => {
                 />
               </div>
             </div>
+            {/* <Link to={`/${departmentID}`} className="font-semibold">{item.faculty}</Link> */}
             <p className="font-semibold">{item.faculty}</p>
             <p className="text-sm mt-1">{item.university}</p>
           </div>
