@@ -12,10 +12,10 @@ const YosContextProvider = ({ children }) => {
   const [city, setCity] = useState([]);
   const [uniId, setUniId] = useState([]);
   const [filterDep, setFilterDep] = useState([]);
-  const [userID, setUserID] = useState(
-    JSON.parse(localStorage.getItem("user") || null)
+  const [userID, setUserID] = useState(localStorage.getItem("user") || "");
+  const [loginState, setLoginState] = useState(
+    JSON.parse(localStorage.getItem("userInfo")) || ""
   );
-  const [loginState, setLoginState] = useState([]);
   const [like, setLike] = useState([]);
   const [compare, setCompare] = useState([]);
   const [deleteCompare, setDeleteCompare] = useState([]);
@@ -54,31 +54,27 @@ const YosContextProvider = ({ children }) => {
     }
   };
 
-  useEffect((id, userID) => {
+  useEffect(() => {
     getLoca();
     getUni();
     getDep();
     if (userID) {
-      getFavori(id);
-      getCompare(id);
+      getFavori(userID);
+      getCompare(userID);
     }
-  }, []);
+  }, [userID]);
 
   const handleLike = (id, userID) => {
     console.log(id);
     postFavori(id, userID);
   };
-
+  console.log(like);
   const handleDeleteFavori = (id) => {
     delFavori(id);
   };
 
   const handleCompare = (id) => {
-    if (!compare.includes(id)) {
-      setCompare((prevCompare) => [...prevCompare, id]);
-    } else {
-      postCompare(id);
-    }
+    postCompare(id);
   };
 
   const handleDelete = (id) => {
@@ -106,10 +102,11 @@ const YosContextProvider = ({ children }) => {
       const { userID } = data;
       navigate("/");
       setLoginState(data);
+      localStorage.setItem("userInfo", JSON.stringify(data));
       setUserID(userID);
       getCompare(userID);
       getFavori(userID);
-      localStorage.setItem("user", JSON.stringify({ userID }));
+      localStorage.setItem("user", userID);
     } catch (error) {
       console.log(error);
     }
@@ -119,14 +116,17 @@ const YosContextProvider = ({ children }) => {
     setUserID([]);
     localStorage.clear();
     setLoginState([]);
+    setLike([]);
   };
 
   const getFavori = async (id) => {
     try {
       const BASE_URL_FAVORIGET = ` https://tr-yös.com/api/v1/users/allfavorites.php?user_id=${id}&token=${ApiKey} `;
       const { data } = await axios.get(`${BASE_URL_FAVORIGET}`);
-      setLike(data.departments);
-      console.log(like);
+      if (data.departments) {
+        setLike(data.departments);
+      }
+      console.log(data.departments);
     } catch (error) {
       console.log(error);
     }
@@ -140,14 +140,14 @@ const YosContextProvider = ({ children }) => {
         setActive([...active, id]);
       }
       console.log(data);
-      setLike([...like, id]);
+      // setLike([...like, id]);
       console.log(like);
       getFavori(userID);
     } catch (error) {
       console.log(error);
     }
   };
-
+  console.log(userID);
   const delFavori = (id) => {
     try {
       const BASE_URL_FAVORIDELL = `https://tr-yös.com/api/v1/users/deletefavorite.php?id=${id}&user_id=${userID}&token=${ApiKey} `;
@@ -164,7 +164,10 @@ const YosContextProvider = ({ children }) => {
     try {
       const BASE_URL_COMPAREGET = ` https://tr-yös.com/api/v1/users/allcompares.php?user_id=${id}&token=${ApiKey} `;
       const { data } = await axios.get(`${BASE_URL_COMPAREGET}`);
-      setCompare(data.departments);
+      console.log(data);
+      if (data.departments) {
+        setCompare(data.departments);
+      }
       console.log(compare);
     } catch (error) {
       console.log(error);
@@ -175,7 +178,7 @@ const YosContextProvider = ({ children }) => {
       const BASE_URL_COMPAREADD = `https://tr-yös.com/api/v1/users/addcompare.php?id=${id}&user_id=${userID}&token=${ApiKey}`;
       const { data } = await axios.post(`${BASE_URL_COMPAREADD}`);
       console.log(data);
-      // setCompare([...compare, id]);
+      setCompare([...compare, id]);
       console.log(compare);
       getCompare(userID);
     } catch (error) {
