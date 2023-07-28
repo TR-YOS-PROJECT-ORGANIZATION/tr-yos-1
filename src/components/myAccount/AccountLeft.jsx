@@ -6,7 +6,7 @@ import RightSocialAccounts from "./RightSocialAccounts";
 
 const AccountLeft = ({ activeTab, handleTabClick }) => {
   return (
-    <div className="border-2 max-w-[25rem] min-w-[25rem] pb-8 h-[55rem] rounded-lg flex flex-col justify-center items-center shadow-md shadow-grey-primary mb-16">
+    <div className="border-2 max-w-[25rem] min-w-[25rem] pb-8 h-[45rem] rounded-lg flex flex-col justify-center items-center shadow-md shadow-grey-primary mb-16">
       <div className="profile-pic my-6 mt-1">
         <img
           src={resim3}
@@ -21,7 +21,7 @@ const AccountLeft = ({ activeTab, handleTabClick }) => {
       </div>
 
       <LeftButons />
-      <RightSocialAccounts />
+      {/* <RightSocialAccounts /> */}
       <LeftNavigation activeTab={activeTab} handleTabClick={handleTabClick} />
     </div>
   );
