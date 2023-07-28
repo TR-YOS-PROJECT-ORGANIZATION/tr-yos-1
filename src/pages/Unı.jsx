@@ -4,6 +4,7 @@ import { YosContext } from "../context/YosContext";
 import PaginationPage from "./Pagination";
 const Uni = () => {
   const { cardPage } = useContext(YosContext);
+  
   return (
     <>
       <div>
