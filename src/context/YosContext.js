@@ -12,17 +12,18 @@ const YosContextProvider = ({ children }) => {
   const [city, setCity] = useState([]);
   const [uniId, setUniId] = useState([]);
   const [filterDep, setFilterDep] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [cardPage, setCardPage] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [cardPage, setCardPage] = useState([]);
   const [userID, setUserID] = useState(localStorage.getItem("user") || "");
   const [loginState, setLoginState] = useState(
     JSON.parse(localStorage.getItem("userInfo")) || ""
-
   );
   const [like, setLike] = useState([]);
   const [compare, setCompare] = useState([]);
   const [deleteCompare, setDeleteCompare] = useState([]);
   const [active, setActive] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+
   const departmentID = depertman.map((item) => item.id);
   const navigate = useNavigate();
   const ApiKey =
@@ -33,7 +34,7 @@ const YosContextProvider = ({ children }) => {
   const BASE_URL_USER = `https://tr-yös.com/api/v1/users/newuser.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
   const BASE_URL_LOGIN = `https://tr-yös.com/api/v1/users/login.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
   const BASE_URL_CARD = `https://tr-yös.com/api/v1/record/alldepartments.php?page=${currentPage}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
-  
+
   //todo ŞİFRE DEĞİŞTİRME: mevcut şifreyi doğrulama
   const changePasswordStep1 = async (currentPassword, newPassword) => {
     try {
@@ -73,7 +74,6 @@ const YosContextProvider = ({ children }) => {
     }
   };
 
-
   const getLoca = async () => {
     try {
       const { data } = await axios(BASE_URL_LOCA);
@@ -104,25 +104,25 @@ const YosContextProvider = ({ children }) => {
     getUni();
     getDep();
     getPage(currentPage);
-  
+
     if (userID) {
       getFavori(userID);
       getCompare(userID);
     }
   }, []);
-  
-  console.log(currentPage);
-    const getPage = async (currentPage) => {
-      try {
-        const BASE_URL_CARD = `https://tr-yös.com/api/v1/record/alldepartments.php?page=${currentPage}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
 
-        const { data } = await axios(BASE_URL_CARD);
-        setCardPage(data);
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  console.log(currentPage);
+  const getPage = async (currentPage) => {
+    try {
+      const BASE_URL_CARD = `https://tr-yös.com/api/v1/record/alldepartments.php?page=${currentPage}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
+
+      const { data } = await axios(BASE_URL_CARD);
+      setCardPage(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleLike = (id, userID) => {
     console.log(id);
@@ -164,8 +164,10 @@ const YosContextProvider = ({ children }) => {
       setLoginState(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
       setUserID(userID);
-      getCompare(userID);
-      getFavori(userID);
+      if (userID) {
+        getCompare(userID);
+        getFavori(userID);
+      }
       localStorage.setItem("user", userID);
     } catch (error) {
       console.log(error);
@@ -177,6 +179,8 @@ const YosContextProvider = ({ children }) => {
     localStorage.clear();
     setLoginState([]);
     setLike([]);
+    setCompare([]);
+    setShowModal(false);
   };
 
   const getFavori = async (id) => {
@@ -344,10 +348,11 @@ const YosContextProvider = ({ children }) => {
     getPage,
     active,
     handleLogout,
-    cardPage,   
+    cardPage,
     changePasswordStep1,
     changePasswordStep2,
-
+    showModal,
+    setShowModal,
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };
