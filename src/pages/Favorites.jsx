@@ -22,9 +22,14 @@ const Favorites = () => {
     compare,
   } = useContext(YosContext);
   const { id } = filteredID;
-
+  console.log(like);
+  console.log(filteredID);
   return (
-    <div className="flex flex-wrap">
+    <div
+      className={`flex flex-wrap  ${
+        like.length === 0 ? "h-[39.2vh]" : "h-[100vh]"
+      }`}
+    >
       <p className="absolute font-bold text-4xl  top-[7rem] left-36 text-green-dark ">
         Favorite Universities
       </p>
