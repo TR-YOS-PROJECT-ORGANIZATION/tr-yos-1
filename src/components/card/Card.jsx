@@ -18,7 +18,6 @@ const Card = () => {
     like,
     handleCompare,
     handleDelete,
-    
   } = useContext(YosContext);
 
   return (
@@ -35,8 +34,12 @@ const Card = () => {
                 </div>
                 <div className="mx-7 mt-3 h-24">
                   <div className="flex justify-between">
-                  <Link to={`
-                  /${item.label}`} className="font-bold text-xl w-60">{item.label}</Link>
+                    <Link
+                      to={`/departments/department/${item.label}`}
+                      className="font-bold text-xl w-60"
+                    >
+                      {item.label}
+                    </Link>
                     <div>
                       <FaHeartCircleCheck
                         id={item.id}
@@ -46,7 +49,6 @@ const Card = () => {
                         }`}
                       />
                     </div>
-                
                   </div>
                   {/* <Link to={`/${departmentID}`} className="font-semibold">{item.faculty}</Link> */}
                   <p className="font-semibold">{item.faculty}</p>

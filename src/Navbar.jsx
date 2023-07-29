@@ -6,6 +6,7 @@ import LoginModal from "./LoginModal";
 import trImg from "./helper/tr.png";
 import { YosContext } from "./context/YosContext";
 import profile from "./helper/Profil_sm.jpg";
+import avatar from "./helper/avatar.png";
 
 const Navbar2 = () => {
   const { loginState, handleLogout } = useContext(YosContext);
@@ -175,8 +176,8 @@ const Navbar2 = () => {
                 >
                   <span className="sr-only">Open user menu</span>
                   <img
-                    className="w-8 h-8 rounded-full"
-                    src={profile}
+                    className="w-8 h-8 rounded-full object-cover"
+                    src={avatar}
                     alt="user photo"
                   />
                 </button>

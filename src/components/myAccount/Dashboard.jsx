@@ -24,12 +24,7 @@ const Dashboard = () => {
           </p>
           <p className="text-xl text-center">8</p>
         </div>
-        <div className=" p-5 border-2 grid grid-rows-2">
-          <p className="text-xl font-bold mb-3 underline">
-            My Favorite Universities
-          </p>
-          <p className="text-xl text-center">8</p>
-        </div>
+        
       </div>
     </>
   );

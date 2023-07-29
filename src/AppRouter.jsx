@@ -28,8 +28,10 @@ const AppRouter = () => {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/compare" element={<Compare />} />
         {/* <Route path="/:departmentID" element={<UniDetail />} /> */}
-        <Route path="/departments/department/:departmentID" element={<UniDetail departmentID={departmentID} />} />
-      
+        <Route
+          path="/departments/department/:departmentID"
+          element={<UniDetail departmentID={departmentID} />}
+        />
       </Routes>
       <Footer />
     </>
