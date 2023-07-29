@@ -7,7 +7,7 @@ const Dashboard = () => {
   const { like, compare, } = useContext(YosContext);
   return (
     <>
-      <div className="grid grid-cols-4 text-center mb-16 shadow-md shadow-grey-primary ">
+      <div className="grid grid-cols-3 text-center mb-16 shadow-md shadow-grey-primary ">
         <div className=" p-5 border-2 grid grid-rows-2 ">
           <Link to="/favorites" className="text-xl font-bold mb-3 underline">
             My Favorite Universities

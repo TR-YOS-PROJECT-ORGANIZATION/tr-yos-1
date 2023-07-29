@@ -12,9 +12,12 @@ const YosContextProvider = ({ children }) => {
   const [city, setCity] = useState([]);
   const [uniId, setUniId] = useState([]);
   const [filterDep, setFilterDep] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [cardPage, setCardPage] = useState([]);
   const [userID, setUserID] = useState(localStorage.getItem("user") || "");
   const [loginState, setLoginState] = useState(
     JSON.parse(localStorage.getItem("userInfo")) || ""
+
   );
   const [like, setLike] = useState([]);
   const [compare, setCompare] = useState([]);
@@ -29,7 +32,8 @@ const YosContextProvider = ({ children }) => {
   const BASE_URL_DEP = `https://tr-yös.com/api/v1/record/alldepartments.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
   const BASE_URL_USER = `https://tr-yös.com/api/v1/users/newuser.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
   const BASE_URL_LOGIN = `https://tr-yös.com/api/v1/users/login.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
-
+  const BASE_URL_CARD = `https://tr-yös.com/api/v1/record/alldepartments.php?page=${currentPage}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
+  
   //todo ŞİFRE DEĞİŞTİRME: mevcut şifreyi doğrulama
   const changePasswordStep1 = async (currentPassword, newPassword) => {
     try {
@@ -109,11 +113,26 @@ const YosContextProvider = ({ children }) => {
     getLoca();
     getUni();
     getDep();
+    getPage(currentPage);
+  
     if (userID) {
       getFavori(userID);
       getCompare(userID);
     }
   }, []);
+  
+  console.log(currentPage);
+    const getPage = async (currentPage) => {
+      try {
+        const BASE_URL_CARD = `https://tr-yös.com/api/v1/record/alldepartments.php?page=${currentPage}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
+
+        const { data } = await axios(BASE_URL_CARD);
+        setCardPage(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
   const handleLike = (id, userID) => {
     console.log(id);
@@ -333,9 +352,12 @@ const YosContextProvider = ({ children }) => {
     delFavori,
     userID,
     handleDeleteFavori,
-    // updateName,
+    currentPage,
+    setCurrentPage,
+    getPage,
     active,
     handleLogout,
+    cardPage,   
     changePasswordStep1,
     changePasswordStep2,
     // addemail,
