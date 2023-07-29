@@ -19,7 +19,6 @@ const Favorites = () => {
     active,
     compare,
   } = useContext(YosContext);
-<<<<<<< HEAD
 
   // Fetch favorites when the component mounts
   useEffect(() => {
@@ -29,18 +28,6 @@ const Favorites = () => {
   return (
     <div className="flex flex-wrap min-h-screen">
       <p className="absolute font-bold text-4xl top-[7rem] left-36 text-green-dark">
-=======
-  const { id } = filteredID;
-  console.log(like);
-  console.log(filteredID);
-  return (
-    <div
-      className={`flex flex-wrap  ${
-        like.length === 0 ? "h-[39.2vh]" : "h-[100vh]"
-      }`}
-    >
-      <p className="absolute font-bold text-4xl  top-[7rem] left-36 text-green-dark ">
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
         Favorite Universities
       </p>
       <div className="w-full h-32 bg-green-light"></div>

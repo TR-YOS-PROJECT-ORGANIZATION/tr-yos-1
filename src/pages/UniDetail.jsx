@@ -4,16 +4,9 @@ import Header from "../Header";
 import HeaderCarousel from "../HeaderCarousel";
 import resim2 from "../helper/resim2.jpg";
 import header from "../helper/header.jpg";
-<<<<<<< HEAD
-import { useParams } from "react-router-dom";
-const UniDetail = () => {
-   const { name } = useParams();
-   
-=======
 import { Link, useParams } from "react-router-dom";
 import { FaCodeCompare, FaHeartCircleCheck } from "react-icons/fa6";
 const UniDetail = () => {
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
   const images = [header, resim2];
   const [activeIndex, setActiveIndex] = useState(0);
   const handlePrevClick = () => {
@@ -21,29 +14,18 @@ const UniDetail = () => {
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
-<<<<<<< HEAD
-  const { uniID } = useParams();
-=======
   const { departmentID } = useParams();
 
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
   const handleNextClick = () => {
     setActiveIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
   const {
     options,
     options1,
     options2,
-<<<<<<< HEAD
-=======
     uniID,
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
     setCity,
     setUniId,
     setFilterDep,
@@ -56,11 +38,7 @@ const UniDetail = () => {
     like,
     setLike,
     handleLike,
-<<<<<<< HEAD
-    departmentID,
-=======
     userID,
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
     getFavori,
     compare,
     setCompare,
@@ -68,14 +46,9 @@ const UniDetail = () => {
     handleDelete,
     delFavori,
   } = useContext(YosContext);
-<<<<<<< HEAD
-  const university = options1.find((uni) => uni.value === uniID);
-  const department = options3.find((dep) => dep.label === name);
-=======
 
   const university = options1.find((uni) => uni.value === uniID);
   const department = options3.find((dep) => dep.label === departmentID);
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
   return (
     <div className="bg-gray-100 ">
       <div className="slider w-full ">
@@ -132,10 +105,6 @@ const UniDetail = () => {
             </span>
           </button>
         </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
         {/* Carousel wrapper */}
         <div className="relative object-cover overflow-hidden md:h-96 ">
           {/* Item 1 */}
@@ -164,16 +133,6 @@ const UniDetail = () => {
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-      <div className="grid grid-cols-11 gap-8 w-10/12 m-auto mt-8">
-        <div className="left col-span-7">
-          <div className="bg-white rounded-lg p-5 grid grid-cols-4">
-            <div className="col-span-3 ">
-              <p className="font-bold text-2xl mb-4 w-96 leading-8">{department ? department.label : 'Department Not Found'}</p>
-              <p  className="font-bold text-xl mb-4 w-96 leading-8">{department ? department.faculty : "Faculty Not Found"}</p>
-              <p> <span className="display inline-block  pr-1 ">🧭</span>{department ? department.adress2 : ''}</p>
-             
-=======
       <div className="grid grid-cols-6 gap-8 w-8/12 m-auto mt-8 ">
         <div className="left col-span-4">
           <div className="bg-white rounded-lg p-5 grid grid-cols-4 mb-4">
@@ -191,15 +150,11 @@ const UniDetail = () => {
                 <span className="display inline-block  pr-1 ">📍</span>
                 {department ? department.adress2 : ""}
               </p>
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
             </div>
             <div className="text-center self-center text-xl font-bold text-green-dark">
               $5800 / year
             </div>
           </div>
-<<<<<<< HEAD
-          <div></div>
-=======
           <div className="other bg-white rounded-lg p-5 grid grid-cols-4">
             <div>Other</div>
             <div><div></div>
@@ -207,17 +162,10 @@ const UniDetail = () => {
             <div></div>
             <div></div></div>
           </div>
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
           <div></div>
           <div></div>
           <div></div>
         </div>
-<<<<<<< HEAD
-        <div className="right bg-white rounded-lg p-5 grid-span-4">
-            <div>
-                Add Favorite
-            </div>
-=======
         <div className="grid col-span-2  place-self-start w-full text-center ">
           <div className="flex text-center self-center text-xl font-bold mb-4 w-full p-5 bg-white rounded-lg">
             <div className="text-center flex mx-auto">
@@ -252,22 +200,10 @@ const UniDetail = () => {
           <div className="bg-white rounded-lg"> {department.university ? department.university : "University Not Found"}</div>
 
           </div>
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
         </div>
       </div>
     </div>
   );
 };
-<<<<<<< HEAD
-export default UniDetail;
-
-
-
-
-
-
-
-=======
 
 export default UniDetail;
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01

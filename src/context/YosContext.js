@@ -288,12 +288,8 @@ const YosContextProvider = ({ children }) => {
     address: item.city.tr,
     price: item.null,
     id: item.id,
-<<<<<<< HEAD
-    adress2:item.data?.adress,
-=======
     uniID: item.uniID,
     adress2: item.data?.adress,
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
   }));
   const optionsCard = depertman
     ?.filter((item) => filterDepss.includes(item.university.code))

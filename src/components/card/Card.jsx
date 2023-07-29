@@ -4,10 +4,9 @@ import { YosContext } from "../../context/YosContext";
 import CardSlider from "./CardSlider";
 import CardPre from "./CardPre";
 import { FaCodeCompare, FaHeartCircleCheck } from "react-icons/fa6";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Card = () => {
-  const { departmentID } = useParams();
   const {
     delFavori,
     filterrrr,
@@ -18,14 +17,13 @@ const Card = () => {
     like,
     handleCompare,
     handleDelete,
-    
   } = useContext(YosContext);
 
   return (
     <div className="card w-10/12 mx-auto">
       <div className="card flex w-10/12 mx-auto flex-wrap ">
         {filterrrr.length === 0 ? (
-          <CardPre departmentID={departmentID} />
+          <CardPre />
         ) : (
           filterrrr.map((item) => {
             return (
@@ -35,8 +33,7 @@ const Card = () => {
                 </div>
                 <div className="mx-7 mt-3 h-24">
                   <div className="flex justify-between">
-                  <Link to={`
-                  /${item.label}`} className="font-bold text-xl w-60">{item.label}</Link>
+                  <Link to={`/departments/department/${item.label}`} className="font-bold text-xl w-60">{item.label}</Link>
                     <div>
                       <FaHeartCircleCheck
                         id={item.id}
@@ -46,9 +43,8 @@ const Card = () => {
                         }`}
                       />
                     </div>
-                
+                  
                   </div>
-                  {/* <Link to={`/${departmentID}`} className="font-semibold">{item.faculty}</Link> */}
                   <p className="font-semibold">{item.faculty}</p>
                   <p className="text-sm mt-1">{item.university}</p>
                 </div>
@@ -84,15 +80,7 @@ const Card = () => {
                       />
                     </svg>
                   </div>
-                  <div>
-                    <button
-                      id={item?.id}
-                      className=" bg-gray-100 font-bold p-3 text-center rounded-md flex"
-                      onClick={() => handleDelete(item.id)}
-                    >
-                      Sil
-                    </button>
-                  </div>
+                 
                 </div>
                 <div className="w-80 mb-2 bg-grey-primary mx-auto mt-5 border border-t-1"></div>
                 <div className="flex mx-7 m-4 justify-between">
