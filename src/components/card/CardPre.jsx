@@ -10,14 +10,23 @@ import { Link, useParams } from "react-router-dom";
 >>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
 
 const CardPre = () => {
-  const { departmentID } = useParams();
-  const { options3, like, handleLike, userID, handleCompare, compare } =
-    useContext(YosContext);
 
-  const first12Universities = options3.slice(0, 12);
+  const {
+    options3,
+    like,
+    handleLike,
+    userID,
+    handleCompare,
+    compare,
+    currentPage,
+    cardPage,
+  } = useContext(YosContext);
+
+  const { departmentID } = useParams();
+  
   return (
     <div className="flex flex-wrap gap-15 mx-auto justify-between ">
-      {first12Universities.map((item, index) => (
+      {cardPage?.map((item, index) => (
         <div
           key={index}
           className="flex flex-col justify-center  w-80 mx-auto border-2 mt-12"
@@ -27,16 +36,14 @@ const CardPre = () => {
           </div>
           <div className="mx-7 mt-3 h-24">
             <div className="flex justify-between">
-<<<<<<< HEAD
-            <Link to={`department/${item.label}`} className="font-bold text-xl w-60">{item.label}</Link>
-=======
+
               <Link
-                to={`/departments/department/${item.label}`}
+                to={`/departments/department/${item.department.tr}`}
                 className="font-bold text-xl w-60"
               >
-                {item.label}
+                {item.department.tr}
               </Link>
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
+
               <div>
                 <FaHeartCircleCheck
                   id={item.id}
@@ -47,9 +54,11 @@ const CardPre = () => {
                 />
               </div>
             </div>
-            {/* <Link to={`/${departmentID}`} className="font-semibold">{item.faculty}</Link> */}
-            <p className="font-semibold">{item.faculty}</p>
-            <p className="text-sm mt-1">{item.university}</p>
+
+            <Link to={`/${departmentID}`} className="font-semibold">{item.faculty.tr}</Link>
+            <p className="font-semibold">{item.faculty.tr}</p>
+            <p className="text-sm mt-1">{item.university.tr}</p>
+
           </div>
           <div className="mx-7 mt-8  flex justify-between">
             <div className=" bg-[#DDDDDD] font-bold w-32 text-center rounded-md flex">
@@ -93,7 +102,7 @@ const CardPre = () => {
                   />
                 </svg>
               </div>
-              <div className="mx-1">{item.address}</div>
+              <div className="mx-1">{item.city.tr}</div>
             </div>
             <div className="flex ">
               <svg

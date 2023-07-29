@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
+
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import Home from "./pages/Home";
@@ -13,8 +14,6 @@ import MainAcc from "./components/myAccount/MainAcc";
 import UniDetail from "./pages/UniDetail";
 import { YosContext } from "./context/YosContext";
 import CardPre from "./components/card/CardPre";
-<<<<<<< HEAD
-=======
 
 >>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
 const AppRouter = () => {
@@ -27,12 +26,14 @@ const AppRouter = () => {
         <Route path="/universities" element={<Uni />} />
         <Route path="/departments" element={<Departmens />} />
         <Route path="/register" element={<RgisterModal />} />
+
+
         <Route path="/myprofile" element={<MainAcc />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/compare" element={<Compare />} />
-        {/* <Route path="/:departmentID" element={<UniDetail />} /> */}
+
         <Route path="/departments/department/:departmentID" element={<UniDetail departmentID={departmentID} />} />
-      
+
       </Routes>
       <Footer />
     </>
