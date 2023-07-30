@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import resim2 from "./helper/resim2.jpg";
 import header from "./helper/header.jpg";
+import { useTranslation } from "react-i18next";
 const HeaderCarousel = () => {
   const images = [header, resim2];
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const { t } = useTranslation();
+
   const handlePrevClick = () => {
     setActiveIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
@@ -14,14 +18,10 @@ const HeaderCarousel = () => {
     setActiveIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
-
-    
   };
-  
+
   return (
-    <div
-      className="relative w-full -mb-40 "
-    >
+    <div className="relative w-full -mb-40 ">
       {/* Slider controls */}
       <div className="">
         <button
@@ -108,7 +108,7 @@ const HeaderCarousel = () => {
 
       <div className="relative w-[350px] -top-[16rem] z-50 left-40 ">
         <h3 className="text-white w-96 font-bold text-3xl tracking-widest leading-10">
-          Join this educational journey with us and discover your data
+          {t("sliderWriting")}
         </h3>
       </div>
     </div>

@@ -2,15 +2,19 @@ import React from "react";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdLocalPostOffice } from "react-icons/md";
 import Like from "./components/dropdown/Like";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t, i18n } = useTranslation();
   return (
     <div>
       <div className=" w-full  p-4 py-6 lg:py-8 bg-[#222020] mt-4 text-white top-0 mb-0">
         <div>
           <div className="flex justify-around">
             <div>
-              <h2 className="mb-6 text-md font-bold uppercase">ADDRESS</h2>
+              <h2 className="mb-6 text-md font-bold uppercase">
+                {t("address")}
+              </h2>
               <ul className=" dark:text-gray-400 font-medium">
                 <li className="mb-4 flex">
                   <BsFillTelephoneFill className="mt-[5px] mr-1" />
@@ -29,7 +33,7 @@ const Footer = () => {
             </div>
             <div className="text-center">
               <h2 className="mb-6 text-md font-bold  uppercase ">
-                NAVIGATIONS
+                {t("navigations")}
               </h2>
               <ul className=" dark:text-gray-400 font-medium">
                 <li className="mb-4">
@@ -37,7 +41,7 @@ const Footer = () => {
                     href="https://github.com/themesberg/flowbite"
                     className="hover:underline"
                   >
-                    About Us
+                    {t("aboutUs")}
                   </a>
                 </li>
                 <li className="mb-4">
@@ -45,7 +49,7 @@ const Footer = () => {
                     href="https://discord.gg/4eeurUVvTy"
                     className="hover:underline"
                   >
-                    FAQs Page
+                    {t("faqs")}
                   </a>
                 </li>
                 <li className="mb-4">
@@ -53,7 +57,7 @@ const Footer = () => {
                     href="https://discord.gg/4eeurUVvTy"
                     className="hover:underline"
                   >
-                    Checkout
+                    {t("checkout")}
                   </a>
                 </li>
                 <li className="mb-4">
@@ -61,7 +65,7 @@ const Footer = () => {
                     href="https://discord.gg/4eeurUVvTy"
                     className="hover:underline"
                   >
-                    Contact
+                    {t("contact")}
                   </a>
                 </li>
                 <li className="mb-4">
@@ -76,28 +80,22 @@ const Footer = () => {
             </div>
             <div className="text-right ">
               <h2 className="mb-6 text-md font-bold  uppercase dark:text-white ">
-                MY ACCOUNT
+                {t("myAccountB")}
               </h2>
               <ul className=" dark:text-gray-400 font-medium">
                 <li className="mb-6">
                   <a href="#" className="hover:underline border rounded-md p-2">
-                    My Profile
+                    {t("myProfile")}
                   </a>
                 </li>
                 <li className="mb-6">
-                  <a
-                    href="#"
-                    className="hover:underline border rounded-md p-2"
-                  >
-                    My Account
+                  <a href="#" className="hover:underline border rounded-md p-2">
+                    {t("myAccount")}
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="hover:underline border rounded-md p-2"
-                  >
-                    Favorites
+                  <a href="#" className="hover:underline border rounded-md p-2">
+                    {t("favorites")}
                   </a>
                 </li>
               </ul>
@@ -108,8 +106,8 @@ const Footer = () => {
         <div className="text-center m-auto max-w-[800px] border-t-[1px]  pt-3 border-gray-500">
           <span className="text-sm  sm:text-center dark:text-gray-400 ">
             © 2023{" "}
-            <a href="https://flowbite.com/" className="hover:underline"></a>.
-            All Rights Reserved.
+            <a href="https://flowbite.com/" className="hover:underline"></a>
+            {t("allRightsReserved")}.
           </span>
           <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0"></div>
         </div>
