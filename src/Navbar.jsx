@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Switch from "./Switch";
 import RgisterModal from "./components/register/RgisterModal";
@@ -6,15 +6,33 @@ import LoginModal from "./LoginModal";
 import trImg from "./helper/tr.png";
 import { YosContext } from "./context/YosContext";
 import profile from "./helper/Profil_sm.jpg";
+import avatar from "./helper/avatar.png";
 import { useTranslation } from "react-i18next";
+
 
 const Navbar2 = () => {
   const { loginState, handleLogout } = useContext(YosContext);
   const [showDropDown, setShowDropDown] = useState(false);
+  const dropdownRef = useRef(null);
 
   const toggleDropDown = () => {
     setShowDropDown((prevState) => !prevState);
   };
+
+
+  const handleOutsideClick = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setShowDropDown(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
 
   const { t, i18n } = useTranslation();
   const lngs = {
@@ -24,6 +42,7 @@ const Navbar2 = () => {
   };
   const selectedLng = Object.keys(lngs).map((lng) => lng);
   console.log(selectedLng);
+
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 ">
@@ -203,14 +222,15 @@ const Navbar2 = () => {
                 >
                   <span className="sr-only">Open user menu</span>
                   <img
-                    className="w-8 h-8 rounded-full"
-                    src={profile}
+                    className="w-8 h-8 rounded-full object-cover"
+                    src={avatar}
                     alt="user photo"
                   />
                 </button>
               </div>
+
               {showDropDown && (
-                <div className="flex absolute z-50">
+                <div ref={dropdownRef} className="flex absolute z-50">
                   <div
                     className="z=50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                     id="user-dropdown"
@@ -219,6 +239,7 @@ const Navbar2 = () => {
                       <li>
                         <Link
                           to="/myprofile"
+                          onClick={toggleDropDown} // Toggle the dropdown when the link is clicked
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                         >
                           {t("myProfile")}
@@ -227,6 +248,7 @@ const Navbar2 = () => {
                       <li>
                         <Link
                           to="/favorites"
+                          onClick={toggleDropDown} // Toggle the dropdown when the link is clicked
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                         >
                           {t("favouriteDep")}
@@ -235,6 +257,7 @@ const Navbar2 = () => {
                       <li>
                         <Link
                           to="/compare"
+                          onClick={toggleDropDown} // Toggle the dropdown when the link is clicked
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                         >
                           {t("compareDep")}
@@ -243,7 +266,10 @@ const Navbar2 = () => {
                       <li>
                         <Link
                           to="/"
-                          onClick={handleLogout}
+                          onClick={() => {
+                            handleLogout();
+                            toggleDropDown(); // Toggle the dropdown when the link is clicked
+                          }}
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                         >
                           {t("logout")}

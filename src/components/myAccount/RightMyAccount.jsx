@@ -46,9 +46,8 @@ const RightMyAccount = () => {
         <div className=" w-5/12">
           <p className="font-bold">Country*</p>
           <select className="w-full rounded-md mt-2 focus:border-green-light focus:ring-green-dark">
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
+            <option value="option1">Türkiye</option>
+           
           </select>
         </div>
         <div className="w-5/12">
