@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { YosContext } from "../context/YosContext";
+import PaginationPage from "./Pagination";
+import { useTranslation } from "react-i18next";
 
 const Uni = () => {
   const { options3 } = useContext(YosContext);
@@ -17,16 +19,22 @@ const Uni = () => {
   const filteredUnis = filterDuplicateUnis(options3);
   const first12Universities = filteredUnis.slice(0, 12);
 
+ const { t } = useTranslation();
+
   return (
-    <div>
-      <div className="opacity-70 relative overflow-hidden h-[15rem] bg-center bg-no-repeat p-12 text-center bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')]">
-        <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed">
-          <div className="flex h-full items-center justify-center">
-            <div className="text-white">
-              <h2 className="mb-4 text-4xl font-semibold">Universities</h2>
-              <h4 className="mb-6 text-xl font-semibold">
-                You can find all universities and deparments in this list.
-              </h4>
+    <>
+      <div>
+        <div className="opacity-70 relative overflow-hidden h-[15rem] bg-center bg-no-repeat p-12 text-center bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')]">
+          <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed">
+            <div className="flex h-full items-center justify-center">
+              <div className="text-white">
+                <h2 className="mb-4 text-4xl font-semibold">
+                  {t("universities")}
+                </h2>
+                <h4 className="mb-6 text-xl font-semibold">
+                  {t("uniSlider")}.
+                </h4>
+              </div>
             </div>
           </div>
         </div>
@@ -111,6 +119,7 @@ const Uni = () => {
         </div>
       </div>
     </div>
+</>
   );
 };
 export default Uni;

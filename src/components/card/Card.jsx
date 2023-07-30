@@ -18,7 +18,21 @@ const Card = () => {
     like,
     handleCompare,
     handleDelete,
+    setShowModal,
+
   } = useContext(YosContext);
+  const handleLikeToLogin = (y, x) => {
+    if (userID) {
+      handleLike(y, x);
+    }
+    setShowModal(true);
+  };
+  const handleCompareToLogin = (x) => {
+    if (userID) {
+      handleCompare(x);
+    }
+    setShowModal(true);
+  };
 
   return (
     <div className="card w-10/12 mx-auto">
@@ -43,7 +57,7 @@ const Card = () => {
                     <div>
                       <FaHeartCircleCheck
                         id={item.id}
-                        onClick={() => handleLike(item.id, userID)}
+                        onClick={() => handleLikeToLogin(item.id, userID)}
                         className={`w-6 h-6 ${
                           like.includes(item.id) ? "active" : ""
                         }`}
@@ -59,7 +73,7 @@ const Card = () => {
                     <button
                       id={item?.id}
                       className="m-2  px-3 flex "
-                      onClick={() => handleCompare(item.id)}
+                      onClick={() => handleCompareToLogin(item.id)}
                     >
                       Compare{" "}
                       <span className="pl-2 pt-1">

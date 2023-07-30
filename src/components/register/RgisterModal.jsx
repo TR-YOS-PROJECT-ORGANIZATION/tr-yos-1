@@ -17,7 +17,7 @@ const RgisterModal = () => {
                 "
         type="button"
       >
-        Sign UP
+        Sign Up
       </button>
 
       {showModal && (
