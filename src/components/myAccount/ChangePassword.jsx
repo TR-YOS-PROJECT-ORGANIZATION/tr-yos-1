@@ -8,7 +8,7 @@ const ChangePassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [step, setStep] = useState(1);
-
+  const [success, setSuccess] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (newPassword !== confirmNewPassword) {
@@ -21,6 +21,10 @@ const ChangePassword = () => {
         setStep(2);
       } else if (step === 2) {
         changePasswordStep2(newPassword, currentPassword);
+        setSuccess(true);
+        setCurrentPassword("");
+        setNewPassword("");
+        setConfirmNewPassword("");
       }
     } catch (error) {
       console.error(
@@ -52,7 +56,7 @@ const ChangePassword = () => {
               Current Password *
             </label>
             <input
-              type="password"
+              type="text"
               value={currentPassword}
               onChange={handleCurrentPasswordChange}
               required
@@ -90,6 +94,11 @@ const ChangePassword = () => {
           </div>
         </div>
       </div>
+      {success && (
+        <div className="bg-green-200 text-green-800 p-3 rounded-md mt-3">
+          Şifreniz başarıyla değiştirilmiştir.
+        </div>
+      )}
     </form>
   );
 };

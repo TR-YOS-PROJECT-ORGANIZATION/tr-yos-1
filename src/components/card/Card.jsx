@@ -18,7 +18,9 @@ const Card = () => {
     like,
     handleCompare,
     handleDelete,
+
     setShowModal,
+
   } = useContext(YosContext);
   const handleLikeToLogin = (y, x) => {
     if (userID) {
@@ -48,8 +50,8 @@ const Card = () => {
                 <div className="mx-7 mt-3 h-24">
                   <div className="flex justify-between">
                     <Link
-                      to={`
-                  /${item.label}`}
+                      to={`/departments/department/${item.label}`}
+
                       className="font-bold text-xl w-60"
                     >
                       {item.label}

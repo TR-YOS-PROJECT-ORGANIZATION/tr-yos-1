@@ -74,6 +74,19 @@ const YosContextProvider = ({ children }) => {
     }
   };
 
+  //todo:email
+  const addemail = async (email) => {
+    try {
+      const BASE_URL_SENDEMAIL = `https://tr-yös.com/api/v1/record/addemail.php?token=${ApiKey}`;
+      let data = new FormData();
+      data.append("email", email);
+      const response = await axios.post(BASE_URL_SENDEMAIL, data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Mail gönderme hatası", error);
+    }
+  };
+
   const getLoca = async () => {
     try {
       const { data } = await axios(BASE_URL_LOCA);
@@ -128,7 +141,7 @@ const YosContextProvider = ({ children }) => {
     console.log(id);
     postFavori(id, userID);
   };
-  console.log(like);
+  // console.log(like);
   const handleDeleteFavori = (id) => {
     delFavori(id);
   };
@@ -190,9 +203,9 @@ const YosContextProvider = ({ children }) => {
       if (data.departments) {
         setLike(data.departments);
       }
-      console.log(data.departments);
+      // console.log(data.departments);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -211,7 +224,7 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-  console.log(userID);
+  // console.log(userID);
   const delFavori = (id) => {
     try {
       const BASE_URL_FAVORIDELL = `https://tr-yös.com/api/v1/users/deletefavorite.php?id=${id}&user_id=${userID}&token=${ApiKey} `;
@@ -234,7 +247,7 @@ const YosContextProvider = ({ children }) => {
       }
       console.log(compare);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
   const postCompare = async (id) => {
@@ -294,6 +307,9 @@ const YosContextProvider = ({ children }) => {
     id: item.id,
     uniID: item.uniID,
     adress2: item.data?.adress,
+    phone: item.data?.phone,
+    mail:item.data?.email,
+    web:item.data?.web
   }));
   const optionsCard = depertman
     ?.filter((item) => filterDepss.includes(item.university.code))
@@ -309,7 +325,7 @@ const YosContextProvider = ({ children }) => {
   const filteredCompare = depertman?.filter((item) =>
     compare?.includes(item.id)
   );
-  console.log(filteredCompare);
+  // console.log(filteredCompare);
 
   const values = {
     options,
@@ -351,8 +367,10 @@ const YosContextProvider = ({ children }) => {
     cardPage,
     changePasswordStep1,
     changePasswordStep2,
+    addemail,
     showModal,
     setShowModal,
+
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };

@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import hero from "./helper/hero.jpg";
 import { useTranslation } from "react-i18next";
+import { YosContext } from "./context/YosContext";
 const Hero = () => {
+  const { addemail } = useContext(YosContext);
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (email.trim() !== "")
+      try {
+        await addemail(email);
+        console.log("E-mail submitted successfully:", email);
+        setEmail("");
+      } catch (error) {
+        console.log("Hata", error);
+      }
+    else {
+      alert("Lütfen geçerli bir e-posta adresi girin.");
+    }
+
+    // Do any other necessary actions here (e.g., show a success message, etc.).
+  };
+
+  const handleChange = (e) => {
+    setEmail(e.target.value);
+    
+  };
+
+
+
   const { t } = useTranslation();
+
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <div className="h-[500px] mt-36">
         <div className="bg-green-dark z-50 rounded-xl h-[400px] container w-1/3 mx-auto">
           <img
@@ -36,15 +65,17 @@ const Hero = () => {
           className="bg-green-light absolute h-14 text-gray-900 text-sm rounded-2xl border-2 border-green-dark focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder={t("enterYourEmail")}
           required=""
+          onChange={handleChange}
         />
         <button
-          type="button"
+          type="submit"
+          value={email}
           className="text-white relative left-96 top-2  bg-green-dark font-bold focus:ring-4 focus:ring-blue-300  rounded-lg text-sm h-10 w-24  "
         >
           {t("subscribe")}
         </button>
       </div>
-    </>
+    </form>
   );
 };
 
