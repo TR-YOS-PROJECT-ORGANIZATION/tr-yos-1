@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import hero from "./helper/hero.jpg";
+import { useTranslation } from "react-i18next";
 import { YosContext } from "./context/YosContext";
 const Hero = () => {
   const { addemail } = useContext(YosContext);
@@ -27,6 +28,10 @@ const Hero = () => {
     
   };
 
+
+
+  const { t } = useTranslation();
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="h-[500px] mt-36">
@@ -43,34 +48,22 @@ const Hero = () => {
           </div>
 
           <div className=" bg-white border-1 rounded-lg h-50 max-w-[350px] xs:max-w-[300px] relative left-64 bottom-[34rem] z-50  p-4 ">
-            <h2 className="font-extrabold text-lg">
-              Are You Already Working With Us ?
-            </h2>
-            <p>
-              At vero eos at accusames et iusto odio dignissimos ducimus qui
-              blanditiis praesentium voluptatum deleniti atque corrupti auos
-              dolores et quas molestias
-            </p>
+            <h2 className="font-extrabold text-lg">{t("hero1")}</h2>
+            <p>{t("hero2")}</p>
           </div>
         </div>
         <div className="bg-green-light -z-10 w-full h-[220px] relative bottom-36 "></div>
       </div>
       <div className=" bg-white border-1 rounded-lg h-60 max-w-[330px] xs:max-w-[300px] hidden xs:flex left-64 bottom-[34rem] z-50  p-4 ">
-        <h2 className="font-extrabold text-lg">
-          Are You Already Working With Us ?
-        </h2>
-        <p>
-          At vero eos at accusames et iusto odio dignissimos ducimus qui
-          blanditiis praesentium voluptatum deleniti atque corrupti auos dolores
-          et quas molestias
-        </p>
+        <h2 className="font-extrabold text-lg">{t("hero1")}</h2>
+        <p>{t("hero2")}</p>
       </div>
       <div className="w-[400px] mx-auto mb-16 ">
         <input
           type="email"
           id="email"
           className="bg-green-light absolute h-14 text-gray-900 text-sm rounded-2xl border-2 border-green-dark focus:ring-blue-500 focus:border-blue-500 block w-[500px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Enter your E-mail"
+          placeholder={t("enterYourEmail")}
           required=""
           onChange={handleChange}
         />
@@ -79,7 +72,7 @@ const Hero = () => {
           value={email}
           className="text-white relative left-96 top-2  bg-green-dark font-bold focus:ring-4 focus:ring-blue-300  rounded-lg text-sm h-10 w-24  "
         >
-          Subscribe
+          {t("subscribe")}
         </button>
       </div>
     </form>
