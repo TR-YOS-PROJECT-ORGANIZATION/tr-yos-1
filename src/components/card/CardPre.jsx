@@ -3,11 +3,7 @@ import { YosContext } from "../../context/YosContext";
 import CardSlider from "./CardSlider";
 import { FaHeartCircleCheck } from "react-icons/fa6";
 import { FaCodeCompare } from "react-icons/fa6";
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
-=======
 import { Link, useParams } from "react-router-dom";
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
 
 const CardPre = () => {
 
@@ -55,8 +51,8 @@ const CardPre = () => {
               </div>
             </div>
 
-            <Link to={`/${departmentID}`} className="font-semibold">{item.faculty.tr}</Link>
             <p className="font-semibold">{item.faculty.tr}</p>
+            {/* <p className="font-semibold">{item.faculty.tr}</p> */}
             <p className="text-sm mt-1">{item.university.tr}</p>
 
           </div>

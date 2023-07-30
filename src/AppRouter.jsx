@@ -15,7 +15,7 @@ import UniDetail from "./pages/UniDetail";
 import { YosContext } from "./context/YosContext";
 import CardPre from "./components/card/CardPre";
 
->>>>>>> 5c8d872f598f2659c5ab3da1ceaa151f069c6e01
+
 const AppRouter = () => {
   const { departmentID } = useParams();
   return (
@@ -39,4 +39,5 @@ const AppRouter = () => {
     </>
   );
 };
+
 export default AppRouter;

@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react";
 import { YosContext } from "../context/YosContext";
 import CardSlider from "../components/card/CardSlider";
 import { FaCodeCompare, FaHeartCircleCheck } from "react-icons/fa6";
-
 const Favorites = () => {
   const {
     handleCompare,
@@ -19,23 +18,20 @@ const Favorites = () => {
     active,
     compare,
   } = useContext(YosContext);
-
   // Fetch favorites when the component mounts
   useEffect(() => {
     getFavori(userID);
   }, [getFavori, userID]);
-
   return (
     <div className="flex flex-wrap min-h-screen">
       <p className="absolute font-bold text-4xl top-[7rem] left-36 text-green-dark">
         Favorite Universities
       </p>
       <div className="w-full h-32 bg-green-light"></div>
-
       {filteredID.length === 0 ? (
-         <p className="text-center text-2xl mt-12 font-semibold m-auto text-green-dark ">
-     Please Choose Your Favorite University!
-       </p>
+        <p className="text-center text-2xl mt-12 font-semibold m-auto text-green-dark ">
+          Please Choose Your Favorite University!
+        </p>
       ) : (
         filteredID.map((item) => {
           return (
@@ -50,7 +46,9 @@ const Favorites = () => {
                     <FaHeartCircleCheck
                       id={item?.id}
                       onClick={() => handleDeleteFavori(item.id)}
-                      className={`w-6 h-6 ${like.includes(item.id) ? "active" : ""}`}
+                      className={`w-6 h-6 ${
+                        like.includes(item.id) ? "active" : ""
+                      }`}
                     />
                   </div>
                 </div>
@@ -66,7 +64,9 @@ const Favorites = () => {
                   Compare{" "}
                   <span className="pl-2 pt-1">
                     <FaCodeCompare
-                      className={`w-5 h-5 ${compare.includes(item.id) ? "activeCompare" : ""}`}
+                      className={`w-5 h-5 ${
+                        compare.includes(item.id) ? "activeCompare" : ""
+                      }`}
                     />
                   </span>
                 </button>
@@ -109,5 +109,4 @@ const Favorites = () => {
     </div>
   );
 };
-
 export default Favorites;

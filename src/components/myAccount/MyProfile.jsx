@@ -1,6 +1,6 @@
 import React from "react";
 import RightMyAccount from "./RightMyAccount";
-
+import RightSocialAccounts from "./RightSocialAccounts";
 import RightSaveButton from "./RightSaveButton";
 
 const MyProfile = () => {

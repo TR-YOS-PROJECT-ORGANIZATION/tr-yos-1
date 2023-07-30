@@ -3,19 +3,16 @@ import { YosContext } from "../context/YosContext";
 import CardSlider from "../components/card/CardSlider";
 import { FaCodeCompare, FaHeartCircleCheck } from "react-icons/fa6";
 import { Footer } from "flowbite-react";
-
 const Compare = () => {
   const { compare, handleCompare, filteredCompare, departman, handleDelete } =
     useContext(YosContext);
-
   return (
-    <div className="flex flex-wrap min-h-screen"> 
+    <div className="flex flex-wrap min-h-screen">
       <p className="absolute font-bold text-4xl top-[7rem] left-36 text-green-dark">
         Compare Universities
       </p>
       <div className="w-full h-32 bg-green-light"></div>
-
-      {filteredCompare.length === 0 ? ( 
+      {filteredCompare.length === 0 ? (
         <p className="text-center text-2xl mt-12 font-semibold m-auto text-green-dark ">
           Please Select University!
         </p>
@@ -30,10 +27,7 @@ const Compare = () => {
                 <div className="flex justify-between">
                   <p className="font-bold text-xl">{item.department.tr}</p>
                   <div>
-                    <FaHeartCircleCheck
-                      id={item.id}
-                      className="w-6 h-6"
-                    />
+                    <FaHeartCircleCheck id={item.id} className="w-6 h-6" />
                   </div>
                 </div>
                 <p className="font-semibold">{item.faculty.tr}</p>
@@ -108,5 +102,4 @@ const Compare = () => {
     </div>
   );
 };
-
 export default Compare;

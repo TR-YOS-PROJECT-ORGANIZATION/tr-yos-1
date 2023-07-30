@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import resim3 from "../../helper/resim3.jpg";
 import LeftButons from "./LeftButons";
 import LeftNavigation from "./LeftNavigation";
-
+import RightSocialAccounts from "./RightSocialAccounts";
 
 const AccountLeft = ({ activeTab, handleTabClick }) => {
   return (
@@ -15,7 +15,7 @@ const AccountLeft = ({ activeTab, handleTabClick }) => {
         />
       </div>
 
-      <div className="info text-center m-10">
+      <div className="info text-center">
         <p className="font-bold text-lg tracking-wide">Name Surname</p>
         <p>name@gmail.com</p>
       </div>
