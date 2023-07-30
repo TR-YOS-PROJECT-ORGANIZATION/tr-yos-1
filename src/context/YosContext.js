@@ -369,8 +369,7 @@ const YosContextProvider = ({ children }) => {
     changePasswordStep2,
     addemail,
     showModal,
-    setShowModal,
-
+    setShowModal
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };

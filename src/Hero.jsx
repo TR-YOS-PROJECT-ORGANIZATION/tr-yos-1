@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import hero from "./helper/hero.jpg";
+
 import { useTranslation } from "react-i18next";
 import { YosContext } from "./context/YosContext";
 const Hero = () => {
@@ -27,8 +28,6 @@ const Hero = () => {
     setEmail(e.target.value);
     
   };
-
-
 
   const { t } = useTranslation();
 
@@ -59,6 +58,14 @@ const Hero = () => {
         <p>{t("hero2")}</p>
       </div>
       <div className="w-[400px] mx-auto mb-16 ">
+      <label>
+        E-posta adresi:
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </label>
         <input
           type="email"
           id="email"
@@ -66,7 +73,9 @@ const Hero = () => {
           placeholder={t("enterYourEmail")}
           required=""
           onChange={handleChange}
+          value={email}
         />
+       
         <button
           type="submit"
           value={email}
@@ -74,6 +83,8 @@ const Hero = () => {
         >
           {t("subscribe")}
         </button>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <button type="submit">Abone Ol</button>
       </div>
     </form>
   );
