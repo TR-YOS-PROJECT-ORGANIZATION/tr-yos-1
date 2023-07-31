@@ -56,18 +56,18 @@ const Card = () => {
                 </div>
                 <div className="mx-7 mt-8  flex justify-between">
                   <div className=" bg-green-light font-bold w-32 text-center rounded-md flex">
-                    <button
-                      id={item?.id}
-                      className="m-2  px-3 flex "
-                      onClick={() => handleCompare(item.id)}
-                    >
-                      Compare{" "}
-                      <span className="pl-2 pt-1">
-                        <FaCodeCompare
-                          className={`w-5 h-5 ${
-                            compare.includes(item.id) ? "activeCompare" : ""
-                          }`}
-                        />
+                  <button
+                id={item?.id}
+                className="m-2  px-3 flex "
+                onClick={() => handleCompare(item.id)}
+              >
+                Compare{" "}
+                <span className="pl-2 pt-1">
+                  <FaCodeCompare
+                    className={`w-5 h-5 ${
+                      compare.includes(item.id) ? "activeCompare" : ""
+                    }`}
+                  />
                       </span>
                     </button>
 
@@ -87,13 +87,7 @@ const Card = () => {
                     </svg>
                   </div>
                   <div>
-                    <button
-                      id={item?.id}
-                      className=" bg-gray-100 font-bold p-3 text-center rounded-md flex"
-                      onClick={() => handleDelete(item.id)}
-                    >
-                      Sil
-                    </button>
+                   
                   </div>
                 </div>
                 <div className="w-80 mb-2 bg-grey-primary mx-auto mt-5 border border-t-1"></div>

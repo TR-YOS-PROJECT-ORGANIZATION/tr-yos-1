@@ -1,30 +1,31 @@
 import React, { useContext, useState } from "react";
 import hero from "./helper/hero.jpg";
 import { YosContext } from "./context/YosContext";
+
 const Hero = () => {
   const { addemail } = useContext(YosContext);
   const [email, setEmail] = useState("");
+  const [emailSubmitted, setEmailSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (email.trim() !== "")
+    if (email.trim() !== "") {
       try {
         await addemail(email);
         console.log("E-mail submitted successfully:", email);
         setEmail("");
+        setEmailSubmitted(true); // Set emailSubmitted to true to hide the entered email
       } catch (error) {
         console.log("Hata", error);
       }
-    else {
+    } else {
       alert("Lütfen geçerli bir e-posta adresi girin.");
     }
-
-    // Do any other necessary actions here (e.g., show a success message, etc.).
   };
 
   const handleChange = (e) => {
     setEmail(e.target.value);
-    
+    setEmailSubmitted(false); // Set emailSubmitted to false when user starts typing again
   };
 
   return (
@@ -37,12 +38,12 @@ const Hero = () => {
             alt=""
             width={490}
           />
-          <div className=" relative h-64 bottom-[20rem] left-[22rem] w-[100px]"></div>
-          <div className=" z-[-5] relative h-[14rem] bottom-[20rem] left-[22rem] w-[100px]">
+          <div className="relative h-64 bottom-[20rem] left-[22rem] w-[100px]"></div>
+          <div className="z-[-5] relative h-[14rem] bottom-[20rem] left-[22rem] w-[100px]">
             right-2
           </div>
 
-          <div className=" bg-white border-1 rounded-lg h-50 max-w-[350px] xs:max-w-[300px] relative left-64 bottom-[34rem] z-50  p-4 ">
+          <div className="bg-white border-1 rounded-lg h-50 max-w-[350px] xs:max-w-[300px] relative left-64 bottom-[34rem] z-50 p-4 ">
             <h2 className="font-extrabold text-lg">
               Are You Already Working With Us ?
             </h2>
@@ -55,7 +56,7 @@ const Hero = () => {
         </div>
         <div className="bg-green-light -z-10 w-full h-[220px] relative bottom-36 "></div>
       </div>
-      <div className=" bg-white border-1 rounded-lg h-60 max-w-[330px] xs:max-w-[300px] hidden xs:flex left-64 bottom-[34rem] z-50  p-4 ">
+      <div className="bg-white border-1 rounded-lg h-60 max-w-[330px] xs:max-w-[300px] hidden xs:flex left-64 bottom-[34rem] z-50 p-4 ">
         <h2 className="font-extrabold text-lg">
           Are You Already Working With Us ?
         </h2>
@@ -73,14 +74,20 @@ const Hero = () => {
           placeholder="Enter your E-mail"
           required=""
           onChange={handleChange}
+          value={email}
         />
         <button
           type="submit"
-          value={email}
-          className="text-white relative left-96 top-2  bg-green-dark font-bold focus:ring-4 focus:ring-blue-300  rounded-lg text-sm h-10 w-24  "
+          className="text-white relative left-96 top-2 bg-green-dark font-bold focus:ring-4 focus:ring-blue-300 rounded-lg text-sm h-10 w-24"
         >
           Subscribe
         </button>
+        {/* If emailSubmitted is true, hide the entered email */}
+        {emailSubmitted && (
+          <p className="text-transparent absolute h-14 w-[500px] p-2.5 dark:text-transparent">
+            {email}
+          </p>
+        )}
       </div>
     </form>
   );
