@@ -83,7 +83,7 @@ const Hero = () => {
         >
           {t("subscribe")}
         </button>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
         <button type="submit">Abone Ol</button>
       </div>
     </form>
