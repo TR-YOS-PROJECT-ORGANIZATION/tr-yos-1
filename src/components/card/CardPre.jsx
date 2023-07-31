@@ -8,13 +8,14 @@ import LoginModal from "../../LoginModal";
 
 const CardPre = () => {
   const {
-    options3,
+    options2,
+    options1,
     like,
     handleLike,
     userID,
     handleCompare,
     compare,
-    currentPage,
+    language,
     cardPage,
     setShowModal,
   } = useContext(YosContext);
@@ -47,10 +48,12 @@ const CardPre = () => {
           <div className="mx-7 mt-3 h-24">
             <div className="flex justify-between">
               <Link
-                to={`/departments/department/${item.department.tr}`}
+                to={`/departments/department/${
+                  language === "tr" ? item.department.tr : item.department.en
+                }`}
                 className="font-bold text-xl w-60"
               >
-                {item.department.tr}
+                {language === "tr" ? item.department.tr : item.department.en}
               </Link>
 
               <div>
@@ -64,9 +67,11 @@ const CardPre = () => {
               </div>
             </div>
             <Link to={`/${departmentID}`} className="font-semibold">
-              {item.faculty.tr}
+              {language === "tr" ? item.faculty.tr : item.faculty.en}
             </Link>
-            <p className="text-sm mt-1">{item.university.tr}</p>
+            <p className="text-sm mt-1">
+              {language === "tr" ? item.university.tr : item.university.en}
+            </p>
           </div>
           <div className="mx-7 mt-8  flex justify-between">
             <div className=" bg-[#DDDDDD] font-bold w-32 text-center rounded-md flex">
@@ -110,7 +115,9 @@ const CardPre = () => {
                   />
                 </svg>
               </div>
-              <div className="mx-1">{item.city.tr}</div>
+              <div className="mx-1">
+                {language === "tr" ? item.city.tr : item.city.en}
+              </div>
             </div>
             <div className="flex ">
               <svg
