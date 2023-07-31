@@ -25,7 +25,7 @@ const Card = () => {
     if (userID) {
       handleLike(y, x);
     }
-    setShowModal(true);
+  
   };
   const handleCompareToLogin = (x) => {
     if (userID) {
