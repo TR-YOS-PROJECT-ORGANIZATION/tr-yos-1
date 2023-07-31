@@ -19,7 +19,7 @@ const Uni = () => {
   const filteredUnis = filterDuplicateUnis(options3);
   const first12Universities = filteredUnis.slice(0, 12);
 
- const { t } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -110,16 +110,9 @@ const Uni = () => {
               </div>
             </div>
           ))}
-
-          <div className="flex flex-col justify-between p-4 leading-normal">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
-              AFYON KOCATEPE UNIVERSITY
-            </h5>
-          </div>
         </div>
       </div>
-    
-</>
+    </>
   );
 };
 export default Uni;
