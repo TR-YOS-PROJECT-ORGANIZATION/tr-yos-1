@@ -66,7 +66,6 @@ const CardPre = () => {
             <Link to={`/${departmentID}`} className="font-semibold">
               {item.faculty.tr}
             </Link>
-
             <p className="text-sm mt-1">{item.university.tr}</p>
           </div>
           <div className="mx-7 mt-8  flex justify-between">

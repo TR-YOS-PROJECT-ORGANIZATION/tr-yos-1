@@ -3,6 +3,7 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdLocalPostOffice } from "react-icons/md";
 import Like from "./components/dropdown/Like";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
@@ -84,19 +85,20 @@ const Footer = () => {
               </h2>
               <ul className=" dark:text-gray-400 font-medium">
                 <li className="mb-6">
-                  <a href="#" className="hover:underline border rounded-md p-2">
+                  <Link
+                    to="/myprofile"
+                    className="hover:underline border rounded-md p-2"
+                  >
                     {t("myProfile")}
-                  </a>
-                </li>
-                <li className="mb-6">
-                  <a href="#" className="hover:underline border rounded-md p-2">
-                    {t("myAccount")}
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:underline border rounded-md p-2">
+                  <Link
+                    to="/favorites"
+                    className="hover:underline border rounded-md p-2"
+                  >
                     {t("favorites")}
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

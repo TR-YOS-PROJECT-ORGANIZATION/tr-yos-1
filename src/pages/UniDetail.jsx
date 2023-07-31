@@ -188,7 +188,7 @@ const UniDetail = () => {
           <div className="m-auto mt-8">
             <div className="">
               {/* Review Form */}
-              <form className="bg-white rounded-lg p-5 shadow-md ">
+              {/* <form className="bg-white rounded-lg p-5 shadow-md ">
                 <h2 className="text-xl font-bold mb-4">Leave a Review</h2>
                 <div className="grid grid-cols-2 gap-5">
                   <div className="mb-4 ">
@@ -257,7 +257,7 @@ const UniDetail = () => {
                 >
                   Submit Review
                 </button>
-              </form>
+              </form> */}
             </div>
             <div className="md:col-span-2">
               {/* Right side content (if any) */}

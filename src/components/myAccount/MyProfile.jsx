@@ -1,7 +1,6 @@
 import React from "react";
 import RightMyAccount from "./RightMyAccount";
-import RightSocialAccounts from "./RightSocialAccounts";
-import RightSaveButton from "./RightSaveButton";
+
 import { useTranslation } from "react-i18next";
 
 const MyProfile = () => {
@@ -13,7 +12,7 @@ const MyProfile = () => {
           <p className="text-2xl font-bold p-5">{t("myProfile")}</p>
           <RightMyAccount />
           {/* <RightSocialAccounts /> */}
-          <RightSaveButton />
+     
         </div>
       </div>
     </>
