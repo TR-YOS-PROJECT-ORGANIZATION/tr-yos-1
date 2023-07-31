@@ -20,13 +20,10 @@ const Hero = () => {
     else {
       alert("Lütfen geçerli bir e-posta adresi girin.");
     }
-
-    // Do any other necessary actions here (e.g., show a success message, etc.).
   };
 
   const handleChange = (e) => {
     setEmail(e.target.value);
-    
   };
 
   const { t } = useTranslation();
@@ -58,14 +55,6 @@ const Hero = () => {
         <p>{t("hero2")}</p>
       </div>
       <div className="w-[400px] mx-auto mb-16 ">
-      <label>
-        E-posta adresi:
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </label>
         <input
           type="email"
           id="email"
@@ -75,7 +64,7 @@ const Hero = () => {
           onChange={handleChange}
           value={email}
         />
-       
+
         <button
           type="submit"
           value={email}
@@ -83,7 +72,6 @@ const Hero = () => {
         >
           {t("subscribe")}
         </button>
-        {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
         <button type="submit">Abone Ol</button>
       </div>
     </form>
