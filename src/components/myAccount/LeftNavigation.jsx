@@ -53,7 +53,7 @@ const LeftNavigation = ({ activeTab, handleTabClick }) => {
           </button>
         </div>
         {/* Messages */}
-        <div className="bg-gray-200 font-bold rounded-md mt-2 flex justify-center hover:bg-gray-400 duration-100 hover:text-white">
+        {/* <div className="bg-gray-200 font-bold rounded-md mt-2 flex justify-center hover:bg-gray-400 duration-100 hover:text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -75,7 +75,7 @@ const LeftNavigation = ({ activeTab, handleTabClick }) => {
           >
             Messages
           </button>
-        </div>
+        </div> */}
         {/* Change Password */}
         <div className="bg-gray-200 font-bold rounded-md mt-2 flex justify-center hover:bg-gray-400 duration-100 hover:text-white">
           <svg

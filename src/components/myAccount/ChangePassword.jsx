@@ -56,7 +56,7 @@ const ChangePassword = () => {
               Current Password *
             </label>
             <input
-              type="text"
+              type="password"
               value={currentPassword}
               onChange={handleCurrentPasswordChange}
               required
@@ -68,7 +68,7 @@ const ChangePassword = () => {
               New Password*
             </label>
             <input
-              type="text"
+              type="password"
               required
               value={newPassword}
               onChange={handleNewPasswordChange}
@@ -80,7 +80,7 @@ const ChangePassword = () => {
               Confirm Password*
             </label>
             <input
-              type="text"
+              type="password"
               required
               value={confirmNewPassword}
               onChange={handleConfirmNewPasswordChange}

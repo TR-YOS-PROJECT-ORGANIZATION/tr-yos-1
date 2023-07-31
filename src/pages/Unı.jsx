@@ -118,7 +118,7 @@ const Uni = () => {
           </div>
         </div>
       </div>
-    </div>
+    
 </>
   );
 };
