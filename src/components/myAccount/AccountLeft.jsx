@@ -5,6 +5,7 @@ import LeftNavigation from "./LeftNavigation";
 import RightSocialAccounts from "./RightSocialAccounts";
 
 const AccountLeft = ({ activeTab, handleTabClick }) => {
+  // const {}
   return (
     <div className="border-2 max-w-[25rem] min-w-[25rem] pb-8 h-[45rem] rounded-lg flex flex-col justify-center items-center shadow-md shadow-grey-primary mb-16">
       <div className="profile-pic my-6 mt-1">
