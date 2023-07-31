@@ -3,10 +3,10 @@ import { YosContext } from "../../context/YosContext";
 import CardSlider from "./CardSlider";
 import { FaHeartCircleCheck } from "react-icons/fa6";
 import { FaCodeCompare } from "react-icons/fa6";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import LoginModal from "../../LoginModal";
 
 const CardPre = () => {
-
   const {
     options3,
     like,
@@ -16,10 +16,24 @@ const CardPre = () => {
     compare,
     currentPage,
     cardPage,
+    setShowModal,
   } = useContext(YosContext);
 
+  const handleLikeToLogin = (y, x) => {
+    if (userID) {
+      handleLike(y, x);
+    }
+    setShowModal(true);
+  };
+  const handleCompareToLogin = (x) => {
+    if (userID) {
+      handleCompare(x);
+    }
+    setShowModal(true);
+  };
+
   const { departmentID } = useParams();
-  
+
   return (
     <div className="flex flex-wrap gap-15 mx-auto justify-between ">
       {cardPage?.map((item, index) => (
@@ -32,7 +46,6 @@ const CardPre = () => {
           </div>
           <div className="mx-7 mt-3 h-24">
             <div className="flex justify-between">
-
               <Link
                 to={`/departments/department/${item.department.tr}`}
                 className="font-bold text-xl w-60"
@@ -43,25 +56,27 @@ const CardPre = () => {
               <div>
                 <FaHeartCircleCheck
                   id={item.id}
-                  onClick={() => handleLike(item.id, userID)}
+                  onClick={() => handleLikeToLogin(item.id, userID)}
                   className={`w-6 h-6 ${
                     like.includes(item.id) ? "active" : ""
                   }`}
                 />
               </div>
             </div>
+            <Link to={`/${departmentID}`} className="font-semibold">
+              {item.faculty.tr}
+            </Link>
 
             <p className="font-semibold">{item.faculty.tr}</p>
             {/* <p className="font-semibold">{item.faculty.tr}</p> */}
             <p className="text-sm mt-1">{item.university.tr}</p>
-
           </div>
           <div className="mx-7 mt-8  flex justify-between">
             <div className=" bg-[#DDDDDD] font-bold w-32 text-center rounded-md flex">
               <button
                 id={item?.id}
                 className="m-2  px-3 flex "
-                onClick={() => handleCompare(item.id)}
+                onClick={() => handleCompareToLogin(item.id)}
               >
                 Compare{" "}
                 <span className="pl-2 pt-1">

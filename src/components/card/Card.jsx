@@ -18,7 +18,22 @@ const Card = () => {
     like,
     handleCompare,
     handleDelete,
+
+    setShowModal,
+
   } = useContext(YosContext);
+  const handleLikeToLogin = (y, x) => {
+    if (userID) {
+      handleLike(y, x);
+    }
+    setShowModal(true);
+  };
+  const handleCompareToLogin = (x) => {
+    if (userID) {
+      handleCompare(x);
+    }
+    setShowModal(true);
+  };
 
   return (
     <div className="card w-10/12 mx-auto">
@@ -36,6 +51,7 @@ const Card = () => {
                   <div className="flex justify-between">
                     <Link
                       to={`/departments/department/${item.label}`}
+
                       className="font-bold text-xl w-60"
                     >
                       {item.label}
@@ -43,7 +59,7 @@ const Card = () => {
                     <div>
                       <FaHeartCircleCheck
                         id={item.id}
-                        onClick={() => handleLike(item.id, userID)}
+                        onClick={() => handleLikeToLogin(item.id, userID)}
                         className={`w-6 h-6 ${
                           like.includes(item.id) ? "active" : ""
                         }`}
@@ -56,18 +72,18 @@ const Card = () => {
                 </div>
                 <div className="mx-7 mt-8  flex justify-between">
                   <div className=" bg-green-light font-bold w-32 text-center rounded-md flex">
-                  <button
-                id={item?.id}
-                className="m-2  px-3 flex "
-                onClick={() => handleCompare(item.id)}
-              >
-                Compare{" "}
-                <span className="pl-2 pt-1">
-                  <FaCodeCompare
-                    className={`w-5 h-5 ${
-                      compare.includes(item.id) ? "activeCompare" : ""
-                    }`}
-                  />
+                    <button
+                      id={item?.id}
+                      className="m-2  px-3 flex "
+                      onClick={() => handleCompareToLogin(item.id)}
+                    >
+                      Compare{" "}
+                      <span className="pl-2 pt-1">
+                        <FaCodeCompare
+                          className={`w-5 h-5 ${
+                            compare.includes(item.id) ? "activeCompare" : ""
+                          }`}
+                        />
                       </span>
                     </button>
 
