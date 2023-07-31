@@ -1,10 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { YosContext } from './context/YosContext';
+import { YosContext } from "./context/YosContext";
+import LoginModal from "./LoginModal";
 
 const PrivateRouter = () => {
-      const { loginState } = useContext(YosContext);
-  return loginState.status !== "success" ? <Outlet /> : <Navigate to="/login" />;
-}
+  const { userID, setShowModal, showModal } = useContext(YosContext);
 
-export default PrivateRouter
+
+
+
+  
+  
+  return userID ? <Outlet /> : <Navigate to="/" />;
+};
+
+export default PrivateRouter;
