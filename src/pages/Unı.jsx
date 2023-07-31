@@ -15,12 +15,9 @@ const Uni = () => {
     });
     return Object.values(uniqueUni);
   };
-
   const filteredUnis = filterDuplicateUnis(options3);
   const first12Universities = filteredUnis.slice(0, 12);
-
   const { t } = useTranslation();
-
   return (
     <>
       <div>
