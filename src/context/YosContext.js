@@ -308,8 +308,8 @@ const YosContextProvider = ({ children }) => {
     uniID: item.uniID,
     adress2: item.data?.adress,
     phone: item.data?.phone,
-    mail:item.data?.email,
-    web:item.data?.web
+    mail: item.data?.email,
+    web: item.data?.web,
   }));
   const optionsCard = depertman
     ?.filter((item) => filterDepss.includes(item.university.code))
@@ -370,7 +370,6 @@ const YosContextProvider = ({ children }) => {
     addemail,
     showModal,
     setShowModal,
-
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };

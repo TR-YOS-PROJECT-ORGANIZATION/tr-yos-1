@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import hero from "./helper/hero.jpg";
+
 import { useTranslation } from "react-i18next";
 import { YosContext } from "./context/YosContext";
 
@@ -28,8 +29,6 @@ const Hero = () => {
     setEmail(e.target.value);
     setEmailSubmitted(false); // Set emailSubmitted to false when user starts typing again
   };
-
-
 
   const { t } = useTranslation();
 
@@ -69,6 +68,7 @@ const Hero = () => {
           onChange={handleChange}
           value={email}
         />
+
         <button
           type="submit"
           className="text-white relative left-96 top-2 bg-green-dark font-bold focus:ring-4 focus:ring-blue-300 rounded-lg text-sm h-10 w-24"

@@ -18,7 +18,8 @@ const Uni = () => {
 
   const filteredUnis = filterDuplicateUnis(options3);
   const first12Universities = filteredUnis.slice(0, 12);
- const { t } = useTranslation();
+
+  const { t } = useTranslation();
 
   return (
     <>
@@ -117,7 +118,7 @@ const Uni = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default Uni;

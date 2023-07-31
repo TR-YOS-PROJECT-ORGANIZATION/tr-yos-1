@@ -18,7 +18,6 @@ const Card = () => {
     like,
     handleCompare,
     handleDelete,
-
     setShowModal,
 
   } = useContext(YosContext);
@@ -51,7 +50,6 @@ const Card = () => {
                   <div className="flex justify-between">
                     <Link
                       to={`/departments/department/${item.label}`}
-
                       className="font-bold text-xl w-60"
                     >
                       {item.label}
