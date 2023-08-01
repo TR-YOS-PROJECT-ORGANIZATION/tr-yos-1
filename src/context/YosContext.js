@@ -25,7 +25,21 @@ const YosContextProvider = ({ children }) => {
   const [active, setActive] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [userUpdate, setUserUpdate] = useState([]);
+
+  const lngs = {
+    en: { nativeName: "English" },
+    tr: { nativeName: "Turkish" },
+  };
+  const selectedLng = Object.keys(lngs).map((lng) => lng);
+  console.log(selectedLng);
+  const [language, setLanguage] = useState("tr");
+
+  const handleLanguage = (id) => {
+    setLanguage(id);
+  };
+
   const departmentID = depertman.map((item) => item.id);
+
   const navigate = useNavigate();
   const ApiKey =
     "mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf";
@@ -38,7 +52,7 @@ const YosContextProvider = ({ children }) => {
   const BASE_URL_UPDATEUSER = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=userID&token=YourToken`;
 
   //todo kullanıcı bilgilerinin güncellenmesi
-  
+
   const getUser = async () => {
     try {
       const BASE_URL_UPDATEUSER = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${ApiKey}`;
@@ -55,7 +69,7 @@ const YosContextProvider = ({ children }) => {
     try {
       const BASE_URL_UPDATEUSER = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${ApiKey}`;
       const { data } = await axios.post(`${BASE_URL_UPDATEUSER}`, userInfo);
-console.log(data);
+      console.log(data);
       setUserUpdate(data);
     } catch (error) {
       console.log(error);
@@ -144,7 +158,7 @@ console.log(data);
     getUni();
     getDep();
     getPage(currentPage);
-    getUser()
+    getUser();
 
     if (userID) {
       getFavori(userID);
@@ -295,6 +309,7 @@ console.log(data);
     return city?.map((item) => item.value);
   };
   const cities = getCities();
+
   const getUniId = () => {
     return uniId?.map((item) => item.value);
   };
@@ -305,32 +320,35 @@ console.log(data);
   const filterDepss = getFilterDep();
   const options = location?.map((item) => ({
     value: item.id,
-    label: item.tr,
+    label: language === "tr" ? item.tr : item.en,
   }));
   const options1 = uni
     ?.filter((item) => cities.includes(item.city))
     .map((item) => ({
       value: item.code,
-      label: item.tr,
+      label: language === "tr" ? item.tr : item.en,
       img: item.images,
     }));
+
   const options2 = depertman
     ?.filter((item) => uniIdies.includes(item.university.code))
     .map((item) => ({
+      label: language === "tr" ? item.department.tr : item.department.en,
+      faculty: language === "tr" ? item.faculty.tr : item.faculty.en,
+      university: language === "tr" ? item.university.tr : item.university.en,
+      address: language === "tr" ? item.city.tr : item.city.en,
       value: item.department.code,
-      label: item.department.tr,
-      faculty: item.faculty.tr,
-      university: item.university.tr,
-      address: item.city.tr,
+      uniCode: item.university.code,
       id: item.id,
       adress2: item.data?.adress,
     }));
+
   const options3 = depertman?.map((item) => ({
     value: item.department.code,
-    label: item.department.tr,
-    faculty: item.faculty.tr,
-    university: item.university.tr,
-    address: item.city.tr,
+    label: language === "tr" ? item.department.tr : item.department.en,
+    faculty: language === "tr" ? item.faculty.tr : item.faculty.en,
+    university: language === "tr" ? item.university.tr : item.university.en,
+    address: language === "tr" ? item.city.tr : item.city.en,
     price: item.null,
     id: item.id,
     uniID: item.uniID,
@@ -343,7 +361,7 @@ console.log(data);
     ?.filter((item) => filterDepss.includes(item.university.code))
     .map((item) => ({
       value: item.department.code,
-      label: item.department.tr,
+      label: language === "tr" ? item.department.tr : item.department.en,
     }));
   const filterrrr = options2?.filter((item) =>
     filterDepss.includes(item.label)
@@ -401,6 +419,10 @@ console.log(data);
     getUser,
     postUser,
     userUpdate,
+    language,
+    setLanguage,
+    selectedLng,
+    handleLanguage,
   };
   return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
 };

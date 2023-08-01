@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import resim1 from "../../helper/resim1.jpg";
 import resim2 from "../../helper/resim2.jpg";
 import resim3 from "../../helper/resim3.jpg";
+
 const CardSlider = () => {
   const [activeItem, setActiveItem] = useState(1);
   const handlePrevClick = () => {
@@ -10,6 +11,7 @@ const CardSlider = () => {
   const handleNextClick = () => {
     setActiveItem((prevItem) => (prevItem === 3 ? 1 : prevItem + 1));
   };
+
   return (
     <>
       <div className="relative ">
@@ -17,6 +19,7 @@ const CardSlider = () => {
           {/* Carousel wrapper */}
           <div className="relative h-56 overflow-hidden  ">
             {/* Item 1 */}
+
             <div
               className={`duration-700 ease-in-out  ${
                 activeItem === 1 ? "block" : "hidden"
@@ -29,7 +32,7 @@ const CardSlider = () => {
                 alt="..."
               />
             </div>
-            {/* Item 2 */}
+
             <div
               className={`duration-700 ease-in-out ${
                 activeItem === 2 ? "block" : "hidden"
@@ -42,7 +45,7 @@ const CardSlider = () => {
                 alt="..."
               />
             </div>
-            {/* Item 3 */}
+
             <div
               className={`duration-700 ease-in-out  ${
                 activeItem === 3 ? "block" : "hidden"
