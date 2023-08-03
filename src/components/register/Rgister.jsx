@@ -1,58 +1,37 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { registerSchema } from "./RgisterForm";
 import { Formik } from "formik";
+import { toast } from "react-toastify"; // Sadece toast kısmını içe aktarıyoruz, ToastContainer gerekmiyor
 import RgisterForm from "./RgisterForm";
 import { YosContext } from "../../context/YosContext";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
-const Rgister = () => {
+const Rgister = ({ onSuccess }) => { // onSuccess prop'unu ekliyoruz
   const { register } = useContext(YosContext);
-  const [registrationStatus, setRegistrationStatus] = useState(null);
-
-  const handleRegistration = async (values, actions) => {
-    try {
-      let data1 = new FormData();
-      data1.append("name", values.name);
-      data1.append("email", values.email);
-      data1.append("password1", values.password1);
-      data1.append("password2", values.password2);
-      
-   
-      await register(data1);
-      setRegistrationStatus("success");
-      
-      
-      toast.success('Üye olmak başarıyla tamamlandı!', {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 3000, 
-      });
-    } catch (error) {
-   
-      setRegistrationStatus("error");
-  
-      toast.error('Üye olma işlemi başarısız oldu.', {
-        position: toast.POSITION.TOP_RIGHT,
-        autoClose: 3000,
-      });
-    } finally {
-      actions.setSubmitting(false);
-    }
-  };
 
   return (
     <div>
-      {registrationStatus !== "success" ? (
-        <Formik
-          initialValues={{ name: "", email: "", password1: "", password2: "" }}
-          validationSchema={registerSchema}
-          onSubmit={handleRegistration}
-          component={(props) => <RgisterForm {...props} />}
-        />
-      ) : (
-        <p></p>
-      )}
-      <ToastContainer style={{ }} />
+      <Formik
+        initialValues={{ name: "", email: "", password1: "", password2: "" }}
+        validationSchema={registerSchema}
+        onSubmit={async (values, actions) => {
+          let data1 = new FormData();
+          data1.append("name", values.name);
+          data1.append("email", values.email);
+          data1.append("password1", values.password1);
+          data1.append("password2", values.password2);
+
+          try {
+            await register(data1);
+            actions.resetForm();
+            actions.setSubmitting(false);
+            onSuccess(); // Başarılı olduğunda onSuccess prop'unu çağırarak RgisterModal bileşenindeki state'i güncelliyoruz.
+          } catch (error) {
+            // Kayıt işlemi başarısız olduysa hata durumunu işleyin.
+            toast.error("Üyelik tamamlanamadı. Lütfen tekrar deneyin.");
+          }
+        }}
+        component={(props) => <RgisterForm {...props} />}
+      ></Formik>
     </div>
   );
 };

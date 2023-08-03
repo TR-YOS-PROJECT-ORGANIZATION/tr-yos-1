@@ -9,16 +9,22 @@ import profile from "./helper/Profil_sm.jpg";
 import avatar from "./helper/avatar.png";
 import { useTranslation } from "react-i18next";
 
-
 const Navbar2 = () => {
-  const { loginState, handleLogout } = useContext(YosContext);
+  const {
+    loginState,
+    handleLogout,
+    language,
+    setLanguage,
+    selectedLng,
+    handleLanguage,
+  } = useContext(YosContext);
   const [showDropDown, setShowDropDown] = useState(false);
+
   const dropdownRef = useRef(null);
 
   const toggleDropDown = () => {
     setShowDropDown((prevState) => !prevState);
   };
-
 
   const handleOutsideClick = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -35,14 +41,6 @@ const Navbar2 = () => {
   }, []);
 
   const { t, i18n } = useTranslation();
-  const lngs = {
-    en: { nativeName: "English" },
-    de: { nativeName: "Deutsch" },
-    tr: { nativeName: "Turkish" },
-  };
-  const selectedLng = Object.keys(lngs).map((lng) => lng);
-  console.log(selectedLng);
-
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 ">
@@ -99,19 +97,21 @@ const Navbar2 = () => {
             id="language-dropdown-menu"
           >
             <ul className="py-2 font-medium" role="none">
-              <li
-                onClick={() => i18n.changeLanguage(selectedLng[0])}
-                disabled={
-                  (i18n.resolvedLanguage === selectedLng[1],
-                  i18n.resolvedLanguage === selectedLng[2])
-                }
-              >
+              <li id={selectedLng[0]} class="classEn">
                 <a
                   href="#"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
                 >
-                  <div className="inline-flex items-center">
+                  <div
+                    onClick={(e) => {
+                      i18n.changeLanguage(e.target.closest(".classEn").id);
+                      handleLanguage(e.target.closest(".classEn").id);
+                      // console.log();
+                    }}
+                    disabled={i18n.resolvedLanguage === selectedLng[1]}
+                    className="inline-flex items-center"
+                  >
                     <svg
                       aria-hidden="true"
                       className="h-3.5 w-3.5 rounded-full mr-2"
@@ -148,47 +148,22 @@ const Navbar2 = () => {
                   </div>
                 </a>
               </li>
-              <li
-                onClick={() => i18n.changeLanguage(selectedLng[1])}
-                disabled={
-                  (i18n.resolvedLanguage === selectedLng[0],
-                  i18n.resolvedLanguage === selectedLng[2])
-                }
-              >
+
+              <li id={selectedLng[1]} class="classTr">
                 <a
                   href="#"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                   role="menuitem"
                 >
-                  <div className="inline-flex items-center">
-                    <svg
-                      className="h-3.5 w-3.5 rounded-full mr-2"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      id="flag-icon-css-de"
-                      viewBox="0 0 512 512"
-                    >
-                      <path fill="#ffce00" d="M0 341.3h512V512H0z" />
-                      <path d="M0 0h512v170.7H0z" />
-                      <path fill="#d00" d="M0 170.7h512v170.6H0z" />
-                    </svg>
-                    Deutsch (DE)
-                  </div>
-                </a>
-              </li>
-              <li
-                onClick={() => i18n.changeLanguage(selectedLng[2])}
-                disabled={
-                  (i18n.resolvedLanguage === selectedLng[1],
-                  i18n.resolvedLanguage === selectedLng[0])
-                }
-              >
-                <a
-                  href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
-                  role="menuitem"
-                >
-                  <div className="inline-flex items-center">
+                  <div
+                    onClick={(e) => {
+                      i18n.changeLanguage(e.target.closest(".classTr").id);
+                      handleLanguage(e.target.closest(".classTr").id);
+                      console.log(e.target.closest(".classTr").id);
+                    }}
+                    disabled={i18n.resolvedLanguage === selectedLng[0]}
+                    className="inline-flex items-center"
+                  >
                     <img className="mr-1" src={trImg} alt="" width={17} />
                     Turkish (TR)
                   </div>

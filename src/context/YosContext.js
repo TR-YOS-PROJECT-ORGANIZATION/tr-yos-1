@@ -1,5 +1,7 @@
 import axios from "axios";
 import { async } from "q";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import React, { useEffect, useState } from "react";
 import { createContext } from "react";
@@ -14,6 +16,7 @@ const YosContextProvider = ({ children }) => {
   const [uniId, setUniId] = useState([]);
   const [filterDep, setFilterDep] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const[deneme ,setDeneme]=useState([])
   const [cardPage, setCardPage] = useState([]);
   const [userID, setUserID] = useState(localStorage.getItem("user") || "");
   const [loginState, setLoginState] = useState(
@@ -25,10 +28,24 @@ const YosContextProvider = ({ children }) => {
   const [active, setActive] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [userUpdate, setUserUpdate] = useState([]);
+  const [uniCode, setUniCode] = useState(null);
+  const [universityDetail, setUniversityDetail] = useState([]);
+  // const [clickedUniCode, setclickedUniCode] = useState([]);
+
+  const lngs = {
+    en: { nativeName: "English" },
+    tr: { nativeName: "Turkish" },
+  };
+  const selectedLng = Object.keys(lngs).map((lng) => lng);
+
+  const [language, setLanguage] = useState("tr");
+
+  const handleLanguage = (id) => {
+    setLanguage(id);
+  };
+
   const departmentID = depertman.map((item) => item.id);
 
-  console.log(departmentID);
-  
   const navigate = useNavigate();
   const ApiKey =
     "mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf";
@@ -40,8 +57,26 @@ const YosContextProvider = ({ children }) => {
   const BASE_URL_CARD = `https://tr-yös.com/api/v1/record/alldepartments.php?page=${currentPage}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
   const BASE_URL_UPDATEUSER = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=userID&token=YourToken`;
 
+  const uniDetail = async (clickedUniCode) => {
+    try {
+      if (!clickedUniCode) {
+        console.log("University code is missing.");
+        return;
+      }
+      const BASE_URL_UNIDETAIL = `https://tr-yös.com/api/v1/record/departmentsbyuni.php?uni_code=${clickedUniCode}&token=${ApiKey}`;
+      const { data } = await axios.get(BASE_URL_UNIDETAIL);
+      console.log(data);
+      setUniversityDetail(data);
+      console.log("University Detail state updated:", universityDetail);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //todo kullanıcı bilgilerinin güncellenmesi
-  
+
+  // getImages();
+
   const getUser = async () => {
     try {
       const BASE_URL_UPDATEUSER = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${ApiKey}`;
@@ -52,13 +87,12 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-  console.log(userID);
-  // 16892784618266
+
   const postUser = async (userInfo) => {
     try {
       const BASE_URL_UPDATEUSER = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${ApiKey}`;
       const { data } = await axios.post(`${BASE_URL_UPDATEUSER}`, userInfo);
-console.log(data);
+      console.log(data);
       setUserUpdate(data);
     } catch (error) {
       console.log(error);
@@ -99,10 +133,21 @@ console.log(data);
       console.log(response.data);
       console.log(newPassword);
       console.log(currentPassword);
+      toast.success("Üye şifre değişikliği başarılı", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (error) {
       console.error("şifre değiştirme hatası adım 2", error);
     }
   };
+
+
 
   //todo:email
   const addemail = async (email) => {
@@ -112,6 +157,16 @@ console.log(data);
       data.append("email", email);
       const response = await axios.post(BASE_URL_SENDEMAIL, data);
       console.log(response.data);
+
+      toast.success("E-mail ekleme başarılı", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (error) {
       console.error("Mail gönderme hatası", error);
     }
@@ -147,7 +202,8 @@ console.log(data);
     getUni();
     getDep();
     getPage(currentPage);
-    getUser()
+    getUser();
+
 
     if (userID) {
       getFavori(userID);
@@ -155,24 +211,21 @@ console.log(data);
     }
   }, []);
 
-  console.log(currentPage);
   const getPage = async (currentPage) => {
     try {
       const BASE_URL_CARD = `https://tr-yös.com/api/v1/record/alldepartments.php?page=${currentPage}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
 
       const { data } = await axios(BASE_URL_CARD);
       setCardPage(data);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleLike = (id, userID) => {
-    console.log(id);
     postFavori(id, userID);
   };
-  // console.log(like);
+
   const handleDeleteFavori = (id) => {
     delFavori(id);
   };
@@ -213,6 +266,16 @@ console.log(data);
         getFavori(userID);
       }
       localStorage.setItem("user", userID);
+
+      // Login işlemi başarılı olduğunda toast bildirimi gösterme
+      toast.success("Üye Girişi Başarılı", {
+        position: "top-right",
+        autoClose: 2000, // 2 saniye sonra otomatik olarak kapanacak
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -299,6 +362,7 @@ console.log(depertman);
     return city?.map((item) => item.value);
   };
   const cities = getCities();
+
   const getUniId = () => {
     return uniId?.map((item) => item.value);
   };
@@ -309,45 +373,54 @@ console.log(depertman);
   const filterDepss = getFilterDep();
   const options = location?.map((item) => ({
     value: item.id,
-    label: item.tr,
+    label: language === "tr" ? item.tr : item.en,
   }));
   const options1 = uni
     ?.filter((item) => cities.includes(item.city))
     .map((item) => ({
       value: item.code,
-      label: item.tr,
+      label: language === "tr" ? item.tr : item.en,
       img: item.images,
     }));
+
   const options2 = depertman
     ?.filter((item) => uniIdies.includes(item.university.code))
     .map((item) => ({
+      label: language === "tr" ? item.department.tr : item.department.en,
+      faculty: language === "tr" ? item.faculty.tr : item.faculty.en,
+      university: language === "tr" ? item.university.tr : item.university.en,
+      address: language === "tr" ? item.city.tr : item.city.en,
       value: item.department.code,
-      label: item.department.tr,
-      faculty: item.faculty.tr,
-      university: item.university.tr,
-      address: item.city.tr,
+      uniCode: item.university.code,
       id: item.id,
       adress2: item.data?.adress,
+      uniid: item.uniID,
+      phone: item.data?.phone,
+      mail: item.data?.email,
+      web: item.data?.web,
     }));
+
   const options3 = depertman?.map((item) => ({
     value: item.department.code,
-    label: item.department.tr,
-    faculty: item.faculty.tr,
-    university: item.university.tr,
-    address: item.city.tr,
+    label: language === "tr" ? item.department.tr : item.department.en,
+    faculty: language === "tr" ? item.faculty.tr : item.faculty.en,
+    university: language === "tr" ? item.university.tr : item.university.en,
+    address: language === "tr" ? item.city.tr : item.city.en,
     price: item.null,
     id: item.id,
     uniID: item.uniID,
     adress2: item.data?.adress,
     phone: item.data?.phone,
+    uniidcode: item.university.code,
     mail: item.data?.email,
     web: item.data?.web,
   }));
+
   const optionsCard = depertman
     ?.filter((item) => filterDepss.includes(item.university.code))
     .map((item) => ({
       value: item.department.code,
-      label: item.department.tr,
+      label: language === "tr" ? item.department.tr : item.department.en,
     }));
   const filterrrr = options2?.filter((item) =>
     filterDepss.includes(item.label)
@@ -357,9 +430,37 @@ console.log(depertman);
   const filteredCompare = depertman?.filter((item) =>
     compare?.includes(item.id)
   );
-  // console.log(filteredCompare);
+
+  const filterDuplicateUnis = (uniler) => {
+    const uniqueUni = {};
+    uniler.forEach((item) => {
+      const universityName = item.university;
+      if (!uniqueUni[universityName]) {
+        uniqueUni[universityName] = item;
+      }
+    });
+    return Object.values(uniqueUni);
+  };
+  const filterUni = (uniler) => {
+    const uniqueUni = {};
+    uniler.forEach((item) => {
+      const universityName = item.university;
+      if (!uniqueUni[universityName]) {
+        uniqueUni[universityName] = item;
+      }
+    });
+    return Object.values(options3);
+  };
+
+  const filteredUnis = filterDuplicateUnis(options3);
+  const filteredUnidata = filterUni(options3);
+  const first12Universities = filteredUnidata.slice(0, 12);
+  console.log(first12Universities);
+  
+
 
   const values = {
+    first12Universities,
     options,
     options1,
     options2,
@@ -405,7 +506,19 @@ console.log(depertman);
     getUser,
     postUser,
     userUpdate,
+    uniCode,
+    setUniCode,
+    uniDetail,
+    universityDetail,
+    language,
+    setLanguage,
+    selectedLng,
+    handleLanguage,
   };
-  return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
+  return (
+    <YosContext.Provider value={values}>
+      {children} <ToastContainer />{" "}
+    </YosContext.Provider>
+  );
 };
 export default YosContextProvider;
