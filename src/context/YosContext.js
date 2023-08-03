@@ -356,7 +356,8 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-
+console.log(uni);
+console.log(depertman);
   const getCities = () => {
     return city?.map((item) => item.value);
   };

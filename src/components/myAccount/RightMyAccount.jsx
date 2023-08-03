@@ -1,18 +1,23 @@
 import React, { useContext, useState } from "react";
 import { YosContext } from "../../context/YosContext";
-
+import { dunyaUlkeIsimleri } from "../../helper/data";
+import Select from "react-select";
 
 const RightMyAccount = () => {
   // const { updateName } = useContext(YosContext);
   const { postUser, userUpdate } = useContext(YosContext);
   const [name, setName] = useState("");
-  const [country , setCountry] = useState( "Turkiye");
+  const [country, setCountry] = useState("");
+    const [countrys, setCountrys] = useState(dunyaUlkeIsimleri);
+
   const [city, setCity] = useState("");
   const [phone, setPhone] = useState("");
   const [about, setAbout] = useState("");
 
 
-
+  const handleCountryChange = (event) => {
+    setCountry(event.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +30,7 @@ const RightMyAccount = () => {
     data1.append("about", about);
     postUser(data1);
   };
-
+console.log(dunyaUlkeIsimleri);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -57,8 +62,15 @@ const RightMyAccount = () => {
         <div className="flex justify-evenly mt-5">
           <div className=" w-5/12">
             <p className="font-bold">Country*</p>
-            <select className="w-full rounded-md mt-2 focus:border-green-light focus:ring-green-dark">
-              <option value="Turkiye">{country}</option>
+
+            <select
+              onChange={handleCountryChange}
+              value={country}
+              className="w-full rounded-md mt-2 focus:border-green-light focus:ring-green-dark"
+            >
+              {countrys?.map((item) => (
+                <option value={item}>{item}</option>
+              ))}
             </select>
           </div>
           <div className="w-5/12">
