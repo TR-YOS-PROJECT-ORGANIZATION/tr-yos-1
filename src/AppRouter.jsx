@@ -14,6 +14,10 @@ import DepartmentDetail from "./pages/DepartmentDetail";
 import { YosContext } from "./context/YosContext";
 import CardPre from "./components/card/CardPre";
 import UniversityDetail from "./pages/UniversityDetail";
+import PrivateRouter from "./PrivateRouter";
+import Login from "./Login";
+
+
 const AppRouter = () => {
   const { departmentID, uniId } = useParams();
   return (
@@ -24,7 +28,9 @@ const AppRouter = () => {
         <Route path="/universities" element={<Uni />} />
         <Route path="/departments" element={<Departmens />} />
         <Route path="/register" element={<RgisterModal />} />
-        <Route path="/myprofile" element={<MainAcc />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="" element={<PrivateRouter/>}>
+          <Route path="/myprofile" element={<MainAcc />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/compare" element={<Compare />} />
         <Route
@@ -36,6 +42,11 @@ const AppRouter = () => {
           path="/universities/university/:universityCode"
           element={<UniversityDetail universityCode={uniId} />}
         />
+        </Route>
+        
+
+        <Route path="/departments/department/:departmentID" element={<UniDetail departmentID={departmentID} />} />
+
       </Routes>
       <Footer />
     </>
