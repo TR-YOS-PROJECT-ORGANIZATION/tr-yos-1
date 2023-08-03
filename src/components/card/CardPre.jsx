@@ -33,7 +33,7 @@ const CardPre = () => {
   };
 
   const { departmentID } = useParams();
-
+console.log(cardPage);
   return (
     <div className="flex flex-wrap gap-15 mx-auto justify-between ">
       {cardPage?.map((item, index) => (

@@ -3,6 +3,7 @@ import resim1 from "../../helper/resim1.jpg";
 import resim2 from "../../helper/resim2.jpg";
 import resim3 from "../../helper/resim3.jpg";
 const CardSlider = () => {
+
   const [activeItem, setActiveItem] = useState(1);
   const handlePrevClick = () => {
     setActiveItem((prevItem) => (prevItem === 1 ? 3 : prevItem - 1));
@@ -10,6 +11,8 @@ const CardSlider = () => {
   const handleNextClick = () => {
     setActiveItem((prevItem) => (prevItem === 3 ? 1 : prevItem + 1));
   };
+
+  
   return (
     <>
       <div className="relative ">

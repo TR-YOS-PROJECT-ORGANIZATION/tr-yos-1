@@ -26,6 +26,9 @@ const YosContextProvider = ({ children }) => {
   const [showModal, setShowModal] = useState(false);
   const [userUpdate, setUserUpdate] = useState([]);
   const departmentID = depertman.map((item) => item.id);
+
+  console.log(departmentID);
+  
   const navigate = useNavigate();
   const ApiKey =
     "mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf";
@@ -290,7 +293,8 @@ console.log(data);
       console.log(error);
     }
   };
-
+console.log(uni);
+console.log(depertman);
   const getCities = () => {
     return city?.map((item) => item.value);
   };
