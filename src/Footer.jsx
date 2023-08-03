@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdLocalPostOffice } from "react-icons/md";
 import Like from "./components/dropdown/Like";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { YosContext } from "./context/YosContext";
 
 const Footer = () => {
+    const {
+
+      setShowModal,
+    } = useContext(YosContext);
   const { t, i18n } = useTranslation();
   return (
     <div>
@@ -87,6 +92,7 @@ const Footer = () => {
                 <li className="mb-6">
                   <Link
                     to="/myprofile"
+                    onClick={() => setShowModal(true)}
                     className="hover:underline border rounded-md p-2"
                   >
                     {t("myProfile")}
@@ -96,6 +102,7 @@ const Footer = () => {
                   <Link
                     to="/favorites"
                     className="hover:underline border rounded-md p-2"
+                    onClick={() => setShowModal(true)}
                   >
                     {t("favorites")}
                   </Link>
