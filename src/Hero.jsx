@@ -1,29 +1,49 @@
 import React, { useContext, useState } from "react";
 import hero from "./helper/hero.jpg";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
 import { YosContext } from "./context/YosContext";
+
 const Hero = () => {
   const { addemail } = useContext(YosContext);
   const [email, setEmail] = useState("");
+  const [emailSubmitted, setEmailSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (email.trim() !== "")
+    if (email.trim() !== "") {
       try {
         await addemail(email);
         console.log("E-mail submitted successfully:", email);
         setEmail("");
+        setEmailSubmitted(true); 
+
+
+toast.success("E-mail ekleme başarılı", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+
+
+
       } catch (error) {
         console.log("Hata", error);
       }
-    else {
+    } else {
       alert("Lütfen geçerli bir e-posta adresi girin.");
     }
   };
 
   const handleChange = (e) => {
     setEmail(e.target.value);
+    setEmailSubmitted(false); // Set emailSubmitted to false when user starts typing again
   };
 
   const { t } = useTranslation();
@@ -38,8 +58,8 @@ const Hero = () => {
             alt=""
             width={490}
           />
-          <div className=" relative h-64 bottom-[20rem] left-[22rem] w-[100px]"></div>
-          <div className=" z-[-5] relative h-[14rem] bottom-[20rem] left-[22rem] w-[100px]">
+          <div className="relative h-64 bottom-[20rem] left-[22rem] w-[100px]"></div>
+          <div className="z-[-5] relative h-[14rem] bottom-[20rem] left-[22rem] w-[100px]">
             right-2
           </div>
 
@@ -67,13 +87,18 @@ const Hero = () => {
 
         <button
           type="submit"
-          value={email}
-          className="text-white relative left-96 top-2  bg-green-dark font-bold focus:ring-4 focus:ring-blue-300  rounded-lg text-sm h-10 w-24  "
+          className="text-white relative left-96 top-2 bg-green-dark font-bold focus:ring-4 focus:ring-blue-300 rounded-lg text-sm h-10 w-24"
         >
           {t("subscribe")}
         </button>
-        <button type="submit">Abone Ol</button>
-      </div>
+        {/* If emailSubmitted is true, hide the entered email */}
+        {emailSubmitted && (
+          <p className="text-transparent absolute h-14 w-[500px] p-2.5 dark:text-transparent">
+            {email}
+          </p>
+        )}
+      </div>     
+      <ToastContainer />
     </form>
   );
 };

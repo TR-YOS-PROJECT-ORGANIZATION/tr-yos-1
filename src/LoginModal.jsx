@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 // import LoginForm from "./LoginForum";
 import Login from "./Login";
-import { YosContext } from "./context/YosContext";
 
 const LoginModal = () => {
-  const { setShowModal, showModal } = useContext(YosContext);
+  const [showModal, setShowModal] = useState(false);
+
   const toggleModal = () => {
     setShowModal(!showModal);
   };
