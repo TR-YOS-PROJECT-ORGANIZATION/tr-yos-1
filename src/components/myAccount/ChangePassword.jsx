@@ -1,14 +1,15 @@
+// ChangePassword.js
 import React, { useContext, useState } from "react";
-
 import { YosContext } from "../../context/YosContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ChangePassword = () => {
-  const { changePasswordStep1, changePasswordStep2 } = useContext(YosContext);
+  const { changePasswordStep2 } = useContext(YosContext);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
-  const [step, setStep] = useState(1);
-  const [success, setSuccess] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (newPassword !== confirmNewPassword) {
@@ -16,24 +17,30 @@ const ChangePassword = () => {
       return;
     }
     try {
-      if (step === 1) {
-        changePasswordStep1(currentPassword, newPassword);
-        setStep(2);
-      } else if (step === 2) {
-        changePasswordStep2(newPassword, currentPassword);
-        setSuccess(true);
-        setCurrentPassword("");
-        setNewPassword("");
-        setConfirmNewPassword("");
-      }
+
+
+
+      changePasswordStep2(newPassword, currentPassword);
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmNewPassword("");
+toast.success("Üye şifre değiştirme başarılı!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
+
     } catch (error) {
       console.error(
         "Şifre değiştirme hatası:",
         error.response?.data || error.message
       );
     }
-    console.log(newPassword);
-    console.log(currentPassword);
   };
 
   const handleCurrentPasswordChange = (e) => {
@@ -47,6 +54,7 @@ const ChangePassword = () => {
   const handleConfirmNewPasswordChange = (e) => {
     setConfirmNewPassword(e.target.value);
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="border-2 rounded-lg w-full mb-16 shadow-md shadow-grey-primary ">
@@ -94,11 +102,6 @@ const ChangePassword = () => {
           </div>
         </div>
       </div>
-      {success && (
-        <div className="bg-green-200 text-green-800 p-3 rounded-md mt-3">
-          Şifreniz başarıyla değiştirilmiştir.
-        </div>
-      )}
     </form>
   );
 };

@@ -1,5 +1,7 @@
 import axios from "axios";
 import { async } from "q";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import React, { useEffect, useState } from "react";
 import { createContext } from "react";
@@ -14,6 +16,7 @@ const YosContextProvider = ({ children }) => {
   const [uniId, setUniId] = useState([]);
   const [filterDep, setFilterDep] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const[deneme ,setDeneme]=useState([])
   const [cardPage, setCardPage] = useState([]);
   const [userID, setUserID] = useState(localStorage.getItem("user") || "");
   const [loginState, setLoginState] = useState(
@@ -25,6 +28,10 @@ const YosContextProvider = ({ children }) => {
   const [active, setActive] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [userUpdate, setUserUpdate] = useState([]);
+  const [uniCode, setUniCode] = useState(null);
+  const [universityDetail, setUniversityDetail] = useState([]);
+  // const [clickedUniCode, setclickedUniCode] = useState([]);
+
   const departmentID = depertman.map((item) => item.id);
   const navigate = useNavigate();
   const ApiKey =
@@ -37,8 +44,24 @@ const YosContextProvider = ({ children }) => {
   const BASE_URL_CARD = `https://tr-yös.com/api/v1/record/alldepartments.php?page=${currentPage}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
   const BASE_URL_UPDATEUSER = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=userID&token=YourToken`;
 
+  const uniDetail = async (clickedUniCode) => {
+    try {
+      if (!clickedUniCode) {
+        console.log("University code is missing.");
+        return;
+      }
+      const BASE_URL_UNIDETAIL = `https://tr-yös.com/api/v1/record/departmentsbyuni.php?uni_code=${clickedUniCode}&token=${ApiKey}`;
+      const { data } = await axios.get(BASE_URL_UNIDETAIL);
+      console.log(data);
+      setUniversityDetail(data);
+      console.log("University Detail state updated:", universityDetail);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   //todo kullanıcı bilgilerinin güncellenmesi
-  
+
   const getUser = async () => {
     try {
       const BASE_URL_UPDATEUSER = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${ApiKey}`;
@@ -55,7 +78,7 @@ const YosContextProvider = ({ children }) => {
     try {
       const BASE_URL_UPDATEUSER = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${ApiKey}`;
       const { data } = await axios.post(`${BASE_URL_UPDATEUSER}`, userInfo);
-console.log(data);
+      console.log(data);
       setUserUpdate(data);
     } catch (error) {
       console.log(error);
@@ -96,10 +119,21 @@ console.log(data);
       console.log(response.data);
       console.log(newPassword);
       console.log(currentPassword);
+      toast.success("Üye şifre değişikliği başarılı", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (error) {
       console.error("şifre değiştirme hatası adım 2", error);
     }
   };
+
+
 
   //todo:email
   const addemail = async (email) => {
@@ -109,6 +143,16 @@ console.log(data);
       data.append("email", email);
       const response = await axios.post(BASE_URL_SENDEMAIL, data);
       console.log(response.data);
+
+      toast.success("E-mail ekleme başarılı", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (error) {
       console.error("Mail gönderme hatası", error);
     }
@@ -144,7 +188,8 @@ console.log(data);
     getUni();
     getDep();
     getPage(currentPage);
-    getUser()
+    getUser();
+
 
     if (userID) {
       getFavori(userID);
@@ -210,6 +255,16 @@ console.log(data);
         getFavori(userID);
       }
       localStorage.setItem("user", userID);
+
+      // Login işlemi başarılı olduğunda toast bildirimi gösterme
+      toast.success("Üye Girişi Başarılı", {
+        position: "top-right",
+        autoClose: 2000, // 2 saniye sonra otomatik olarak kapanacak
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -314,6 +369,7 @@ console.log(data);
       label: item.tr,
       img: item.images,
     }));
+
   const options2 = depertman
     ?.filter((item) => uniIdies.includes(item.university.code))
     .map((item) => ({
@@ -324,6 +380,10 @@ console.log(data);
       address: item.city.tr,
       id: item.id,
       adress2: item.data?.adress,
+      uniid: item.uniID,
+      phone: item.data?.phone,
+      mail: item.data?.email,
+      web: item.data?.web,
     }));
   const options3 = depertman?.map((item) => ({
     value: item.department.code,
@@ -336,9 +396,13 @@ console.log(data);
     uniID: item.uniID,
     adress2: item.data?.adress,
     phone: item.data?.phone,
+    uniidcode: item.university.code,
     mail: item.data?.email,
     web: item.data?.web,
   }));
+
+
+  // console.log(depertman)
   const optionsCard = depertman
     ?.filter((item) => filterDepss.includes(item.university.code))
     .map((item) => ({
@@ -353,9 +417,35 @@ console.log(data);
   const filteredCompare = depertman?.filter((item) =>
     compare?.includes(item.id)
   );
-  // console.log(filteredCompare);
+  const filterDuplicateUnis = (uniler) => {
+    const uniqueUni = {};
+    uniler.forEach((item) => {
+      const universityName = item.university;
+      if (!uniqueUni[universityName]) {
+        uniqueUni[universityName] = item;
+      }
+    });
+    return Object.values(uniqueUni);
+  };
+  const filterUni = (uniler) => {
+    const uniqueUni = {};
+    uniler.forEach((item) => {
+      const universityName = item.university;
+      if (!uniqueUni[universityName]) {
+        uniqueUni[universityName] = item;
+      }
+    });
+    return Object.values(options3);
+  };
+
+  const filteredUnis = filterDuplicateUnis(options3);
+  const filteredUnidata = filterUni(options3);
+  const first12Universities = filteredUnidata.slice(0, 12);
+  console.log(first12Universities);
+  
 
   const values = {
+    first12Universities,
     options,
     options1,
     options2,
@@ -401,7 +491,15 @@ console.log(data);
     getUser,
     postUser,
     userUpdate,
+    uniCode,
+    setUniCode,
+    uniDetail,
+    universityDetail,
   };
-  return <YosContext.Provider value={values}>{children}</YosContext.Provider>;
+  return (
+    <YosContext.Provider value={values}>
+      {children} <ToastContainer />{" "}
+    </YosContext.Provider>
+  );
 };
 export default YosContextProvider;

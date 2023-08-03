@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import hero from "./helper/hero.jpg";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
 import { YosContext } from "./context/YosContext";
 
@@ -16,7 +17,22 @@ const Hero = () => {
         await addemail(email);
         console.log("E-mail submitted successfully:", email);
         setEmail("");
-        setEmailSubmitted(true); // Set emailSubmitted to true to hide the entered email
+        setEmailSubmitted(true); 
+
+
+toast.success("E-mail ekleme başarılı", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+
+
+
+
       } catch (error) {
         console.log("Hata", error);
       }
@@ -81,7 +97,8 @@ const Hero = () => {
             {email}
           </p>
         )}
-      </div>
+      </div>     
+      <ToastContainer />
     </form>
   );
 };
