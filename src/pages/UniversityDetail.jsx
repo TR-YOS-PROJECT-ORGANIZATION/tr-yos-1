@@ -141,11 +141,11 @@ const UniversityDetail = () => {
             <div className="bg-white rounded-lg p-5 grid grid-cols-4 mb-4">
               <div className="name col-span-3 ">
                 <p className="font-bold text-2xl mb-1 w-96 leading-8">
-                  {item ? item.university.tr : "Department Not Found"}
+                  {item?.university?.tr || "Department Not Found"}
                 </p>
                 <p>
                   <span className="display inline-block  pr-1 "></span>
-                  {item ? item.data.adress : ""}
+                  {item?.data?.adress || "Turkey"}
                 </p>
               </div>
             </div>
@@ -200,9 +200,7 @@ const UniversityDetail = () => {
                   />
                   <div className=" text-left">
                     <div className="font-bold text-xl">
-                      {item.university.tr
-                        ? item.university.tr
-                        : "University Not Found"}
+                      {item?.university?.tr || "University Not Found"}
                     </div>
                     <div className="flex ">
                       <div className="">
@@ -226,9 +224,7 @@ const UniversityDetail = () => {
                           />
                         </svg>
                       </div>
-                      <div>
-                        {item.data.adress ? item.data.adress : "Not Found"}
-                      </div>
+                      <div>{item?.data?.adress || "Turkey"}</div>
                     </div>
                   </div>
                 </div>
@@ -254,7 +250,7 @@ const UniversityDetail = () => {
                     <div>
                       <div className="text-left font-bold">Call Us</div>
                       <div className="font-semibold text-gray-600">
-                        {item?.data.phone}
+                        {item?.data?.phone || "03124134847"}
                       </div>
                     </div>
                   </div>
@@ -278,7 +274,7 @@ const UniversityDetail = () => {
                     <div>
                       <div className="text-left font-bold">E-Mail</div>
                       <div className="font-semibold text-gray-600">
-                        {item?.data.email}
+                        {item?.data?.email || "tryos@gmail.com"}
                       </div>
                     </div>
                   </div>
@@ -302,7 +298,7 @@ const UniversityDetail = () => {
                     <div>
                       <div className="text-left font-bold">Website</div>
                       <div className="font-semibold text-gray-600">
-                        {item?.data.web}
+                        {item?.data?.web || "www.tr.yos.com"}
                       </div>
                     </div>
                   </div>

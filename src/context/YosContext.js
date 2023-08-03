@@ -16,7 +16,7 @@ const YosContextProvider = ({ children }) => {
   const [uniId, setUniId] = useState([]);
   const [filterDep, setFilterDep] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const[deneme ,setDeneme]=useState([])
+  const [deneme, setDeneme] = useState([]);
   const [cardPage, setCardPage] = useState([]);
   const [userID, setUserID] = useState(localStorage.getItem("user") || "");
   const [loginState, setLoginState] = useState(
@@ -147,8 +147,6 @@ const YosContextProvider = ({ children }) => {
     }
   };
 
-
-
   //todo:email
   const addemail = async (email) => {
     try {
@@ -203,7 +201,6 @@ const YosContextProvider = ({ children }) => {
     getDep();
     getPage(currentPage);
     getUser();
-
 
     if (userID) {
       getFavori(userID);
@@ -452,11 +449,9 @@ const YosContextProvider = ({ children }) => {
   };
 
   const filteredUnis = filterDuplicateUnis(options3);
-  const filteredUnidata = filterUni(options3);
+  const filteredUnidata = filterDuplicateUnis(options3);
   const first12Universities = filteredUnidata.slice(0, 12);
   console.log(first12Universities);
-  
-
 
   const values = {
     first12Universities,

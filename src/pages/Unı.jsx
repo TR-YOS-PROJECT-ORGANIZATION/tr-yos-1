@@ -4,15 +4,23 @@ import PaginationPage from "./Pagination";
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
 const Uni = () => {
-  const { options3, uniID, uniCode, setUniCode, uniDetail, universityDetail,first12Universities } =
-    useContext(YosContext);
- 
+  const {
+    options3,
+    uniID,
+    uniCode,
+    setUniCode,
+    uniDetail,
+    universityDetail,
+    first12Universities,
+  } = useContext(YosContext);
+
   const { t } = useTranslation();
   // const { uniCode } = useParams();
   const handleUniversityClick = async (clickedUniCode) => {
     setUniCode(clickedUniCode);
     uniDetail(clickedUniCode);
   };
+  console.log(first12Universities);
   return (
     <>
       <div>
@@ -33,11 +41,12 @@ const Uni = () => {
       </div>
       <div>
         <div className="">
-          {first12Universities.map((item) => (
-            <Link  to={`/universities/university/${item.university}`}
-                      
-                        onClick={() => handleUniversityClick(item.uniidcode)} key={item.uniidcode}>
-            
+          {first12Universities?.map((item) => (
+            <Link
+              to={`/universities/university/${item.university}`}
+              onClick={() => handleUniversityClick(item.uniidcode)}
+              key={item.uniidcode}
+            >
               <div className="flex flex-col gap-5 justify-center items-center mt-5">
                 <div className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                   {" "}
@@ -49,11 +58,7 @@ const Uni = () => {
                   <div className="flex flex-col justify-between p-4 leading-normal">
                     {" "}
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">
-                      <p
-                       
-                      >
-                        {item.university}
-                      </p>
+                      <p>{item.university}</p>
                     </h5>
                     <div className="flex gap-3">
                       <span>
@@ -69,7 +74,7 @@ const Uni = () => {
                         </svg>{" "}
                       </span>
                       <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        {item.address}
+                        {item?.address && "Turkey"}
                       </p>
                     </div>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
