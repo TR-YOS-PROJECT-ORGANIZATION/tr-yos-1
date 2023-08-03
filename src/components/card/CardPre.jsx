@@ -33,8 +33,7 @@ const CardPre = () => {
     setShowModal(true);
   };
 
-  const { departmentID } = useParams();
-
+  console.log(cardPage);
   return (
     <div className="flex flex-wrap gap-15 mx-auto justify-between ">
       {cardPage?.map((item, index) => (
@@ -43,7 +42,7 @@ const CardPre = () => {
           className="flex flex-col justify-center  w-80 mx-auto border-2 mt-12"
         >
           <div className="text-center h-56  align-top">
-            <CardSlider />
+            <CardSlider depdata={item.id} cardPage={cardPage} />
           </div>
           <div className="mx-7 mt-3 h-24">
             <div className="flex justify-between">
@@ -66,7 +65,7 @@ const CardPre = () => {
                 />
               </div>
             </div>
-            <Link to={`/${departmentID}`} className="font-semibold">
+            <Link to={`/${item.id}`} className="font-semibold">
               {language === "tr" ? item.faculty.tr : item.faculty.en}
             </Link>
             <p className="text-sm mt-1">

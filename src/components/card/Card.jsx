@@ -7,25 +7,21 @@ import { FaCodeCompare, FaHeartCircleCheck } from "react-icons/fa6";
 import { Link, useParams } from "react-router-dom";
 
 const Card = () => {
-  const { departmentID } = useParams();
   const {
-    delFavori,
     filterrrr,
     userID,
     handleLike,
-    active,
+
     compare,
     like,
     handleCompare,
     handleDelete,
     setShowModal,
-
   } = useContext(YosContext);
   const handleLikeToLogin = (y, x) => {
     if (userID) {
       handleLike(y, x);
     }
-  
   };
   const handleCompareToLogin = (x) => {
     if (userID) {
@@ -33,18 +29,18 @@ const Card = () => {
     }
     setShowModal(true);
   };
-
+  const { departmentID } = useParams();
   return (
     <div className="card w-10/12 mx-auto">
       <div className="card flex w-10/12 mx-auto flex-wrap ">
         {filterrrr.length === 0 ? (
-          <CardPre departmentID={departmentID} />
+          <CardPre />
         ) : (
           filterrrr.map((item) => {
             return (
               <div className="flex flex-col justify-center w-80 mx-auto border-2 mt-12">
                 <div className="text-center h-56 align-top">
-                  <CardSlider />
+                  <CardSlider depdata={item.id} />
                 </div>
                 <div className="mx-7 mt-3 h-24">
                   <div className="flex justify-between">
@@ -64,7 +60,9 @@ const Card = () => {
                       />
                     </div>
                   </div>
-                  {/* <Link to={`/${departmentID}`} className="font-semibold">{item.faculty}</Link> */}
+                  <Link to={`/${departmentID}`} className="font-semibold">
+                    {item.faculty}
+                  </Link>
                   <p className="font-semibold">{item.faculty}</p>
                   <p className="text-sm mt-1">{item.university}</p>
                 </div>

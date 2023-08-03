@@ -37,7 +37,7 @@ const YosContextProvider = ({ children }) => {
     tr: { nativeName: "Turkish" },
   };
   const selectedLng = Object.keys(lngs).map((lng) => lng);
-  console.log(selectedLng);
+
   const [language, setLanguage] = useState("tr");
 
   const handleLanguage = (id) => {
@@ -75,6 +75,8 @@ const YosContextProvider = ({ children }) => {
 
   //todo kullanıcı bilgilerinin güncellenmesi
 
+  // getImages();
+
   const getUser = async () => {
     try {
       const BASE_URL_UPDATEUSER = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${ApiKey}`;
@@ -85,8 +87,7 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-  console.log(userID);
-  // 16892784618266
+
   const postUser = async (userInfo) => {
     try {
       const BASE_URL_UPDATEUSER = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${ApiKey}`;
@@ -210,24 +211,21 @@ const YosContextProvider = ({ children }) => {
     }
   }, []);
 
-  console.log(currentPage);
   const getPage = async (currentPage) => {
     try {
       const BASE_URL_CARD = `https://tr-yös.com/api/v1/record/alldepartments.php?page=${currentPage}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
 
       const { data } = await axios(BASE_URL_CARD);
       setCardPage(data);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleLike = (id, userID) => {
-    console.log(id);
     postFavori(id, userID);
   };
-  // console.log(like);
+
   const handleDeleteFavori = (id) => {
     delFavori(id);
   };
@@ -417,8 +415,6 @@ const YosContextProvider = ({ children }) => {
     web: item.data?.web,
   }));
 
-
-  // console.log(depertman)
   const optionsCard = depertman
     ?.filter((item) => filterDepss.includes(item.university.code))
     .map((item) => ({
@@ -433,6 +429,7 @@ const YosContextProvider = ({ children }) => {
   const filteredCompare = depertman?.filter((item) =>
     compare?.includes(item.id)
   );
+
   const filterDuplicateUnis = (uniler) => {
     const uniqueUni = {};
     uniler.forEach((item) => {
@@ -459,6 +456,7 @@ const YosContextProvider = ({ children }) => {
   const first12Universities = filteredUnidata.slice(0, 12);
   console.log(first12Universities);
   
+
 
   const values = {
     first12Universities,
