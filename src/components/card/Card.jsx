@@ -99,13 +99,7 @@ const Card = () => {
                     </svg>
                   </div>
                   <div>
-                    <button
-                      id={item?.id}
-                      className=" bg-gray-100 font-bold p-3 text-center rounded-md flex"
-                      onClick={() => handleDelete(item.id)}
-                    >
-                      Sil
-                    </button>
+                   
                   </div>
                 </div>
                 <div className="w-80 mb-2 bg-grey-primary mx-auto mt-5 border border-t-1"></div>

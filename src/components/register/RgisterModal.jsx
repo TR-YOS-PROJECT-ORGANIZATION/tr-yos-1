@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Rgister from "./Rgister";
 
@@ -9,12 +11,23 @@ const RgisterModal = () => {
     setShowModal(!showModal);
   };
 
+  const handleRegisterSuccess = () => {
+    toast.success("Üyelik tamamlandı!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+    });
+
+    toggleModal(); // Modalı kapat
+  };
+
   return (
     <>
       <button
         onClick={toggleModal}
-        className="text-black bg-green-light focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 
-                "
+        className="text-black bg-green-light focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600"
         type="button"
       >
         Sign Up
@@ -51,12 +64,13 @@ const RgisterModal = () => {
                 </button>
               </div>
               <div>
-                <Rgister />
+                <Rgister onSuccess={handleRegisterSuccess} />
               </div>
             </div>
           </div>
         </div>
       )}
+      <ToastContainer />
     </>
   );
 };

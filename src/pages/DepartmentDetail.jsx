@@ -6,7 +6,7 @@ import resim2 from "../helper/resim2.jpg";
 import header from "../helper/header.jpg";
 import { Link, useParams } from "react-router-dom";
 import { FaCodeCompare, FaHeartCircleCheck } from "react-icons/fa6";
-const UniDetail = () => {
+const DepartmentDetail = () => {
   const images = [header, resim2];
   const [activeIndex, setActiveIndex] = useState(0);
   const handlePrevClick = () => {
@@ -50,8 +50,9 @@ const UniDetail = () => {
 
   const university = options3.find((uni) => uni.value === uniID);
   const department = options3.find((dep) => dep.label === departmentID);
+  // console.log(department)
   return (
-    <div className="bg-gray-100 ">
+    <div className="bg-gray-100 "id={department?.uniidcode}>
       <div className="slider w-full ">
         {/* Slider controls */}
         <div className="">
@@ -438,4 +439,4 @@ const UniDetail = () => {
   );
 };
 
-export default UniDetail;
+export default DepartmentDetail;
