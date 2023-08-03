@@ -1,16 +1,32 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import resim1 from "../../helper/resim1.jpg";
 import resim2 from "../../helper/resim2.jpg";
 import resim3 from "../../helper/resim3.jpg";
+import axios from "axios";
 
-const CardSlider = () => {
+const CardSlider = ({ depdata, cardPage }) => {
+  console.log(depdata);
   const [activeItem, setActiveItem] = useState(1);
+  const [imagesData, setImagesData] = useState([]); //! state 'i burda her bir veriye ayrı data tutması amacıyla burda tanımladık.
   const handlePrevClick = () => {
     setActiveItem((prevItem) => (prevItem === 1 ? 3 : prevItem - 1));
   };
   const handleNextClick = () => {
     setActiveItem((prevItem) => (prevItem === 3 ? 1 : prevItem + 1));
   };
+  const getImages = async (depdata) => {
+    try {
+      const BASE_URL_IMAGES = `https://tr-yös.com/api/v1/record/departmentimage.php?id=${depdata}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
+      const { data } = await axios(BASE_URL_IMAGES);
+      setImagesData(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getImages(depdata);
+  }, [cardPage]);
 
   return (
     <>
@@ -19,21 +35,24 @@ const CardSlider = () => {
           {/* Carousel wrapper */}
           <div className="relative h-56 overflow-hidden  ">
             {/* Item 1 */}
+            {imagesData.image?.map((item, i) => {
+              return (
+                <div
+                  className={`duration-700 ease-in-out  ${
+                    activeItem === i + 1 ? "block" : "hidden"
+                  }`}
+                  data-carousel-item=""
+                >
+                  <img
+                    src={item}
+                    className="absolute object-cover block w-full h-60"
+                    alt="..."
+                  />
+                </div>
+              );
+            })}
 
-            <div
-              className={`duration-700 ease-in-out  ${
-                activeItem === 1 ? "block" : "hidden"
-              }`}
-              data-carousel-item=""
-            >
-              <img
-                src={resim1}
-                className="absolute object-cover block w-full h-60"
-                alt="..."
-              />
-            </div>
-
-            <div
+            {/* <div
               className={`duration-700 ease-in-out ${
                 activeItem === 2 ? "block" : "hidden"
               }`}
@@ -44,9 +63,9 @@ const CardSlider = () => {
                 className="absolute object-cover block w-full h-60"
                 alt="..."
               />
-            </div>
+            </div> */}
 
-            <div
+            {/* <div
               className={`duration-700 ease-in-out  ${
                 activeItem === 3 ? "block" : "hidden"
               }`}
@@ -57,7 +76,7 @@ const CardSlider = () => {
                 className="absolute object-cover block w-full h-60"
                 alt="..."
               />
-            </div>
+            </div> */}
           </div>
           {/* Slider controls */}
           <button
