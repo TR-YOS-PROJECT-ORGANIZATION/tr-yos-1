@@ -58,13 +58,13 @@ const CardPre = () => {
   const { departmentID } = useParams();
   console.log(cardPage);
   return (
-    <div className="flex flex-wrap gap-15 mx-auto justify-between ">
+    <div className="flex flex-wrap gap-15 mx-auto justify-center md:justify-between md:grid-cols-2 ">
       {cardPage?.map((item, index) => (
         <div
           key={index}
-          className="flex flex-col justify-center  w-80 mx-auto border-2 mt-12"
+          className="flex flex-col justify-center  w-80 mx-auto border-2 mt-12 cursor-pointer shadow-lg rounded-lg hover:shadow-indigo-300/100 hover:scale-105 transition-transform duration-500 "
         >
-          <div className="text-center h-56  align-top">
+          <div className="text-center h-56 border- align-top ">
             <CardSlider depdata={item.id} cardPage={cardPage} />
           </div>
           <div className="mx-7 mt-3 h-24">
