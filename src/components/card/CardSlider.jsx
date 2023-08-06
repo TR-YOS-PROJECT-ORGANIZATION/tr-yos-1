@@ -38,14 +38,14 @@ const CardSlider = ({ depdata, cardPage }) => {
             {imagesData.image?.map((item, i) => {
               return (
                 <div
-                  className={`duration-700 ease-in-out  ${
+                  className={`duration-700 ease-in-out rounded-lg ${
                     activeItem === i + 1 ? "block" : "hidden"
                   }`}
                   data-carousel-item=""
                 >
                   <img
                     src={item}
-                    className="absolute object-cover block w-full h-60"
+                    className="absolute object-cover block w-full h-60 rounded-lg"
                     alt="..."
                   />
                 </div>

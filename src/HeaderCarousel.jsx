@@ -21,7 +21,7 @@ const HeaderCarousel = () => {
   };
 
   return (
-    <div className="relative w-full -mb-40 ">
+    <div className="relative w-full -mb-40  ">
       {/* Slider controls */}
       <div className="">
         <button

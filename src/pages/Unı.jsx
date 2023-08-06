@@ -15,10 +15,10 @@ const Uni = () => {
   };
   return (
     <>
-      <div>
+      <div className="">
         <div className="opacity-70 relative overflow-hidden h-[15rem] bg-center bg-no-repeat p-12 text-center bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')]">
           <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-fixed">
-            <div className="flex h-full items-center justify-center">
+            <div className="flex h-full items-center justify-center ">
               <div className="text-white">
                 <h2 className="mb-4 text-4xl font-semibold">
                   {t("universities")}
@@ -38,8 +38,8 @@ const Uni = () => {
                       
                         onClick={() => handleUniversityClick(item.uniidcode)} key={item.uniidcode}>
             
-              <div className="flex flex-col gap-5 justify-center items-center mt-5">
-                <div className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+              <div className="flex flex-col gap-5 justify-center items-center mt-5 ">
+                <div className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 hover:shadow-indigo-300/100 hover:scale-105 transition-transform duration-500">
                   {" "}
                   <img
                     className=" rounded-t-lg p-3 h-40 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
