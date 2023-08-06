@@ -45,10 +45,11 @@ const AppRouter = () => {
         </Route>
         
 
-        <Route path="/departments/department/:departmentID" element={<UniDetail departmentID={departmentID} />} />
+        {/* <Route path="/departments/department/:departmentID" element={<UniDetail departmentID={departmentID} />} /> */}
 
       </Routes>
-      <Footer />
+      <Footer />    
+ 
     </>
   );
 };
