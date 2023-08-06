@@ -16,8 +16,10 @@ const YosContextProvider = ({ children }) => {
   const [uniId, setUniId] = useState([]);
   const [filterDep, setFilterDep] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [currentPageUni, setCurrentPageUni] = useState(1);
   const[deneme ,setDeneme]=useState([])
   const [cardPage, setCardPage] = useState([]);
+  const [cardPageUni, setCardPageUni] = useState([]);
   const [userID, setUserID] = useState(localStorage.getItem("user") || "");
   const [loginState, setLoginState] = useState(
     JSON.parse(localStorage.getItem("userInfo")) || ""
@@ -147,7 +149,7 @@ const YosContextProvider = ({ children }) => {
     }
   };
 
-
+console.log(userID);
 
   //todo:email
   const addemail = async (email) => {
@@ -203,6 +205,7 @@ const YosContextProvider = ({ children }) => {
     getDep();
     getPage(currentPage);
     getUser();
+    getPageUni(currentPageUni);
 
 
     if (userID) {
@@ -210,6 +213,9 @@ const YosContextProvider = ({ children }) => {
       getCompare(userID);
     }
   }, []);
+
+
+
 
   const getPage = async (currentPage) => {
     try {
@@ -221,6 +227,24 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  
+    const getPageUni = async (currentPageUni) => {
+      try {
+        const BASE_URL_CARD = `https://tr-yös.com/api/v1/education/alluniversities.php?page=${currentPageUni}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
+
+        const { data } = await axios(BASE_URL_CARD);
+        setCardPageUni(data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+
+
+
+
 
   const handleLike = (id, userID) => {
     postFavori(id, userID);
@@ -459,6 +483,9 @@ console.log(depertman);
   
 
 
+
+
+
   const values = {
     first12Universities,
     options,
@@ -496,6 +523,11 @@ console.log(depertman);
     setCurrentPage,
     getPage,
     active,
+
+    getPageUni,
+    currentPageUni,
+    setCurrentPageUni,
+cardPageUni,
     handleLogout,
     cardPage,
     changePasswordStep1,
@@ -514,6 +546,7 @@ console.log(depertman);
     setLanguage,
     selectedLng,
     handleLanguage,
+    filteredUnidata,
   };
   return (
     <YosContext.Provider value={values}>
