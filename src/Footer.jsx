@@ -3,15 +3,61 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdLocalPostOffice } from "react-icons/md";
 import Like from "./components/dropdown/Like";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import { YosContext } from "./context/YosContext";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
 const Footer = () => {
     const {
 
-      setShowModal,
+      setShowModal, loginState
     } = useContext(YosContext);
   const { t, i18n } = useTranslation();
+
+  const navigate = useNavigate();
+
+  const handleMyProfileClick = () => {
+    if (loginState) {
+         navigate("/myprofile")
+     
+     
+
+    }else {
+      setShowModal(true);
+      toast.success("Lütfen üye girişi olunuz!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+       navigate("/");
+    }
+    
+  };
+
+  const handleFavoritesClick = () => {
+    if (loginState) {
+      
+      navigate("/favorites");
+    } else {
+      
+      setShowModal(true);
+      toast.success("Lütfen üye girişi olunuz!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    
+      navigate("/");
+    }
+  };
   return (
     <div>
       <div className=" w-full  p-4 py-6 lg:py-8 bg-[#222020] mt-4 text-white top-0 mb-0">
@@ -90,19 +136,20 @@ const Footer = () => {
               </h2>
               <ul className=" dark:text-gray-400 font-medium">
                 <li className="mb-6">
-                  <Link
+                   <Link
                     to="/myprofile"
-                    onClick={() => setShowModal(true)}
-                    className="hover:underline border rounded-md p-2"
+                    onClick={handleMyProfileClick}
+                    className="hover:underline"
                   >
                     {t("myProfile")}
                   </Link>
                 </li>
                 <li>
+                  {/* Use the Link component for routing */}
                   <Link
                     to="/favorites"
-                    className="hover:underline border rounded-md p-2"
-                    onClick={() => setShowModal(true)}
+                    className="hover:underline"
+                    onClick={handleFavoritesClick}
                   >
                     {t("favorites")}
                   </Link>
