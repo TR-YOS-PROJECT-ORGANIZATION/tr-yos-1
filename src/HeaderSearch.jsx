@@ -16,7 +16,7 @@ const HeaderSearch = () => {
     <div className="relative bottom-30 z-50 w-10/12 mx-auto">
       <div className="m-auto max-w-[1030px] h-20  bg-white rounded-md border-2 border-green-dark ">
         <div className="flex justify-evenly   ">
-          <div>
+          <div className="">
             <label htmlFor="city" className="mr-2  mt-2 font-bold">
               {t("selectCity")}
             </label>

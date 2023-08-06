@@ -20,7 +20,7 @@ const LoginForm = ({ values, handleChange, errors, touched, handleBlur }) => {
   return (
     <div>
       <Form>
-        <div className="mb-6 m-auto w-48">
+        <div className="mb-6 m-auto w-48 pt-4">
           <input
             name="email"
             id="email"
@@ -86,7 +86,7 @@ const LoginForm = ({ values, handleChange, errors, touched, handleBlur }) => {
         </a>
       </div>
       <hr />
-      <div className="w-full text-center mt-4">
+      <div className="w-full text-center mt-2 pb-2 flex justify-center items-center">
         <label
           htmlFor="link-checkbox"
           className="ml-2 text-sm font-small text-gray-900 dark:text-gray-300"
