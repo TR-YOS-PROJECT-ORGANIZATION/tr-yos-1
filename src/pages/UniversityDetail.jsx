@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
 import { YosContext } from "../context/YosContext";
-import Header from "../Header";
-import HeaderCarousel from "../HeaderCarousel";
+
 import resim2 from "../helper/resim2.jpg";
 import header from "../helper/header.jpg";
-import { useParams } from "react-router-dom";
+
 const UniversityDetail = () => {
   const images = [header, resim2];
   const [activeIndex, setActiveIndex] = useState(0);
@@ -13,8 +12,7 @@ const UniversityDetail = () => {
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
-  const { departmentID } = useParams();
-  console.log(departmentID);
+
   const handleNextClick = () => {
     setActiveIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
@@ -22,12 +20,7 @@ const UniversityDetail = () => {
   };
   const { uniID, options3, universityDetail, first12Universities } =
     useContext(YosContext);
-  // const selectedCode = first12Universities.map((item) => item.uniidcode);
 
-  // console.log(selectedCode);
-  // const department = options3.find((dep) =>
-  //   selectedCode.includes(dep.uniidcode)
-  // );
   const filterDuplicateUnis = (uniler) => {
     const uniqueUni = {};
     uniler.forEach((item) => {
@@ -38,7 +31,10 @@ const UniversityDetail = () => {
     });
     return Object.values(uniqueUni);
   };
+
+
   const filteredUnis = filterDuplicateUnis(universityDetail);
+const depleng = universityDetail.map((item,i) => i+1);
 
   // const selectedCode = filteredUnis.map((item) => ({
   //   uniidcode: item.university.code,
@@ -175,7 +171,10 @@ const UniversityDetail = () => {
             </div>
             <div className="about bg-white rounded-lg p-5 grid my-4">
               <div className="font-bold text-lg">About Department</div>
+              <div className="font-bold text-lg">{depleng.length - 1 + 1}</div>
             </div>
+      
+
             <div className="about bg-white rounded-lg p-5 grid my-4">
               <div className="font-bold text-lg">Departments</div>
               {universityDetail?.map((datauni) => (
@@ -193,11 +192,6 @@ const UniversityDetail = () => {
             <div>
               <div className="bg-white rounded-lg p-2">
                 <div className="flex  text-center justify-center my-auto">
-                  <img
-                    className=" rounded-t-lg p-3 w-20 h-20   md:rounded-none md:rounded-l-lg"
-                    src="https://upload.wikimedia.org/wikipedia/tr/4/4c/Afyon_Kocatepe_%C3%9Cniversitesi_logo.png"
-                    alt=""
-                  />
                   <div className=" text-left">
                     <div className="font-bold text-xl">
                       {item.university.tr
