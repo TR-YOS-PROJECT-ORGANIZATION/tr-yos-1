@@ -8,7 +8,6 @@ import Departmens from "./pages/Departmens";
 import RgisterModal from "./components/register/RgisterModal";
 import Favorites from "./pages/Favorites";
 import Compare from "./pages/Compare";
-// import MyProfile from "./pages/MyProfile";
 import MainAcc from "./components/myAccount/MainAcc";
 import DepartmentDetail from "./pages/DepartmentDetail";
 import { YosContext } from "./context/YosContext";
@@ -36,16 +35,13 @@ const AppRouter = () => {
             path="/departments/department/:departmentID"
             element={<DepartmentDetail departmentID={departmentID} />}
           />
-          {/* <Route path="/universities:departmentID" element={<UniversityDetail departmentID={uniId} />} /> */}
           <Route
             path="/universities/university/:universityCode"
             element={<UniversityDetail universityCode={uniId} />}
           />
         </Route>
-
-        {/* <Route path="/departments/department/:departmentID" element={<UniDetail departmentID={departmentID} />} /> */}
       </Routes>
-      <Footer />
+      <Footer />    
     </>
   );
 };

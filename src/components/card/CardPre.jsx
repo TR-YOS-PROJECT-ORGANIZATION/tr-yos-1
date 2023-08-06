@@ -5,6 +5,8 @@ import { FaHeartCircleCheck } from "react-icons/fa6";
 import { FaCodeCompare } from "react-icons/fa6";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import LoginModal from "../../LoginModal";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CardPre = () => {
   const {
@@ -23,14 +25,34 @@ const CardPre = () => {
   const handleLikeToLogin = (y, x) => {
     if (userID) {
       handleLike(y, x);
+    } else {
+      setShowModal(true);
+      toast.success("Lütfen üye girişi olunuz!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
-    setShowModal(true);
   };
   const handleCompareToLogin = (x) => {
     if (userID) {
       handleCompare(x);
+    } else {
+      setShowModal(true);
+      toast.success("Lütfen üye girişi olunuz!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
-    setShowModal(true);
   };
 
   const { departmentID } = useParams();
