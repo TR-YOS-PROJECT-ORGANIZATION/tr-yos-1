@@ -15,7 +15,7 @@ const YosContextProvider = ({ children }) => {
   const [filterDep, setFilterDep] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentPageUni, setCurrentPageUni] = useState(1);
-  const[deneme ,setDeneme]=useState([])
+  const [deneme, setDeneme] = useState([]);
   const [cardPage, setCardPage] = useState([]);
   const [cardPageUni, setCardPageUni] = useState([]);
   const [userID, setUserID] = useState(localStorage.getItem("user") || "");
@@ -186,7 +186,7 @@ const YosContextProvider = ({ children }) => {
     getUni();
     getDep();
     getPage(currentPage);
-    getUser();
+
     getPageUni(currentPageUni);
     if (userID) {
       getFavori(userID);
@@ -204,17 +204,17 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-    const getPageUni = async (currentPageUni) => {
-      try {
-        const BASE_URL_CARD = `https://tr-yös.com/api/v1/education/alluniversities.php?page=${currentPageUni}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
+  const getPageUni = async (currentPageUni) => {
+    try {
+      const BASE_URL_CARD = `https://tr-yös.com/api/v1/education/alluniversities.php?page=${currentPageUni}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
 
-        const { data } = await axios(BASE_URL_CARD);
-        setCardPageUni(data);
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+      const { data } = await axios(BASE_URL_CARD);
+      setCardPageUni(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleLike = (id, userID) => {
     postFavori(id, userID);
   };
@@ -492,7 +492,7 @@ const YosContextProvider = ({ children }) => {
     getPageUni,
     currentPageUni,
     setCurrentPageUni,
-cardPageUni,
+    cardPageUni,
     handleLogout,
     cardPage,
     changePasswordStep1,
@@ -500,7 +500,6 @@ cardPageUni,
     addemail,
     showModal,
     setShowModal,
-
     postUser,
     userUpdate,
     uniCode,
