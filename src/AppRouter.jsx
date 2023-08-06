@@ -8,7 +8,6 @@ import Departmens from "./pages/Departmens";
 import RgisterModal from "./components/register/RgisterModal";
 import Favorites from "./pages/Favorites";
 import Compare from "./pages/Compare";
-// import MyProfile from "./pages/MyProfile";
 import MainAcc from "./components/myAccount/MainAcc";
 import DepartmentDetail from "./pages/DepartmentDetail";
 import { YosContext } from "./context/YosContext";
@@ -16,7 +15,6 @@ import CardPre from "./components/card/CardPre";
 import UniversityDetail from "./pages/UniversityDetail";
 import PrivateRouter from "./PrivateRouter";
 import Login from "./Login";
-
 
 const AppRouter = () => {
   const { departmentID, uniId } = useParams();
@@ -29,27 +27,21 @@ const AppRouter = () => {
         <Route path="/departments" element={<Departmens />} />
         <Route path="/register" element={<RgisterModal />} />
         <Route path="/login" element={<Login />} />
-        <Route path="" element={<PrivateRouter/>}>
+        <Route path="" element={<PrivateRouter />}>
           <Route path="/myprofile" element={<MainAcc />} />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/compare" element={<Compare />} />
-        <Route
-          path="/departments/department/:departmentID"
-          element={<DepartmentDetail departmentID={departmentID} />}
-        />
-        {/* <Route path="/universities:departmentID" element={<UniversityDetail departmentID={uniId} />} /> */}
-        <Route
-          path="/universities/university/:universityCode"
-          element={<UniversityDetail universityCode={uniId} />}
-        />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/compare" element={<Compare />} />
+          <Route
+            path="/departments/department/:departmentID"
+            element={<DepartmentDetail departmentID={departmentID} />}
+          />
+          <Route
+            path="/universities/university/:universityCode"
+            element={<UniversityDetail universityCode={uniId} />}
+          />
         </Route>
-        
-
-        {/* <Route path="/departments/department/:departmentID" element={<UniDetail departmentID={departmentID} />} /> */}
-
       </Routes>
       <Footer />    
- 
     </>
   );
 };

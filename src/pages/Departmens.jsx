@@ -93,34 +93,6 @@ const Departmens = () => {
               />
             </div>
           </div>{" "}
-          <div className=" flex mt-5 justify-evenly">
-            <div className="mb-1 flex flex-col ml-20 w-10/12 mx-auto">
-              <label htmlFor="city" className="mr-2  mt-2 font-bold">
-                {t("price")}
-              </label>
-              <div className="flex">
-                <input
-                  type="text "
-                  placeholder="Min "
-                  className="border border-gray-300 rounded-md px-4 py-2 w-28 mt-2 h-9 focus:outline-none"
-                />
-                <div className="flex justify-center">
-                  <p className="text-3xl ">-</p>
-                </div>
-
-                <div className="mx-4">
-                  <input
-                    type="text"
-                    placeholder="Max"
-                    className="border border-gray-300 rounded-md px-4 py-2 w-28  mt-2 focus:outline-none h-9"
-                  />
-                </div>
-              </div>
-            </div>{" "}
-            <div className="  bg-green-dark text-white font-bold w-20 h-10  text-center rounded-md self-end ">
-              <button className="m-2">{t("search")}</button>
-            </div>
-          </div>
         </div>
       </div>
 
