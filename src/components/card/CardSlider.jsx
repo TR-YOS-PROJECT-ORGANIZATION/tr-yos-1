@@ -51,37 +51,11 @@ const CardSlider = ({ depdata, cardPage }) => {
                 </div>
               );
             })}
-
-            {/* <div
-              className={`duration-700 ease-in-out ${
-                activeItem === 2 ? "block" : "hidden"
-              }`}
-              data-carousel-item="active"
-            >
-              <img
-                src={resim2}
-                className="absolute object-cover block w-full h-60"
-                alt="..."
-              />
-            </div> */}
-
-            {/* <div
-              className={`duration-700 ease-in-out  ${
-                activeItem === 3 ? "block" : "hidden"
-              }`}
-              data-carousel-item="active"
-            >
-              <img
-                src={resim3}
-                className="absolute object-cover block w-full h-60"
-                alt="..."
-              />
-            </div> */}
           </div>
           {/* Slider controls */}
           <button
             type="button"
-            className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            className="absolute top-0 left-0  flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
             data-carousel-prev=""
             onClick={handlePrevClick}
           >
@@ -103,7 +77,7 @@ const CardSlider = ({ depdata, cardPage }) => {
           </button>
           <button
             type="button"
-            className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            className="absolute top-0 right-0  flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
             data-carousel-next=""
             onClick={handleNextClick}
           >

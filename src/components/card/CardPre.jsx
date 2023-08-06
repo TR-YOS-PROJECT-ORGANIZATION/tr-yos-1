@@ -34,7 +34,7 @@ const CardPre = () => {
   };
 
   const { departmentID } = useParams();
-console.log(cardPage);
+  console.log(cardPage);
   return (
     <div className="flex flex-wrap gap-15 mx-auto justify-between ">
       {cardPage?.map((item, index) => (
@@ -48,30 +48,30 @@ console.log(cardPage);
           <div className="mx-7 mt-3 h-24">
             <div className="flex justify-between">
               <Link
-                to={`/departments/department/${
-                  language === "tr" ? item.department.tr : item.department.en
-                }`}
                 className="font-bold text-xl w-60"
+                to={`/departments/department/${item.department.tr}`}
               >
                 {language === "tr" ? item.department.tr : item.department.en}
               </Link>
-
               <div>
                 <FaHeartCircleCheck
                   id={item.id}
                   onClick={() => handleLikeToLogin(item.id, userID)}
-                  className={`w-6 h-6 ${
+                  className={`w-6  h-6 ${
                     like.includes(item.id) ? "active" : ""
                   }`}
                 />
               </div>
             </div>
-            <Link to={`/${item.id}`} className="font-semibold">
-              {language === "tr" ? item.faculty.tr : item.faculty.en}
+            <Link
+              className=" text-xl w-60"
+              to={`/departments/department/${item.department.tr}`}
+            >
+              <p>{language === "tr" ? item.faculty.tr : item.faculty.en}</p>
+              <p className="text-sm mt-1">
+                {language === "tr" ? item.university.tr : item.university.en}
+              </p>
             </Link>
-            <p className="text-sm mt-1">
-              {language === "tr" ? item.university.tr : item.university.en}
-            </p>
           </div>
           <div className="mx-7 mt-8  flex justify-between">
             <div className=" bg-[#DDDDDD] font-bold w-32 text-center rounded-md flex">
@@ -91,8 +91,14 @@ console.log(cardPage);
               </button>
             </div>
           </div>
-          <div className="w-80  mb-2 bg-grey-primary mx-auto mt-5  border border-t-1"></div>
-          <div className="flex mx-7 m-4 justify-between">
+          <Link
+            to={`/departments/department/${item.department.tr}`}
+            className="w-80  mb-2 bg-grey-primary mx-auto mt-5  border border-t-1"
+          ></Link>
+          <Link
+            to={`/departments/department/${item.department.tr}`}
+            className="flex mx-7 m-4 justify-between"
+          >
             <div className="flex">
               <div>
                 <svg
@@ -134,9 +140,9 @@ console.log(cardPage);
                   d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"
                 />
               </svg>
-              <div className="mx-1">{item.price}null</div>
+              <div className="mx-1">{item?.price || "0"}</div>
             </div>
-          </div>
+          </Link>
         </div>
       ))}
     </div>

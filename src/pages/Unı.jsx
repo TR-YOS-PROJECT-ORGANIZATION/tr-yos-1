@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { YosContext } from "../context/YosContext";
 import PaginationPage from "./Pagination";
 import { useTranslation } from "react-i18next";
 import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 const Uni = () => {
   const {
     options3,

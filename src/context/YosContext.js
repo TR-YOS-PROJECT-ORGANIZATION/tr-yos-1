@@ -55,7 +55,6 @@ const YosContextProvider = ({ children }) => {
   const BASE_URL_USER = `https://tr-yös.com/api/v1/users/newuser.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
   const BASE_URL_LOGIN = `https://tr-yös.com/api/v1/users/login.php?token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
   const BASE_URL_CARD = `https://tr-yös.com/api/v1/record/alldepartments.php?page=${currentPage}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
-  const BASE_URL_UPDATEUSER = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=userID&token=YourToken`;
 
   const uniDetail = async (clickedUniCode) => {
     try {
@@ -75,18 +74,7 @@ const YosContextProvider = ({ children }) => {
 
   //todo kullanıcı bilgilerinin güncellenmesi
 
-  // getImages();
-
-  const getUser = async () => {
-    try {
-      const BASE_URL_UPDATEUSER = `https://tr-yös.com/api/v1/users/updateuser.php?user_id=${userID}&token=${ApiKey}`;
-      const { data } = await axios(BASE_URL_UPDATEUSER);
-      setUserUpdate(data);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //
 
   const postUser = async (userInfo) => {
     try {
@@ -200,7 +188,6 @@ const YosContextProvider = ({ children }) => {
     getUni();
     getDep();
     getPage(currentPage);
-    getUser();
 
     if (userID) {
       getFavori(userID);
@@ -353,8 +340,8 @@ const YosContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-console.log(uni);
-console.log(depertman);
+  console.log(uni);
+  console.log(depertman);
   const getCities = () => {
     return city?.map((item) => item.value);
   };
@@ -379,6 +366,7 @@ console.log(depertman);
       label: language === "tr" ? item.tr : item.en,
       img: item.images,
     }));
+  console.log(uni);
 
   const options2 = depertman
     ?.filter((item) => uniIdies.includes(item.university.code))
@@ -403,7 +391,7 @@ console.log(depertman);
     faculty: language === "tr" ? item.faculty.tr : item.faculty.en,
     university: language === "tr" ? item.university.tr : item.university.en,
     address: language === "tr" ? item.city.tr : item.city.en,
-    price: item.null,
+    price: item?.price,
     id: item.id,
     uniID: item.uniID,
     adress2: item.data?.adress,
@@ -452,9 +440,11 @@ console.log(depertman);
   const filteredUnis = filterDuplicateUnis(options3);
   const filteredUnidata = filterDuplicateUnis(options3);
   const first12Universities = filteredUnidata.slice(0, 12);
-  console.log(first12Universities);
+  // console.log(first12Universities);
+  // console.log(depertman);
 
   const values = {
+    setUserUpdate,
     first12Universities,
     options,
     options1,
@@ -498,7 +488,7 @@ console.log(depertman);
     addemail,
     showModal,
     setShowModal,
-    getUser,
+
     postUser,
     userUpdate,
     uniCode,
