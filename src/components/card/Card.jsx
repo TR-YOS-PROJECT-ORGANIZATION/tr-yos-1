@@ -98,9 +98,7 @@ const Card = () => {
                       />
                     </svg>
                   </div>
-                  <div>
-                   
-                  </div>
+                  <div></div>
                 </div>
                 <div className="w-80 mb-2 bg-grey-primary mx-auto mt-5 border border-t-1"></div>
                 <div className="flex mx-7 m-4 justify-between">

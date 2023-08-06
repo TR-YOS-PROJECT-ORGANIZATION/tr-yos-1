@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
 import { YosContext } from "../context/YosContext";
-import Header from "../Header";
-import HeaderCarousel from "../HeaderCarousel";
+
 import resim2 from "../helper/resim2.jpg";
 import header from "../helper/header.jpg";
-import { useParams } from "react-router-dom";
+
 const UniversityDetail = () => {
   const images = [header, resim2];
   const [activeIndex, setActiveIndex] = useState(0);
@@ -13,8 +12,7 @@ const UniversityDetail = () => {
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
-  const { departmentID } = useParams();
-  console.log(departmentID);
+
   const handleNextClick = () => {
     setActiveIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
@@ -22,12 +20,7 @@ const UniversityDetail = () => {
   };
   const { uniID, options3, universityDetail, first12Universities } =
     useContext(YosContext);
-  // const selectedCode = first12Universities.map((item) => item.uniidcode);
 
-  // console.log(selectedCode);
-  // const department = options3.find((dep) =>
-  //   selectedCode.includes(dep.uniidcode)
-  // );
   const filterDuplicateUnis = (uniler) => {
     const uniqueUni = {};
     uniler.forEach((item) => {
@@ -38,7 +31,10 @@ const UniversityDetail = () => {
     });
     return Object.values(uniqueUni);
   };
+
+
   const filteredUnis = filterDuplicateUnis(universityDetail);
+const depleng = universityDetail.map((item,i) => i+1);
 
   // const selectedCode = filteredUnis.map((item) => ({
   //   uniidcode: item.university.code,
@@ -141,11 +137,11 @@ const UniversityDetail = () => {
             <div className="bg-white rounded-lg p-5 grid grid-cols-4 mb-4">
               <div className="name col-span-3 ">
                 <p className="font-bold text-2xl mb-1 w-96 leading-8">
-                  {item ? item.university.tr : "Department Not Found"}
+                  {item?.university?.tr || "Department Not Found"}
                 </p>
                 <p>
                   <span className="display inline-block  pr-1 "></span>
-                  {item ? item.data.adress : ""}
+                  {item?.data?.adress || "Turkey"}
                 </p>
               </div>
             </div>
@@ -175,7 +171,10 @@ const UniversityDetail = () => {
             </div>
             <div className="about bg-white rounded-lg p-5 grid my-4">
               <div className="font-bold text-lg">About Department</div>
+              <div className="font-bold text-lg">{depleng.length - 1 + 1}</div>
             </div>
+      
+
             <div className="about bg-white rounded-lg p-5 grid my-4">
               <div className="font-bold text-lg">Departments</div>
               {universityDetail?.map((datauni) => (
@@ -193,16 +192,9 @@ const UniversityDetail = () => {
             <div>
               <div className="bg-white rounded-lg p-2">
                 <div className="flex  text-center justify-center my-auto">
-                  <img
-                    className=" rounded-t-lg p-3 w-20 h-20   md:rounded-none md:rounded-l-lg"
-                    src="https://upload.wikimedia.org/wikipedia/tr/4/4c/Afyon_Kocatepe_%C3%9Cniversitesi_logo.png"
-                    alt=""
-                  />
                   <div className=" text-left">
                     <div className="font-bold text-xl">
-                      {item.university.tr
-                        ? item.university.tr
-                        : "University Not Found"}
+                      {item?.university?.tr || "University Not Found"}
                     </div>
                     <div className="flex ">
                       <div className="">
@@ -226,9 +218,7 @@ const UniversityDetail = () => {
                           />
                         </svg>
                       </div>
-                      <div>
-                        {item.data.adress ? item.data.adress : "Not Found"}
-                      </div>
+                      <div>{item?.data?.adress || "Turkey"}</div>
                     </div>
                   </div>
                 </div>
@@ -254,7 +244,7 @@ const UniversityDetail = () => {
                     <div>
                       <div className="text-left font-bold">Call Us</div>
                       <div className="font-semibold text-gray-600">
-                        {item?.data.phone}
+                        {item?.data?.phone || "03124134847"}
                       </div>
                     </div>
                   </div>
@@ -278,7 +268,7 @@ const UniversityDetail = () => {
                     <div>
                       <div className="text-left font-bold">E-Mail</div>
                       <div className="font-semibold text-gray-600">
-                        {item?.data.email}
+                        {item?.data?.email || "tryos@gmail.com"}
                       </div>
                     </div>
                   </div>
@@ -302,7 +292,7 @@ const UniversityDetail = () => {
                     <div>
                       <div className="text-left font-bold">Website</div>
                       <div className="font-semibold text-gray-600">
-                        {item?.data.web}
+                        {item?.data?.web || "www.tr.yos.com"}
                       </div>
                     </div>
                   </div>

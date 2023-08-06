@@ -1,19 +1,40 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { YosContext } from "../../context/YosContext";
 import { dunyaUlkeIsimleri } from "../../helper/data";
 import Select from "react-select";
+import axios from "axios";
 
 const RightMyAccount = () => {
   // const { updateName } = useContext(YosContext);
-  const { postUser, userUpdate } = useContext(YosContext);
+  const { postUser, userUpdate, setUserUpdate, userID } =
+    useContext(YosContext);
   const [name, setName] = useState("");
   const [country, setCountry] = useState("");
-    const [countrys, setCountrys] = useState(dunyaUlkeIsimleri);
-
+  const [countrys, setCountrys] = useState(dunyaUlkeIsimleri);
+  const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
   const [phone, setPhone] = useState("");
   const [about, setAbout] = useState("");
 
+  const getUser = async () => {
+    try {
+      const BASE_URL_GETUSER = `https://tr-yös.com/api/v1/users/user.php?id=${userID}&token=mBbAINPS8DwIL5J9isMwnEJGr4OgSkC55SCm2BqnVeJ8r1gxGFlrl8mFN7Q18GA9D/HsXeDS5arTZx6l974b31678f8f18db56809a16f9728baf`;
+      const { data } = await axios(BASE_URL_GETUSER);
+      setUserUpdate(data);
+      setName(data.user.name);
+      setEmail(data.user.email);
+      setCountry(data.user.country);
+      setCity(data.user.city);
+      setPhone(data.user.phone);
+      setAbout(data.user.about);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, [userID]);
 
   const handleCountryChange = (event) => {
     setCountry(event.target.value);
@@ -24,13 +45,13 @@ const RightMyAccount = () => {
 
     let data1 = new FormData();
     data1.append("name", name);
+    data1.append("email", email);
     data1.append("country", country);
-    data1.append("city",city);
-    data1.append("phone",phone);
+    data1.append("city", city);
+    data1.append("phone", phone);
     data1.append("about", about);
     postUser(data1);
   };
-console.log(dunyaUlkeIsimleri);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -53,6 +74,8 @@ console.log(dunyaUlkeIsimleri);
               E-mail*
             </label>
             <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               type="email"
               required
               className="w-full rounded-md mt-2 focus:border-green-light focus:ring-green-dark"
