@@ -38,7 +38,7 @@ const Card = () => {
         ) : (
           filterrrr.map((item) => {
             return (
-              <div className="flex flex-col justify-center w-80 mx-auto border-2 mt-12">
+              <div className="flex flex-col justify-center w-80 mx-auto border-2 mt-12 ">
                 <div className="text-center h-56 align-top">
                   <CardSlider depdata={item.id} />
                 </div>
